@@ -37,7 +37,7 @@ You can use your favorite task runner or software for compiling your CSS. Altern
 
 Under WP-SCSS Settings page > Configure paths, enter the following:
 
-**Scss Location** -> "/scss/" (no quotes)
+**Scss Location** -> "/scss/" (no quotes)  
 **CSS Location**  -> "/" (no quotes)
 
 Now you can edit the SCSS files directly and the CSS will compile into `styles.css` in the theme root every time the page is reloaded in the front-end. Remember to clear the browser cache afterwards to make sure it loads the latest CSS.
