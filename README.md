@@ -19,7 +19,7 @@ In order to make the theme your own, you'll have to change all the AJV Proto the
 
 * AJV Proto -> My Theme Name
 * AJV_Proto -> My_Theme_Name
-* AJV_PROTO -> My_THEME_NAME
+* AJV_PROTO -> MY_THEME_NAME
 * ajv_proto -> my_theme_name
 * ajv-proto -> my-theme-name
 
