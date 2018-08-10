@@ -1,0 +1,105 @@
+/* ## Header
+--------------------------------------------- */
+
+.site-header {
+	background: $base-background-color;
+	text-align: center;
+	padding: 3rem 0;
+	
+	@include media(medium) {
+		text-align: left;
+	}
+
+	.site-title {
+		margin: $base-spacing/2 0 $base-spacing/4 0;
+		font-size: $base-font-size * 1.5;
+		font-weight: 700;
+		
+		a {
+			color: $base-font-color;
+			text-decoration: none;
+		}
+		
+	}
+
+	h1.site-title,
+	p.site-title {
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.site-description {
+		font-size: $base-font-size / 1.25;
+		font-weight: 400;
+		margin-bottom: 0;
+	}
+	
+	.title-area {
+		width: 100%;
+		
+		@include media(medium) {
+			float: left;
+			width: 40%;
+		}
+		
+	}
+	
+	.header-widget-area {
+		width: 100%;
+		
+		@include media(medium) {
+			float: left;
+			width: 60%;
+		}
+	}
+	
+}
+
+.wp-custom-logo {
+
+	.title-area {
+		max-width: none;
+		margin-top: 0;
+	}
+	
+	.site-title {
+		text-indent: 0;
+	}
+
+}
+
+.custom-logo-link,
+.custom-logo {
+	display: block;
+	width: 100%;
+	height: auto;
+	padding: 0 1rem;
+	
+	@include media(x-small) {
+		width: 300px;
+		height: auto;
+		margin: 0 auto;
+	}
+	
+}
+
+.custom-logo {
+	vertical-align: top;
+}
+
+/* ## Utility Bar
+--------------------------------------------- */
+
+.utility-bar {
+	background: $primary-color;
+	color: $base-background-color;
+	padding: 1rem;
+	
+	p {
+		text-align: center;
+		margin-bottom: 0;
+		font-size: $base-font-size / 1.25;
+		font-weight: 600;
+	}
+	
+}

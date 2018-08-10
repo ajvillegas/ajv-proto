@@ -1,0 +1,72 @@
+// Generate mobile-first media queries
+@mixin media($breakpoint) {
+	
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media only screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+			@content;
+		}
+	}
+	
+	@else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+		+ "Please make sure it is defined in `$breakpoints` map.";
+	}
+	
+}
+
+// Calculate column width value
+@function col_width($n, $total_columns, $total_width: 1170px, $gutter_width: 30px) {
+	
+	$col_width: ($total_width - ($gutter_width * ($total_columns - 1))) / $total_columns;
+	$total_width: $total_width;
+	$columns_width: ($n * $col_width) + (($n - 1) * $gutter_width);
+	
+	@return percentage($columns_width / $total_width);
+	
+}
+
+// Generate button styles
+@mixin buttons( $important: false ) {
+	
+	$imp: null;
+	
+	@if $important == true {
+		$imp: !important;
+	} @else {
+		$imp: null;
+	}
+
+	appearance: none $imp;
+	-webkit-font-smoothing: antialiased $imp;
+	background-color: $action-color $imp;
+	border-radius: $base-border-radius $imp;
+	border: 3px solid $action-color $imp;
+	//border-bottom: none $imp;
+	color: #fff $imp;
+	cursor: pointer $imp;
+	display: inline-block $imp;
+	font-family: $base-font-family $imp;
+	font-size: $base-font-size / 1.2 $imp;
+	font-weight: 400 $imp;
+	line-height: 1 $imp;
+	padding: 1.2rem 1.6rem $imp;
+	text-decoration: none $imp;
+	user-select: none $imp;
+	vertical-align: middle $imp;
+	white-space: normal $imp;
+	position: relative $imp;
+
+	&:hover,
+	&:focus {
+		background-color: darken($action-color, 15%) $imp;
+		color: #fff $imp;
+		border: 3px solid darken($action-color, 15%) $imp;
+		top: 1px $imp;
+	}
+	
+	&:disabled {
+		cursor: not-allowed $imp;
+		opacity: 0.5 $imp;
+	}
+
+}

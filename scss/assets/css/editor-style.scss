@@ -1,0 +1,583 @@
+@import "../../modules/variables";
+@import "../../modules/mixins";
+@import "../../vendor/bourbon/app/assets/stylesheets/bourbon";
+
+/* Editor Styles
+---------------------------------------------------------------------------------------------------- */
+
+/* ## Import Google Fonts
+--------------------------------------------- */
+
+@import url('//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700');
+
+/* ## Body Content
+--------------------------------------------- */
+
+.mceContentBody * {
+	box-sizing: border-box;
+}
+
+.mceContentBody {
+	max-width: $max-width;
+	font-family: $base-font-family;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: $base-line-height;
+	background-color: $base-background-color;
+	color: $base-font-color;
+	//-webkit-font-smoothing: subpixel-antialiased !important;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.mceContentBody a {
+	color: $primary-color;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.mceContentBody a:hover {
+	text-decoration: none;
+}
+
+.mceContentBody a.label-link {
+	background-color: $primary-color;
+	display: inline;
+	padding: 3px 6px;
+	font-size: 85%;
+	font-weight: 400;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 3px;
+	border-bottom: none;
+	text-decoration: none;
+	
+	&:hover {
+		background-color: darken($action-color, 5%);
+	}
+	
+}
+
+.mceContentBody strong {
+	font-weight: 700;
+}
+
+.mceContentBody p {
+	@include clearfix;
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+.mceContentBody p.lead-text {
+	font-size: 24px;
+}
+
+.mceContentBody .mark,
+.mceContentBody mark {
+	padding: 2px;
+	background-color: #fcefa9;
+	font-size: 95%;
+}
+
+.mceContentBody address {
+	margin-bottom: 30px;
+}
+
+.mceContentBody code,
+.mceContentBody kbd,
+.mceContentBody tt {
+	font-size: 18px;
+	background-color: $dark-grey;
+	color: #fff;
+	padding: 2px 4px;
+	border-radius: 0;
+}
+
+.mceContentBody pre {
+	font-size: 14px;
+	line-height: 1.75;
+	width: 100%;
+	overflow: auto;
+	word-wrap: normal;
+	margin: 0 0 30px;
+	padding: 4px 8px 4px 12px;
+	color: #000;
+	border: 1px solid #ccc;
+	border-left: 10px solid #ccc;
+	background: linear-gradient(
+		to bottom,
+		#f5f5f5,
+		#f5f5f5 50%,
+		#f9f9f9 50%,
+		#f9f9f9
+	);
+	background-size: 100% 50px;
+}
+
+/* ## Content Boxes
+--------------------------------------------- */
+
+.mceContentBody .content-box-blue,
+.mceContentBody .content-box-gray,
+.mceContentBody .content-box-green,
+.mceContentBody .content-box-purple,
+.mceContentBody .content-box-red,
+.mceContentBody .content-box-yellow {
+	margin-bottom: 30px;
+    padding: 30px;
+    overflow: hidden;
+}
+
+.mceContentBody {
+
+	.content-box-blue {
+	    background-color: $notice-color;
+	    border: 1px solid darken($notice-color, 10%);
+	    color: darken($notice-color, 60%);
+	}
+	 
+	.content-box-gray {
+	    background-color: $light-grey;
+	    border: 1px solid darken($light-grey, 10%);
+	    color: darken($light-grey, 60%);
+	}
+	 
+	.content-box-green {
+	    background-color: $success-color;
+	    border: 1px solid darken($success-color, 10%);
+	    color: darken($success-color, 60%);
+	}
+	 
+	.content-box-purple {
+	    background-color: #e2e2f9;
+	    border: 1px solid darken(#e2e2f9, 10%);
+	    color: darken(#e2e2f9, 60%);
+	}
+	 
+	.content-box-red {
+	    background-color: $error-color;
+	    border: 1px solid darken($error-color, 10%);
+	    color: darken($error-color, 60%);
+	}
+	 
+	.content-box-yellow {
+	    background-color: $alert-color;
+	    border: 1px solid darken($alert-color, 10%);
+	    color: darken($alert-color, 60%);
+	}
+
+}
+
+/* ## Blockquotes
+--------------------------------------------- */
+
+.mceContentBody blockquote {
+	border-left: 3px solid $primary-color;
+	margin: 30px 0 30px 30px;
+	padding-left: 20px;
+	font-size: 20px;
+	font-style: italic;
+}
+
+/* ## Lists
+--------------------------------------------- */
+
+.mceContentBody ol,
+.mceContentBody ul {
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
+	-webkit-padding-start: 0;
+	margin-bottom: 30px;
+}
+
+.mceContentBody ol li,
+.mceContentBody ul li {
+	margin-left: 40px;
+}
+
+.mceContentBody ol li {
+	list-style-type: decimal;
+}
+
+.mceContentBody ol li ol li {
+	list-style-type: lower-latin;
+}
+
+.mceContentBody ul li {
+	list-style-type: disc;
+}
+
+.mceContentBody ol ol,
+.mceContentBody ul ul {
+	margin-bottom: 0;
+}
+
+.mceContentBody ul.custom-list-1 li,
+.mceContentBody ul.custom-list-2 li {
+	list-style-type: none;
+	word-wrap: break-word;
+	margin-left: 60px;
+}
+
+.mceContentBody ul.custom-list-1 li ul li,
+.mceContentBody ul.custom-list-2 li ul li {
+	margin-left: 40px;
+}
+
+.mceContentBody ul.custom-list-1 li:before,
+.mceContentBody ul.custom-list-2 li:before {
+	font-family: dashicons;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: inherit;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	padding-right: 5px;
+	position: relative;
+	top: 3px;
+	left: 2px;
+	margin-left: -45px;
+}
+
+.mceContentBody ul.custom-list-1 li:before {
+	content: '\f139';
+}
+
+.mceContentBody ul.custom-list-2 li:before {
+	content: '\f147';
+}
+
+.mceContentBody ul.custom-list-2 li ul li:before {
+	content: '\f460';
+}
+
+/* ## Headings
+--------------------------------------------- */
+
+.mceContentBody h1,
+.mceContentBody h2,
+.mceContentBody h3,
+.mceContentBody h4,
+.mceContentBody h5,
+.mceContentBody h6 {
+	font-family: $base-font-family;
+	font-weight: 700;
+	margin: 0 0 20px;
+}
+
+h5,
+h6 {
+	text-transform: uppercase;
+}
+
+// Use a modular scale to size all headings automatically
+@for $i from 1 through 6 {
+	
+	h#{$i} {
+		font-size: modular-scale( (6 - $i), 13px, $major-third );
+	}
+	
+}
+
+/* ## Buttons
+--------------------------------------------- */
+
+.mceContentBody a.button {
+	appearance: none;
+	-webkit-font-smoothing: antialiased;
+	background-color: $action-color;
+	border-radius: $base-border-radius;
+	border: 3px solid $action-color;
+	//border-bottom: none;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: $base-font-family;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1;
+	padding: 12px 16px;
+	text-decoration: none;
+	user-select: none ;
+	vertical-align: middle;
+	white-space: normal;
+	position: relative;
+
+	&:hover,
+	&:focus {
+		background-color: darken($action-color, 15%);
+		color: #fff;
+		border: 3px solid darken($action-color, 15%);
+		top: 1px;
+	}
+	
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+	
+}
+
+.mceContentBody {
+	
+	.button.button-small {
+		padding: 8px 16px;
+		font-size: 14px;
+	}
+	
+	.button.button-large {
+		padding: 15px 30px;
+		font-size: 24px;
+		min-width: 150px;
+	}
+	
+	.button.button-secondary {
+		background-color: $secondary-color;
+		border: 3px solid $secondary-color;
+		
+		&:hover,
+		&:focus {
+			background-color: darken($primary-color, 15%);
+			border: 3px solid darken($primary-color, 15%);
+		}
+		
+	}
+	
+	.button.button-tertiary {
+		background-color: $tertiary-color;
+		border: 3px solid $tertiary-color;
+		
+		&:hover,
+		&:focus {
+			background-color: darken($tertiary-color, 5%);
+			border: 3px solid darken($tertiary-color, 5%);
+		}
+		
+	}
+	
+	.button.button-ghost {
+		background-color: transparent;
+		border: 3px solid darken($light-grey, 10%);
+		color: darken($light-grey, 25%);
+		
+		&:hover,
+		&:focus {
+			//background-color: $light-grey;
+			background-color: darken($light-grey, 25%);
+			border: 3px solid darken($light-grey, 25%);
+			color: #fff;
+		}
+		
+	}
+	
+	.button.button-square {
+		border-radius: 0;
+	}
+	
+	.button.button-round {
+		border-radius: 50px;
+		padding: 12px 30px;
+	}
+	
+}
+
+/* ## Tables
+--------------------------------------------- */
+
+.mceContentBody {
+	
+	table {
+		border-collapse: collapse;
+		margin: 30px 0;
+		table-layout: fixed;
+		width: 100%;
+		word-break: break-word;
+		border: none;
+	}
+	
+	td,
+	th {
+		text-align: left;
+		border: none;
+		border-bottom: 1px solid darken($base-border-color, 15%);
+	}
+	
+	td {
+		padding: 10px;
+	}
+	
+	th {
+		font-weight: 600;
+		padding: 0 10px;
+	}
+	
+	td:first-child,
+	th:first-child {
+		padding-left: 0;
+	}
+	
+	tr,
+	td,
+	th {
+		vertical-align: middle;
+	}
+	
+	dt {
+		font-weight: 700;
+	}
+	
+	dd {
+		font-style: italic;
+	}
+
+}
+
+/* ## Images
+--------------------------------------------- */
+
+.mceContentBody img {
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 15px;
+}
+
+.mceContentBody img.centered,
+.mceContentBody .aligncenter {
+	display: block;
+	margin: 0 auto 24px;
+}
+
+.mceContentBody img.alignnone {
+	margin-bottom: 24px;
+}
+
+.mceContentBody .alignleft {
+	float: left;
+	text-align: left;
+}
+
+.mceContentBody .alignright {
+	float: right;
+	text-align: right;
+}
+
+.mceContentBody img.alignleft,
+.mceContentBody .wp-caption.alignleft {
+	margin: 0 24px 24px 0;
+}
+
+.mceContentBody img.alignright,
+.mceContentBody .wp-caption.alignright {
+	margin: 0 0 24px 24px;
+}
+
+.mceContentBody .wp-caption,
+.mceContentBody .gallery-caption {
+	text-align: center;
+	font-size: 14px;
+	font-weight: 700;
+	margin: 0;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.mceContentBody .wp-caption.alignleft,
+.mceContentBody .wp-caption.alignright {
+	padding-top: 5px;
+}
+
+/* ## Column Classes
+--------------------------------------------- */
+
+.five-sixths,
+.four-sixths,
+.one-fourth,
+.one-half,
+.one-third,
+.one-fifth,
+.one-sixth,
+.three-fourths,
+.three-sixths,
+.two-fourths,
+.two-sixths,
+.two-thirds {
+	margin-bottom: $small-spacing;
+	border: 1px solid $light-grey;
+	padding: 4px;
+	box-sizing: border-box;
+}
+
+.five-sixths,
+.four-sixths,
+.one-fourth,
+.one-half,
+.one-third,
+.one-fifth,
+.one-sixth,
+.three-fourths,
+.three-sixths,
+.two-fourths,
+.two-sixths,
+.two-thirds {
+	float: left;
+	margin-left: percentage($column-gutter / $max-width);
+}
+
+.one-half,
+.three-sixths,
+.two-fourths {
+	width: col_width(1, 2, $max-width, $column-gutter);
+}
+
+.one-third,
+.two-sixths {
+	width: col_width(1, 3, $max-width, $column-gutter);
+}
+
+.two-thirds,
+.four-sixths {
+	width: col_width(2, 3, $max-width, $column-gutter);
+}
+
+.one-fourth {
+	width: col_width(1, 4, $max-width, $column-gutter);
+}
+
+.three-fourths {
+	width: col_width(3, 4, $max-width, $column-gutter);
+}
+
+.one-fifth {
+	width: col_width(1, 5, $max-width, $column-gutter);
+}
+
+.two-fifths{
+	width: col_width(2, 5, $max-width, $column-gutter);
+}
+
+.three-fifths {
+	width: col_width(3, 5, $max-width, $column-gutter);
+}
+
+.four-fifths {
+	width: col_width(4, 5, $max-width, $column-gutter);
+}
+
+.one-sixth {
+	width: col_width(1, 6, $max-width, $column-gutter);
+}
+
+.five-sixths {
+	width: col_width(5, 6, $max-width, $column-gutter);
+}
+
+.first {
+	clear: both;
+	margin-left: 0;
+}

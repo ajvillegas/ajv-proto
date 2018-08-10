@@ -1,0 +1,354 @@
+/* ## Site Menus
+--------------------------------------------- */
+
+.menu-toggle,
+.sub-menu-toggle {
+	display: block;
+	visibility: visible;
+	color: $base-font-color;
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: center;
+	line-height: 1.5;
+	
+	@include media(medium) {
+		display: none;
+		visibility: hidden;
+	}
+	
+}
+
+.menu-toggle,
+.menu-toggle:focus,
+.menu-toggle:hover {
+	background-color: transparent;
+	border: none;
+	border-top: 1px solid $light-grey;
+	border-bottom: 1px solid $light-grey;
+	color: $base-font-color;
+	outline: none;
+	top: inherit; // Override the theme's button shift effect.
+}
+
+.sub-menu-toggle,
+.sub-menu-toggle:focus,
+.sub-menu-toggle:hover {
+	background-color: transparent;
+	color: $base-font-color;
+	border: none;
+}
+
+.sub-menu-toggle:focus {
+	outline: 1px solid darken($light-grey, 10%);
+}
+
+.menu-toggle {
+	position: relative;
+	right: 0;
+	z-index: 1000;
+	width: 100%;
+	font-size: 1.6rem;
+	font-weight: 600;
+	padding: 2rem 1.5rem;
+	text-transform: uppercase;
+}
+
+.menu-toggle:before,
+.menu-toggle.activated:before,
+.menu-toggle.dashicons-before:before {
+	color: $base-font-color;
+	content: "\f333";
+	display: inline-block;
+	font: normal 20px/0.9 dashicons;
+	margin: 0 auto;
+	padding-right: 2.5rem;
+	transform: translate(0, 0);
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	vertical-align: middle;
+}
+
+button.sub-menu-toggle {
+	float: right;
+	padding: 0.8rem 0.8rem 0.5rem;
+	position: absolute;
+	right: 1px;
+	top: 0.8rem;
+	z-index: 100;
+	line-height: 1;
+}
+
+.sub-menu button.sub-menu-toggle {
+	top: 0.5rem;
+}
+
+.sub-menu-toggle:before {
+	content: "\f347";
+	display: inline-block;
+	color: $base-font-color;
+	font: normal 2rem/0.9 dashicons;
+	transform: translate(0, 0);
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.sub-menu-toggle.activated:before {
+	content: "\f343";
+}
+
+.site-nav-menu {
+	clear: both;
+	display: block;
+    list-style: none;
+    z-index: 15;
+	width: 100%;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 0 0 1.5rem 0;
+	
+	@include media(medium) {
+		padding-bottom: 0;
+	}
+		
+	.menu-item {
+		list-style: none;
+		float: none;
+		display: block;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		text-align: left;
+		
+		@include media(medium) {
+			// float: left; // Removes gap between menu items.
+			display: inline-block;
+		}
+		
+		a {
+			line-height: 1;
+			margin: 0;
+			padding: 1.6rem 0;
+			border: none;
+			display: inline-block;
+			position: relative;
+			width: 100%;
+			font-size: 1.6rem;
+			font-weight: 600;
+			text-decoration: none;
+			
+			@include media(medium) {
+				line-height: 1.5;
+				padding: 2rem 1.5rem;
+				width: auto;
+			}
+	
+			&:hover,
+			&:active,
+			&:focus {
+				color: $primary-color;
+			}
+			
+			&:focus {
+				outline: 1px dotted $light-grey;
+			}
+			
+		}
+		
+		> a:focus ul.sub-menu,
+		> a:focus ul.sub-menu .sub-menu {
+			left: 0;
+			margin-left: 0;
+		}
+	
+		.sub-menu {
+			display: none;
+			clear: both;
+			position: relative;
+			left: auto;
+			opacity: 1;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding-left: 1.5rem;
+			overflow: hidden; // Keeps the elements from shifting.
+			width: 100%;
+			z-index: 99;
+			
+			@include media(medium) {
+				margin-left: -0.1rem;
+				display: block;
+				position: absolute;
+				left: -9999px;
+				opacity: 0;
+				padding-left: 0;
+				overflow: visible;
+				width: 200px;
+				border-top: 1px solid $light-grey;
+			}
+	
+			a {
+				line-height: 1.2;
+				background: transparent;
+				font-size: 1.6rem;		
+				padding: 1.2rem 0;
+				position: relative;
+				width: 200px;
+				
+				&:hover {
+					color: $primary-color;
+				}
+				
+				@include media(medium) {
+					line-height: 1.5;
+					background: $base-background-color;
+					border: 1px solid $light-grey;
+					border-top: none;
+					padding: 1.5rem;
+				}
+				
+			}
+	
+			.sub-menu {
+				margin: 0;
+				padding-left: 2.5rem;
+				
+				@include media(medium) {
+					border-top: 1px solid $light-grey;
+					margin: -5.6rem 0 0 19.9rem;
+					padding-left: 0;
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	.menu-item.current-menu-item > a {
+		color: $primary-color;
+	}
+
+}
+
+@include media(medium) {
+	
+	// Displays floating sub-menu.
+	.site-nav-menu .menu-item:hover {
+		position: static;
+
+		> .sub-menu {
+			left: auto;
+			opacity: 1;
+		}
+		
+	}
+	
+	.site-nav-menu > .menu-item-has-children:before {
+		display: none;
+	}
+	
+	.site-nav-menu > .menu-item-has-children > a:after,
+	.site-nav-menu ul.sub-menu li.menu-item-has-children > a:after {
+		font-family: dashicons;
+		font-size: 1.2rem;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		vertical-align: middle;
+		text-decoration: none;
+	}
+	
+	.site-nav-menu > .menu-item-has-children > a:after {
+	    content: "\f347";
+	    padding-left: 0.8rem;
+	}
+	 
+	.site-nav-menu ul.sub-menu li.menu-item-has-children > a:after {
+	    content: "\f345";
+	    padding-left: 1rem;
+	}
+	
+}
+
+/* ## Primary Menu
+--------------------------------------------- */
+
+nav.nav-primary {
+	display: none;
+	background: transparent;
+	border-top: none;
+	border-bottom: 1px solid $light-grey;
+	
+	@include media(medium) {
+		border-top: 1px solid $light-grey;
+		display: block;
+	}
+	
+	.menu-item {
+	
+		a {
+			color: $base-font-color;
+		
+			&:hover {
+				color: $primary-color;
+			}
+			
+		}
+		
+	}
+	
+}
+
+/* ## Footer Menu
+--------------------------------------------- */
+
+nav.nav-footer {
+	
+	.menu-item a:hover {
+		color: $base-background-color;
+	}
+	
+	.menu-item.current-menu-item > a,
+	.menu-item a:hover {
+		color: $base-background-color;
+		text-decoration: underline;
+	}
+	
+	.site-nav-menu {
+		margin-right: 0;
+		margin-left: 0;
+		padding: 0 0 1.5rem 0;
+		
+		@include media(x-small) {
+			padding: 0;
+		}
+	
+		.menu-item {
+			display: block;
+			text-align: center;
+			
+			@include media(x-small) {
+				display: inline-block;
+				text-align: left;
+			}
+			
+			a {
+				padding: 0 1.5rem 2rem;
+				
+				&:focus {
+					outline: none;
+				}
+				
+			}
+		
+		}
+		
+	}
+	
+	.site-nav-menu > .menu-item-has-children > a:after,
+	.site-nav-menu ul.sub-menu li.menu-item-has-children > a:after {
+		display: none;
+	}
+	
+}

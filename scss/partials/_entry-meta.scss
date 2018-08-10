@@ -1,0 +1,44 @@
+/* ## Entry Meta
+--------------------------------------------- */
+
+.entry-meta {
+	clear: both;
+	font-size: 1.6rem;
+	line-height: 1.5;
+	color: darken($medium-grey, 15%);
+	border-top: 1px solid $light-grey;
+	padding-top: 0.5rem;
+}
+
+.entry-header .entry-meta {
+	margin-bottom: $small-spacing;
+}
+
+.cat-links,
+.tag-links {
+	display: block;
+}
+
+.entry-header,
+.entry-footer {
+
+	.svg-icon svg {
+		width: auto;
+	    height: 1.6rem;
+	    position: relative;
+	    top: 2px;
+	    margin-right: 5px;
+	    fill: darken($medium-grey, 15%);
+	}
+	
+}
+
+.entry-header {
+
+	.svg-icon svg {
+		top: 4px;
+		margin-right: 2px;
+	    margin-left: 4px;
+	}
+	
+}

@@ -1,0 +1,32 @@
+/* ## Footer Widgets
+--------------------------------------------- */
+
+.footer-widgets {
+	background: $base-background-color;
+	padding: $base-spacing * 2 0;
+	border-top: 1px solid $base-border-color;	
+}
+
+/* ## Footer
+--------------------------------------------- */
+
+.site-footer {
+	background: $secondary-color;
+	color: $light-grey;
+	padding: $base-spacing 3%;
+	font-size: $base-font-size / 1.25;
+	text-align: center;
+	
+	a {
+		color: $base-background-color;
+	}
+	
+	p:last-of-type {
+		margin-bottom: 0;
+	}
+	
+	@include media(medium) {
+		padding: $base-spacing 0;
+	}
+	
+}

@@ -1,0 +1,477 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: AJV Proto\n"
+"POT-Creation-Date: 2018-08-09 17:03-0700\n"
+"PO-Revision-Date: 2018-08-09 17:02-0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:27 archive.php:27 index.php:32 page-templates/template-colors.php:44
+#: page-templates/template-typography.php:44 page.php:27 search.php:27
+#: single.php:27
+msgid "You are here:"
+msgstr ""
+
+#: 404.php:35
+msgid "Oops! That page can't be found."
+msgstr ""
+
+#. translators: %s: homepage URL
+#: 404.php:43
+#, php-format
+msgid ""
+"It looks like nothing was found at this location. Perhaps you can return "
+"back to the site's <a href=\"%s\">homepage</a> and see if you can find what "
+"you're looking for. Or, you can try finding it by using the search form "
+"below."
+msgstr ""
+
+#: 404.php:55
+msgid "Sitemap"
+msgstr ""
+
+#: comments.php:28
+msgid "Reader Comments"
+msgstr ""
+
+#: comments.php:39
+msgid "One Comment"
+msgstr ""
+
+#. translators: comment count number.
+#: comments.php:43
+#, php-format
+msgctxt "comments title"
+msgid "%s Comment"
+msgid_plural "%s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:68
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:23 inc/theme-setup.php:49
+msgid "Footer"
+msgstr ""
+
+#: footer.php:44
+msgid "Copyright"
+msgstr ""
+
+#: footer.php:46
+msgid "All Rights Reserved"
+msgstr ""
+
+#: header.php:35 inc/widget-areas.php:29
+msgid "Utility Bar"
+msgstr ""
+
+#: header.php:42
+msgid "Back To Top"
+msgstr ""
+
+#: header.php:42
+msgid "Top"
+msgstr ""
+
+#: header.php:48
+msgid "Skip to primary navigation"
+msgstr ""
+
+#: header.php:51
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:54
+msgid "Skip to primary sidebar"
+msgstr ""
+
+#: header.php:57
+msgid "Skip to footer"
+msgstr ""
+
+#: header.php:92
+msgid "Header Widget Area"
+msgstr ""
+
+#: inc/admin-functions.php:29
+msgid "theme developed by"
+msgstr ""
+
+#: inc/layouts.php:56
+msgid "Layout Settings"
+msgstr ""
+
+#: inc/layouts.php:81
+msgid "Select Layout"
+msgstr ""
+
+#: inc/layouts.php:85
+msgid "Content, Primary Sidebar"
+msgstr ""
+
+#: inc/layouts.php:99
+msgid "Primary Sidebar, Content"
+msgstr ""
+
+#: inc/layouts.php:113
+msgid "Full Width Padded"
+msgstr ""
+
+#: inc/layouts.php:127
+msgid "Full Width Content"
+msgstr ""
+
+#: inc/scripts-and-styles.php:38
+msgctxt "Source Sans Pro font: on or off?"
+msgid "on"
+msgstr ""
+
+#: inc/scripts-and-styles.php:99
+msgid "Menu"
+msgstr ""
+
+#: inc/scripts-and-styles.php:101
+msgid "Submenu"
+msgstr ""
+
+#: inc/scripts-and-styles.php:159 inc/tinymce.php:50
+msgid "Lead Text"
+msgstr ""
+
+#: inc/scripts-and-styles.php:160 inc/tinymce.php:56
+msgid "Code"
+msgstr ""
+
+#: inc/scripts-and-styles.php:161 inc/tinymce.php:61
+msgid "Highlight"
+msgstr ""
+
+#: inc/scripts-and-styles.php:162 inc/tinymce.php:66
+msgid "Label Link"
+msgstr ""
+
+#: inc/scripts-and-styles.php:163 inc/tinymce.php:72
+msgid "List Style"
+msgstr ""
+
+#: inc/scripts-and-styles.php:164 inc/tinymce.php:76
+msgid "List Style 1"
+msgstr ""
+
+#: inc/scripts-and-styles.php:165 inc/tinymce.php:81
+msgid "List Style 2"
+msgstr ""
+
+#: inc/scripts-and-styles.php:166 inc/tinymce.php:88
+msgid "Content Box"
+msgstr ""
+
+#: inc/scripts-and-styles.php:167 inc/tinymce.php:92
+msgid "Blue"
+msgstr ""
+
+#: inc/scripts-and-styles.php:168 inc/tinymce.php:97
+msgid "Gray"
+msgstr ""
+
+#: inc/scripts-and-styles.php:169 inc/tinymce.php:102
+msgid "Green"
+msgstr ""
+
+#: inc/scripts-and-styles.php:170 inc/tinymce.php:107
+msgid "Purple"
+msgstr ""
+
+#: inc/scripts-and-styles.php:171 inc/tinymce.php:112
+msgid "Red"
+msgstr ""
+
+#: inc/scripts-and-styles.php:172 inc/tinymce.php:117
+msgid "Yellow"
+msgstr ""
+
+#: inc/scripts-and-styles.php:174
+msgctxt "Button title"
+msgid "Insert Button"
+msgstr ""
+
+#: inc/scripts-and-styles.php:175
+msgctxt "Dialog window title"
+msgid "Insert Button"
+msgstr ""
+
+#: inc/scripts-and-styles.php:176
+msgid "Button Text"
+msgstr ""
+
+#: inc/scripts-and-styles.php:177
+msgid "Button URL"
+msgstr ""
+
+#: inc/scripts-and-styles.php:178
+msgid "Target"
+msgstr ""
+
+#: inc/scripts-and-styles.php:179
+msgid "Same Window"
+msgstr ""
+
+#: inc/scripts-and-styles.php:180
+msgid "New Window"
+msgstr ""
+
+#: inc/scripts-and-styles.php:181
+msgid "Size"
+msgstr ""
+
+#: inc/scripts-and-styles.php:182
+msgid "Default"
+msgstr ""
+
+#: inc/scripts-and-styles.php:183
+msgid "Small"
+msgstr ""
+
+#: inc/scripts-and-styles.php:184
+msgid "Large"
+msgstr ""
+
+#: inc/scripts-and-styles.php:185
+msgid "Color"
+msgstr ""
+
+#: inc/scripts-and-styles.php:186 inc/theme-setup.php:48
+msgid "Primary"
+msgstr ""
+
+#: inc/scripts-and-styles.php:187
+msgid "Secondary"
+msgstr ""
+
+#: inc/scripts-and-styles.php:188
+msgid "Tertiary"
+msgstr ""
+
+#: inc/scripts-and-styles.php:189
+msgid "Ghost"
+msgstr ""
+
+#: inc/scripts-and-styles.php:190
+msgid "Alignment"
+msgstr ""
+
+#: inc/scripts-and-styles.php:191
+msgid "None"
+msgstr ""
+
+#: inc/scripts-and-styles.php:192
+msgid "Left"
+msgstr ""
+
+#: inc/scripts-and-styles.php:193
+msgid "Right"
+msgstr ""
+
+#: inc/scripts-and-styles.php:194
+msgid "Center"
+msgstr ""
+
+#: inc/scripts-and-styles.php:195
+msgid "Style"
+msgstr ""
+
+#: inc/scripts-and-styles.php:196
+msgid "Square"
+msgstr ""
+
+#: inc/scripts-and-styles.php:197
+msgid "Round"
+msgstr ""
+
+#. translators: %s: post author.
+#: inc/template-tags.php:52
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:82
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: inc/template-tags.php:86
+#, php-format
+msgid "Filed Under: %2$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:93
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: inc/template-tags.php:97
+#, php-format
+msgid "Tagged With: %2$s"
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers.
+#. translators: %s: Name of current post. Only visible to screen readers
+#: inc/template-tags.php:108 template-parts/content-page.php:42
+#, php-format
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr ""
+
+#: inc/template-tags.php:178 inc/template-tags.php:193
+msgid "Previous Page"
+msgstr ""
+
+#: inc/template-tags.php:179 inc/template-tags.php:197
+msgid "Next Page"
+msgstr ""
+
+#: inc/template-tags.php:217 template-parts/content-page.php:29
+#: template-parts/content.php:63
+msgid "Pages:"
+msgstr ""
+
+#: inc/template-tags.php:225
+msgid "Categories:"
+msgstr ""
+
+#: inc/template-tags.php:228
+msgid "Authors:"
+msgstr ""
+
+#: inc/template-tags.php:231
+msgid "Monthly:"
+msgstr ""
+
+#: inc/template-tags.php:234
+msgid "Recent Posts:"
+msgstr ""
+
+#: inc/theme-setup.php:200
+msgid "Add a Comment"
+msgstr ""
+
+#: inc/theme-setup.php:250
+msgid "Read More"
+msgstr ""
+
+#: inc/widget-areas.php:30
+msgid "This is the top utility bar widget area."
+msgstr ""
+
+#: inc/widget-areas.php:34
+msgid "Header"
+msgstr ""
+
+#: inc/widget-areas.php:35
+msgid ""
+"This is the header widget area. It typically displays next to the site logo "
+"or title."
+msgstr ""
+
+#: inc/widget-areas.php:39 sidebar.php:26
+msgid "Primary Sidebar"
+msgstr ""
+
+#: inc/widget-areas.php:40
+msgid "This is the primary sidebar widget area."
+msgstr ""
+
+#: inc/widget-areas.php:44
+msgid "Footer Widgets"
+msgstr ""
+
+#: inc/widget-areas.php:45
+msgid "This is the footer widgets area."
+msgstr ""
+
+#. translators: %s: search query.
+#: search.php:40
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: searchform.php:19
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:20
+msgctxt "search form placeholder text"
+msgid "Search this website ..."
+msgstr ""
+
+#: searchform.php:22
+msgctxt "search button text"
+msgid "Search"
+msgstr ""
+
+#: template-parts/content-none.php:19
+msgid "Nothing Found"
+msgstr ""
+
+#. translators: 1: link to WP admin new post page.
+#: template-parts/content-none.php:29
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:42
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:50
+msgid ""
+"It seems we can't find what you're looking for. Perhaps searching can help."
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: template-parts/content.php:46
+#, php-format
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "AJV Proto"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "http://www.alexisvillegas.com/services/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A starter theme for creating custom WordPress websites."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Alexis J. Villegas"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.alexisvillegas.com/"
+msgstr ""
