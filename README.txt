@@ -26,7 +26,7 @@ In order to make the theme your own, you'll have to change all the AJV Proto the
 
 **Responsive Menus**
 
-The AJV Proto theme uses an modified version of the [ResponsiveMenus.js](https://github.com/copyblogger/responsive-menus) script developed by StudioPress. In order to edit the settings, go to `/inc/scripts-and-styles.php` and edit the settings array in the `wp_localize_script` function for the `ajv-proto-responsive-menus` script.
+The AJV Proto theme uses a modified version of the [ResponsiveMenus.js](https://github.com/copyblogger/responsive-menus) script developed by StudioPress. In order to edit the settings, go to `/inc/scripts-and-styles.php` and edit the settings array in the `wp_localize_script` function for the `ajv-proto-responsive-menus` script.
 
 Please refer to the [ResponsiveMenus.js](https://github.com/copyblogger/responsive-menus) page for more information regarding the option parameters.
 
