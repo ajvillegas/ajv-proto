@@ -52,6 +52,16 @@ if ( ! defined( 'AJV_PROTO_DEVELOPER_URL' ) ) {
 	define( 'AJV_PROTO_DEVELOPER_URL', $theme->{'Author URI'} );
 }
 
+// Theme Developer Email, used in dashboard widget (optional).
+if ( ! defined( 'AJV_PROTO_DEVELOPER_EMAIL' ) ) {
+	define( 'AJV_PROTO_DEVELOPER_EMAIL', 'support@ajvillegas.com' );
+}
+
+// Theme Developer Logo, used in dashboard widget (optional).
+if ( ! defined( 'AJV_PROTO_DEVELOPER_LOGO' ) ) {
+	define( 'AJV_PROTO_DEVELOPER_LOGO', get_template_directory_uri() . '/assets/images/dev-logo.svg' );
+}
+
 /** Define Directory Location Constants */
 
 // @type constant Theme lib folder location.
