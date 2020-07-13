@@ -49,6 +49,65 @@ function ajv_proto_remove_dashboard_widgets() {
 
 }
 
+add_action( 'wp_dashboard_setup', 'ajv_proto_add_dashboard_widgets' );
+/**
+ * Add custom WordPress dashboard widgets.
+ *
+ * @since 1.0.0
+ */
+function ajv_proto_add_dashboard_widgets() {
+
+	add_meta_box( 'website_details_dashboard_widget', esc_html__( 'Website Help & Support', 'ajv-proto' ), 'ajv_proto_dashboard_widget', 'dashboard', 'normal', 'high' );
+
+}
+
+/**
+ * Define the Website Help & Support dashboard widget.
+ *
+ * @since 1.0.0
+ */
+function ajv_proto_dashboard_widget() {
+
+	if ( defined( 'AJV_PROTO_DEVELOPER_LOGO' ) ) {
+		?>
+		<img src="<?php echo esc_attr( AJV_PROTO_DEVELOPER_LOGO ); ?>" class="agency-logo" />
+		<?php
+	} else {
+		?>
+		<h3 class="agency-title"><?php echo esc_html( AJV_PROTO_DEVELOPER ); ?></h3>
+		<?php
+	}
+
+	?>
+	<p>
+		<?php echo esc_html__( 'I\'m here to help! If you have any questions please don\'t hesitate to reach out.', 'ajv-proto' ); ?>
+	</p>
+	<?php
+
+	echo sprintf(
+		/* translators: %s: Easy WP Guide WordPress Manual URL */
+		'<p>' . esc_html__( 'To learn how to use the WordPress admin panel, checkout the %s for illustrated written tutorials.', 'ajv-proto' ) . '</p>',
+		'<a href="https://easywpguide.com/wordpress-manual/" target="_blank" rel="noopener noreferrer">Easy WP Guide WordPress Manual</a>'
+	);
+
+	?>
+	<ul>
+		<li><strong><?php echo esc_html__( 'Developed by:', 'ajv-proto' ); ?></strong><?php echo ' ' . esc_html( AJV_PROTO_DEVELOPER ); ?></li>
+		<li><strong><?php echo esc_html__( 'Website:', 'ajv-proto' ); ?></strong><a href="<?php echo esc_url( AJV_PROTO_DEVELOPER_URL ); ?>" target="_blank" rel="noopener noreferrer"><?php echo ' ' . esc_html( AJV_PROTO_DEVELOPER_URL ); ?></a></li>
+	<?php
+
+	if ( defined( 'AJV_PROTO_DEVELOPER_EMAIL' ) ) {
+		?>
+		<li><strong><?php echo esc_html__( 'Contact:', 'ajv-proto' ); ?></strong><a href="mailto:<?php echo esc_attr( AJV_PROTO_DEVELOPER_EMAIL ); ?>"><?php echo ' ' . esc_html( AJV_PROTO_DEVELOPER_EMAIL ); ?></a></li>
+		<?php
+	}
+
+	?>
+	</ul>
+	<?php
+
+}
+
 add_filter( 'custom_menu_order', '__return_true' );
 add_filter( 'menu_order', 'ajv_proto_custom_menu_order' );
 /**
@@ -67,12 +126,10 @@ function ajv_proto_custom_menu_order( $menu_order ) {
 
 	return array(
 		'index.php', // Admin dashboard.
-		'video-user-manuals/plugin.php', // Video User Manuals plugn.
 		'separator1', // First of 3 separators available: separator1, separator2, separator-last.
 		'edit.php?post_type=page', // Pages.
 		'edit.php', // Posts.
 		'edit-comments.php', // Comments.
-		'gf_edit_forms', // Gravity Forms plugin.
 		'upload.php', // Media.
 	);
 
