@@ -38,10 +38,10 @@ if ( post_password_required() ) {
 			if ( '1' === $ajv_proto_comment_count ) {
 				echo esc_html__( 'One Comment', 'ajv-proto' );
 			} else {
-				printf( // WPCS: XSS OK.
+				printf(
 					/* translators: comment count number. */
 					esc_html( _nx( '%s Comment', '%s Comments', $ajv_proto_comment_count, 'comments title', 'ajv-proto' ) ),
-					number_format_i18n( $ajv_proto_comment_count )
+					number_format_i18n( $ajv_proto_comment_count ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			}
 			?>
@@ -49,15 +49,17 @@ if ( post_password_required() ) {
 
 		<?php the_comments_navigation(); ?>
 
-		<ol class="comment-list">
+		<ul class="comment-list">
 			<?php
-			wp_list_comments( array(
-				'style'       => 'ol',
-				'short_ping'  => true,
-				'avatar_size' => 60,
-			) );
+			wp_list_comments(
+				array(
+					'style'       => 'ul',
+					'short_ping'  => true,
+					'avatar_size' => 60,
+				)
+			);
 			?>
-		</ol><!-- .comment-list -->
+		</ul><!-- .comment-list -->
 
 		<?php
 		the_comments_navigation();
