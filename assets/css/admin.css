@@ -28,11 +28,11 @@
 
 /* ## Layout Settings Meta Box
 --------------------------------------------- */
-#vagabond-layout-meta-box input {
+#ajv-proto-layout-meta-box input {
 	text-align: center;
 }
 
-#vagabond-layout-meta-box label.box {
+#ajv-proto-layout-meta-box label.box {
 	border: 3px solid transparent;
 	display: block;
 	float: left;
@@ -42,27 +42,27 @@
 	max-height: 76px;
 }
 
-#vagabond-layout-meta-box label.box img {
+#ajv-proto-layout-meta-box label.box img {
 	max-width: 85px;
 	pointer-events: none;
 }
 
-#vagabond-layout-meta-box label.box:hover,
-#vagabond-layout-meta-box label.box:focus {
+#ajv-proto-layout-meta-box label.box:hover,
+#ajv-proto-layout-meta-box label.box:focus {
 	border: 3px solid #ccc;
 }
 
-#vagabond-layout-meta-box label.box.selected {
+#ajv-proto-layout-meta-box label.box.selected {
 	border: 3px solid #0085ba;
 }
 
-.ie8 #vagabond-layout-meta-box input,
-.no-js #vagabond-layout-meta-box input {
+.ie8 #ajv-proto-layout-meta-box input,
+.no-js #ajv-proto-layout-meta-box input {
 	display: inline;
 }
 
-.ie8 #vagabond-layout-meta-box input.screen-reader-text,
-.no-js #vagabond-layout-meta-box input.screen-reader-text {
+.ie8 #ajv-proto-layout-meta-box input.screen-reader-text,
+.no-js #ajv-proto-layout-meta-box input.screen-reader-text {
 	clip: auto;
 	-webkit-clip-path: none;
 	clip-path: none;
