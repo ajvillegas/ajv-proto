@@ -18,18 +18,6 @@ get_header();
 ?>
 <div class="content-sidebar-wrap">
 	<main id="site-content" class="content">
-
-		<?php
-		if ( function_exists( 'breadcrumb_trail' ) ) {
-			breadcrumb_trail( array(
-				'show_on_front' => false,
-				'labels'        => array(
-					'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
-				),
-			) );
-		}
-
-		?>
 		<section class="error-404 not-found entry">
 			<header class="entry-header">
 				<h1 class="entry-title" itemprop="headline"><?php esc_html_e( 'Oops! That page can\'t be found.', 'ajv-proto' ); ?></h1>
@@ -38,16 +26,10 @@ get_header();
 			<div class="entry-content">
 				<?php
 				echo sprintf(
-					'<p>' . wp_kses(
-						/* translators: %s: homepage URL */
-						__( 'It looks like nothing was found at this location. Perhaps you can return back to the site\'s <a href="%s">homepage</a> and see if you can find what you\'re looking for. Or, you can try finding it by using the search form below.', 'ajv-proto' ),
-						array(
-							'a' => array(
-								'href' => array(),
-							),
-						)
-					) . '</p>',
-					esc_url( trailingslashit( home_url() ) )
+					/* translators: 1: homepage URL opening tag, 2: homepage URL closing tag */
+					'<p>' . esc_html__( 'It looks like nothing was found at this location. Perhaps you can return back to the site\'s %1$shomepage%2$s and see if you can find what you\'re looking for. Or, you can try finding it by using the search form below.', 'ajv-proto' ) . '</p>',
+					'<a href="' . esc_url( trailingslashit( home_url() ) ) . '">',
+					'</a>'
 				);
 
 				get_search_form();
