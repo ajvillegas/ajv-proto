@@ -21,19 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="entry-content" itemprop="text">
 		<?php
-		if ( is_home() && current_user_can( 'publish_posts' ) ) :
+		if ( ( is_home() || is_front_page() || is_page_template( 'page-templates/template-posts.php' ) ) && current_user_can( 'publish_posts' ) ) :
 
 			printf(
-				'<p>' . wp_kses(
-					/* translators: 1: link to WP admin new post page. */
-					__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'ajv-proto' ),
-					array(
-						'a' => array(
-							'href' => array(),
-						),
-					)
-				) . '</p>',
-				esc_url( admin_url( 'post-new.php' ) )
+				/* translators: 1: new post page URL opening tag, 2: new post page URL closing tag. */
+				'<p>' . esc_html__( 'Ready to publish your first post? %1$sGet started here%2$s.', 'ajv-proto' ) . '</p>',
+				'<a href="' . esc_url( admin_url( 'post-new.php' ) ) . '">',
+				'</a>'
 			);
 
 		elseif ( is_search() ) :
