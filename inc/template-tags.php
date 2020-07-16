@@ -29,12 +29,13 @@ if ( ! function_exists( 'ajv_proto_posted_on' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
 		}
 
-		$time_string = sprintf( $time_string,
+		$time_string = sprintf(
+			$time_string,
 			esc_attr( get_the_date( DATE_W3C ) ),
 			esc_html( get_the_date() )
 		);
 
-		echo '<span class="posted-on">' . $time_string . '</span>'; // WPCS: xss ok.
+		echo '<span class="posted-on">' . $time_string . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	}
 }
@@ -43,22 +44,31 @@ if ( ! function_exists( 'ajv_proto_posted_by' ) ) {
 	/**
 	 * Prints HTML with meta information for the current author and comments.
 	 *
+	 * This function also works outside of the WordPress loop.
+	 *
 	 * @since 1.0.0
 	 */
 	function ajv_proto_posted_by() {
 
+		global $post;
+
+		$author_id   = $post->post_author;
+		$name        = get_the_author_meta( 'display_name', $author_id );
+		$url         = get_author_posts_url( $author_id );
+		$author_link = '<a href="' . esc_url( $url ) . '" class="author-link" rel="author" itemprop="url"><span class="author-name" itemprop="name">' . esc_html( $name ) . '</span></a>';
+
 		$byline = sprintf(
 			/* translators: %s: post author. */
 			esc_html__( 'by %s', 'ajv-proto' ),
-			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+			$author_link
 		);
 
-		echo '<span class="byline"> ' . $byline . '</span> '; // WPCS: xss ok.
+		echo '<span class="byline"> ' . $byline . '</span> '; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			if ( get_comments_number() > 0 ) {
 
-				echo '<span class="comments-link"><span class=svg-icon>' . ajv_proto_get_icon( 'admin-comments' ) . '</span>'; // WPCS: XSS ok.
+				echo '<span class="comments-link"><span class=svg-icon>' . ajv_proto_get_icon( 'admin-comments' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					comments_popup_link( '' );
 				echo '</span>';
 
@@ -82,37 +92,32 @@ if ( ! function_exists( 'ajv_proto_entry_footer' ) ) {
 			$categories_list = get_the_category_list( esc_html__( ', ', 'ajv-proto' ) );
 
 			if ( $categories_list ) {
-				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links"><span class=svg-icon>%1$s</span>' . esc_html__( 'Filed Under: %2$s', 'ajv-proto' ) . '</span>',
-					ajv_proto_get_icon( 'category' ),
-					$categories_list
-				); // WPCS: xss ok.
+				printf(
+					/* translators: 1: list of categories. */
+					'<span class="cat-links"><span class=svg-icon>%1$s</span>' . esc_html__( 'Filed Under: %2$s', 'ajv-proto' ) . '</span>',
+					ajv_proto_get_icon( 'category' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				);
 			}
 
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'ajv-proto' ) );
 
 			if ( $tags_list ) {
-				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links"><span class=svg-icon>%1$s</span>' . esc_html__( 'Tagged With: %2$s', 'ajv-proto' ) . '</span>',
-					ajv_proto_get_icon( 'tag' ),
-					$tags_list
-				); // WPCS: xss ok.
+				printf(
+					/* translators: 1: list of tags. */
+					'<span class="tags-links"><span class=svg-icon>%1$s</span>' . esc_html__( 'Tagged With: %2$s', 'ajv-proto' ) . '</span>',
+					ajv_proto_get_icon( 'tag' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				);
 			}
 		}
 
 		edit_post_link(
 			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers. */
-					__( 'Edit <span class="screen-reader-text">%s</span>', 'ajv-proto' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
+				/* translators: %s: Name of current post. Only visible to screen readers. */
+				esc_html__( 'Edit %s', 'ajv-proto' ),
+				'<span class="screen-reader-text">' . get_the_title() . '</span>'
 			),
 			'<div class="edit-link">',
 			'</div>'
@@ -149,11 +154,16 @@ if ( ! function_exists( 'ajv_proto_post_thumbnail' ) ) {
 			?>
 			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 				<?php
-				the_post_thumbnail( 'post-thumbnail', array(
-					'alt' => the_title_attribute( array(
-						'echo' => false,
-					) ),
-				) );
+				the_post_thumbnail(
+					'post-thumbnail',
+					array(
+						'alt' => the_title_attribute(
+							array(
+								'echo' => false,
+							)
+						),
+					)
+				);
 				?>
 			</a>
 			<?php
@@ -173,7 +183,6 @@ if ( ! function_exists( 'ajv_proto_archive_pagination' ) ) {
 	function ajv_proto_archive_pagination( $pagination = 'numeric' ) {
 
 		if ( 'numeric' === $pagination ) {
-
 			$args = array(
 				'prev_text' => '&laquo; ' . esc_html__( 'Previous Page', 'ajv-proto' ),
 				'next_text' => esc_html__( 'Next Page', 'ajv-proto' ) . ' &raquo;',
@@ -184,9 +193,7 @@ if ( ! function_exists( 'ajv_proto_archive_pagination' ) ) {
 				<?php echo wp_kses_post( paginate_links( $args ) ); ?>
 			</div>
 			<?php
-
 		} elseif ( 'prev-next' === $pagination ) {
-
 			?>
 			<div class="archive-pagination pagination">
 				<div class="pagination-previous alignleft">
@@ -198,7 +205,6 @@ if ( ! function_exists( 'ajv_proto_archive_pagination' ) ) {
 				</div>
 			</div>
 			<?php
-
 		}
 
 	}
@@ -237,6 +243,32 @@ if ( ! function_exists( 'ajv_proto_get_sitemap' ) ) {
 		}
 
 		return $sitemap;
+
+	}
+}
+
+if ( ! function_exists( 'ajv_proto_footer_creds' ) ) {
+	/**
+	 * Prints HTML for the footer credits.
+	 *
+	 * @since 1.0.0
+	 */
+	function ajv_proto_footer_creds() {
+
+		// Define custom content filters.
+		add_filter( 'ajv_proto_footer_content', 'wptexturize' );
+		add_filter( 'ajv_proto_footer_content', 'shortcode_unautop' );
+		add_filter( 'ajv_proto_footer_content', 'do_shortcode' );
+
+		if ( get_theme_mod( 'ajv_proto_footer_creds' ) ) {
+			$footer_creds = apply_filters( 'ajv_proto_footer_content', wp_kses_post( get_theme_mod( 'ajv_proto_footer_creds' ) ) );
+
+			echo wp_kses_post( $footer_creds );
+		} else {
+			echo '<p>' . esc_html__( 'Copyright', 'ajv-proto' ) . ' &copy; ' . esc_html( date( 'Y' ) );
+			echo ' &middot; <a href="' . esc_url( home_url() ) . '">' . esc_html( get_bloginfo( 'name' ) ) . '</a> &middot; ';
+			echo esc_html__( 'All Rights Reserved', 'ajv-proto' ) . '</p>';
+		}
 
 	}
 }
