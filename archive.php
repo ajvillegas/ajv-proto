@@ -21,12 +21,14 @@ get_header();
 
 		<?php
 		if ( function_exists( 'breadcrumb_trail' ) ) {
-			breadcrumb_trail( array(
-				'show_on_front' => false,
-				'labels'        => array(
-					'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
-				),
-			) );
+			breadcrumb_trail(
+				array(
+					'show_on_front' => false,
+					'labels'        => array(
+						'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
+					),
+				)
+			);
 		}
 
 		if ( have_posts() ) :
@@ -36,7 +38,10 @@ get_header();
 				<div class="archive-description">
 					<?php
 					the_archive_title( '<h1 class="archive-title" itemprop="headline">', '</h1>' );
-					the_archive_description();
+
+					if ( get_the_archive_description() ) :
+						the_archive_description();
+					endif;
 					?>
 				</div>
 			</header><!-- .page-header -->
