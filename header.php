@@ -18,17 +18,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <!doctype html>
 <html <?php language_attributes( 'html' ); ?> class="no-js">
-<head itemscope="" itemtype="https://schema.org/WebSite">
+<head itemscope itemtype="https://schema.org/WebSite">
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
 	<!-- Replace no-js class in <html> tag if JS is loaded -->
 	<script type="text/javascript">(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?> itemscope="" itemtype="https://schema.org/WebPage">
+<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 
 	<?php if ( is_active_sidebar( 'utility-bar' ) ) : ?>
 		<aside id="utility-bar" class="widget-area utility-bar">
@@ -39,50 +42,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</aside>
 	<?php endif; ?>
 
-	<a href="javascript://" class="to-top" title="<?php esc_html_e( 'Back To Top', 'ajv-proto' ); ?>"><?php esc_html_e( 'Top', 'ajv-proto' ); ?></a>
-
 	<div class="site-container">
-
-		<ul class="site-skip-link">
+		<ul class="skip-links">
 			<li>
-				<a class="skip-link screen-reader-text" href="#site-nav-primary"><?php esc_html_e( 'Skip to primary navigation', 'ajv-proto' ); ?></a>
+				<a class="screen-reader-text" href="#primary-nav"><?php esc_html_e( 'Skip to primary navigation', 'ajv-proto' ); ?></a>
 			</li>
 			<li>
-				<a class="skip-link screen-reader-text" href="site-content"><?php esc_html_e( 'Skip to content', 'ajv-proto' ); ?></a>
+				<a class="screen-reader-text" href="#site-content"><?php esc_html_e( 'Skip to content', 'ajv-proto' ); ?></a>
 			</li>
 			<li>
-				<a class="skip-link screen-reader-text" href="#site-sidebar-primary"><?php esc_html_e( 'Skip to primary sidebar', 'ajv-proto' ); ?></a>
+				<a class="screen-reader-text" href="#sidebar-primary"><?php esc_html_e( 'Skip to primary sidebar', 'ajv-proto' ); ?></a>
 			</li>
 			<li>
-				<a class="skip-link screen-reader-text" href="#site-footer-widgets"><?php esc_html_e( 'Skip to footer', 'ajv-proto' ); ?></a>
+				<a class="screen-reader-text" href="#footer-widgets"><?php esc_html_e( 'Skip to footer', 'ajv-proto' ); ?></a>
 			</li>
 		</ul>
 
-		<header class="site-header" itemscope="" itemtype="https://schema.org/WPHeader">
+		<header class="site-header" itemscope itemtype="https://schema.org/WPHeader">
 			<div class="wrap">
 				<div class="title-area">
 					<?php
+					$html_tag = is_front_page() ? 'h1' : 'p';
+
 					if ( function_exists( 'has_custom_logo' ) && has_custom_logo() ) :
-						?>
-						<span class="screen-reader-text"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span>
-						<?php
-
 						the_custom_logo();
+
+						echo '<' . esc_attr( $html_tag ) . ' class="screen-reader-text">';
+							bloginfo( 'name' );
+						echo '</' . esc_attr( $html_tag ) . '>';
 					else :
+						echo '<' . esc_attr( $html_tag ) . ' class="site-title">';
 						?>
-						<p class="site-title">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-						</p>
 						<?php
-					endif;
+						echo '</' . esc_attr( $html_tag ) . '>';
 
-					$ajv_proto_description = get_bloginfo( 'description', 'display' );
-					$screen_reader_text    = function_exists( 'has_custom_logo' ) && has_custom_logo() ? ' screen-reader-text' : '';
-
-					if ( $ajv_proto_description || is_customize_preview() ) :
-						?>
-						<p class="site-description<?php echo $screen_reader_text; /* WPCS: xss ok. */ ?>"><?php echo $ajv_proto_description; /* WPCS: xss ok. */ ?></p>
-						<?php
+						if ( get_bloginfo( 'description', 'display' ) || is_customize_preview() ) :
+							?>
+							<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+							<?php
+						endif;
 					endif;
 					?>
 				</div><!-- .title-area -->
@@ -96,17 +95,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</header><!-- .site-header -->
 
-		<nav id="site-nav-primary" class="nav-primary" aria-label="Main" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+		<nav id="primary-nav" class="primary-nav" aria-label="Main" itemscope itemtype="https://schema.org/SiteNavigationElement">
 			<div class="wrap">
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="navicon"></span>
+					<span class="screen-reader-text"><?php echo esc_html__( 'Menu', 'ajv-proto' ); ?></span>
+				</button>
+
 				<?php
-				wp_nav_menu( array(
-					'theme_location' => 'primary',
-					'container'      => false,
-					'menu_id'        => 'menu-primary-menu',
-					'menu_class'     => 'site-nav-menu menu-primary js-superfish',
-				) );
+				wp_nav_menu(
+					array(
+						'theme_location' => 'primary',
+						'container'      => false,
+						'link_before'    => '<span>',
+						'link_after'     => '</span>',
+						'menu_id'        => 'primary-menu',
+						'menu_class'     => 'site-menu primary',
+					)
+				);
 				?>
 			</div>
-		</nav><!-- #site-nav-primary -->
+		</nav><!-- #primary-nav -->
 
 		<div class="site-inner">
