@@ -14,10 +14,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope="" itemtype="https://schema.org/CreativeWork">
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope itemtype="https://schema.org/CreativeWork">
+
+	<?php if ( ! is_front_page() ) : ?>
+		<header class="entry-header">
+			<?php the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' ); ?>
+		</header><!-- .entry-header -->
+	<?php endif; ?>
 
 	<?php ajv_proto_post_thumbnail(); ?>
 
@@ -25,10 +28,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php
 		the_content();
 
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'ajv-proto' ),
-			'after'  => '</div>',
-		) );
+		wp_link_pages(
+			array(
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'ajv-proto' ),
+				'after'  => '</div>',
+			)
+		);
 		?>
 	</div><!-- .entry-content -->
 
@@ -37,19 +42,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php
 			edit_post_link(
 				sprintf(
-					wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
-						__( 'Edit <span class="screen-reader-text">%s</span>', 'ajv-proto' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					get_the_title()
+					/* translators: %s: Name of current post. Only visible to screen readers. */
+					esc_html__( 'Edit %s', 'ajv-proto' ),
+					'<span class="screen-reader-text">' . get_the_title() . '</span>'
 				),
-				'<span class="edit-link">',
-				'</span>'
+				'<div class="edit-link">',
+				'</div>'
 			);
 			?>
 		</footer><!-- .entry-footer -->
