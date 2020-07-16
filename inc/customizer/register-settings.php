@@ -19,7 +19,7 @@ add_action( 'customize_register', 'ajv_proto_register_customizer_panels' );
 /**
  * Register Customizer panels.
  *
- * @since 1.0.0
+ * @since 1.1.0
  * @param object $wp_customize Instance of the WP_Customize_Manager class.
  */
 function ajv_proto_register_customizer_panels( $wp_customize ) {

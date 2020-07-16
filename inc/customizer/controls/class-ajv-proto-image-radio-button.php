@@ -20,7 +20,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * Image Radio Button custom control.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 * @author Anthony Hortin <http://maddisondesigns.com>
 	 * @link https://github.com/maddisondesigns
 	 */

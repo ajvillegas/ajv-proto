@@ -37,7 +37,7 @@ add_filter( 'ajv_proto_default_content_layout', 'ajv_proto_set_colors_page_layou
  *
  * See /inc/layouts.php.
  *
- * @since 1.0.0
+ * @since 1.1.0
  * @param string $layout The current default layout.
  * @return string $layout The new default layout.
  */

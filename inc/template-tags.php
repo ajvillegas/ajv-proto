@@ -251,7 +251,7 @@ if ( ! function_exists( 'ajv_proto_footer_creds' ) ) {
 	/**
 	 * Prints HTML for the footer credits.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 */
 	function ajv_proto_footer_creds() {
 
