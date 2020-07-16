@@ -26,7 +26,27 @@ add_filter( 'body_class', 'ajv_proto_colors_body_class' );
 function ajv_proto_colors_body_class( $classes ) {
 
 	$classes[] = 'color-palette';
+
 	return $classes;
+
+}
+
+add_filter( 'ajv_proto_default_content_layout', 'ajv_proto_set_colors_page_layout' );
+/**
+ * Force the full-width content layout.
+ *
+ * See /inc/layouts.php.
+ *
+ * @since 1.0.0
+ * @param string $layout The current default layout.
+ * @return string $layout The new default layout.
+ */
+function ajv_proto_set_colors_page_layout( $layout ) {
+
+	// Define the page layout.
+	$layout = 'full-width-content';
+
+	return $layout;
 
 }
 
@@ -38,12 +58,14 @@ get_header();
 
 		<?php
 		if ( function_exists( 'breadcrumb_trail' ) ) {
-			breadcrumb_trail( array(
-				'show_on_front' => false,
-				'labels'        => array(
-					'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
-				),
-			) );
+			breadcrumb_trail(
+				array(
+					'show_on_front' => false,
+					'labels'        => array(
+						'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
+					),
+				)
+			);
 		}
 
 		get_template_part( 'template-parts/content', 'colors' );
