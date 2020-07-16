@@ -1,7 +1,7 @@
 /**
  * JS functionality for the Customizer custom controls.
  *
- * @package    Vagabond
+ * @package    AJV_Proto
  * @author     Alexis J. Villegas
  * @link       http://www.alexisvillegas.com
  * @license    GPL-2.0+
