@@ -86,7 +86,7 @@ function ajv_proto_dashboard_widget() {
 
 	echo sprintf(
 		/* translators: %s: Easy WP Guide WordPress Manual URL */
-		'<p>' . esc_html__( 'To learn how to use the WordPress admin panel, checkout the %s for illustrated written tutorials.', 'ajv-proto' ) . '</p>',
+		'<p>' . esc_html__( 'To learn all about the WordPress admin panel, checkout the %s for illustrated written tutorials.', 'ajv-proto' ) . '</p>',
 		'<a href="https://easywpguide.com/wordpress-manual/" target="_blank" rel="noopener noreferrer">Easy WP Guide WordPress Manual</a>'
 	);
 
