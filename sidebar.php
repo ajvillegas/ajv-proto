@@ -22,7 +22,9 @@ if ( ! is_active_sidebar( 'primary-sidebar' )
 }
 
 ?>
-<aside id="site-sidebar-primary" class="sidebar sidebar-primary" role="complementary" aria-label="Primary Sidebar" itemscope="" itemtype="https://schema.org/WPSideBar">
-	<h2 class="site-sidebar-title screen-reader-text"><?php esc_html_e( 'Primary Sidebar', 'ajv-proto' ); ?></h2>
+<aside id="sidebar-primary" class="sidebar sidebar-primary" role="complementary" aria-label="Primary Sidebar" itemscope itemtype="https://schema.org/WPSideBar">
+	<h2 class="screen-reader-text">
+		<?php esc_html_e( 'Primary Sidebar', 'ajv-proto' ); ?>
+	</h2>
 	<?php dynamic_sidebar( 'primary-sidebar' ); ?>
 </aside>
