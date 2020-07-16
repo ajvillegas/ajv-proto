@@ -4,7 +4,7 @@
  *
  * Template Name: Typography Test
  *
- * @package    AJV_Theme
+ * @package    AJV_Proto
  * @author     Alexis J. Villegas
  * @link       http://www.alexisvillegas.com
  * @license    GPL-2.0+
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_filter( 'body_class', 'prototipo_theme_typography_body_class' );
+add_filter( 'body_class', 'ajv_proto_theme_typography_body_class' );
 /**
  * Adds a unique class to the body element.
  *
@@ -23,9 +23,10 @@ add_filter( 'body_class', 'prototipo_theme_typography_body_class' );
  * @param array $classes Array of classes applied to the body class attribute.
  * @return array $classes The updated array of classes applied to the body class attribute.
  */
-function prototipo_theme_typography_body_class( $classes ) {
+function ajv_proto_theme_typography_body_class( $classes ) {
 
 	$classes[] = 'typography-test';
+
 	return $classes;
 
 }
@@ -38,12 +39,14 @@ get_header();
 
 		<?php
 		if ( function_exists( 'breadcrumb_trail' ) ) {
-			breadcrumb_trail( array(
-				'show_on_front' => false,
-				'labels'        => array(
-					'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
-				),
-			) );
+			breadcrumb_trail(
+				array(
+					'show_on_front' => false,
+					'labels'        => array(
+						'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
+					),
+				)
+			);
 		}
 
 		get_template_part( 'template-parts/content', 'typography' );
