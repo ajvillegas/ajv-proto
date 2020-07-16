@@ -24,6 +24,7 @@ add_filter( 'body_class', 'ajv_proto_landing_body_class' );
 function ajv_proto_landing_body_class( $classes ) {
 
 	$classes[] = 'theme-homepage';
+
 	return $classes;
 
 }
