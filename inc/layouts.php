@@ -29,12 +29,12 @@ function ajv_proto_get_default_layout() {
 		'full-width-padded',
 	);
 
-	$default_layout = sanitize_title_with_dashes( apply_filters( 'ajv_proto_default_content_layout', 'content-sidebar' ) );
+	$default_layout = sanitize_title_with_dashes( apply_filters( 'ajv_proto_default_content_layout', 'default-layout' ) );
 
 	if ( in_array( $default_layout, $layouts, true ) ) {
 		return $default_layout;
 	} else {
-		return 'content-sidebar';
+		return 'default-layout';
 	}
 
 }
@@ -63,6 +63,7 @@ function ajv_proto_add_layout_meta_box() {
  * Define the Layout Settings meta box.
  *
  * @since 1.0.0
+ *
  * @param object $post The post object.
  */
 function ajv_proto_layout_meta_box( $post ) {
@@ -70,8 +71,12 @@ function ajv_proto_layout_meta_box( $post ) {
 	wp_nonce_field( basename( __FILE__ ), 'ajv_proto_layout_settings_nonce' );
 	$post_layout_stored_meta = get_post_meta( $post->ID );
 
-	// Get the default layout.
-	$default_layout = ajv_proto_get_default_layout();
+	// Set the default layout.
+	$default_layout = 'default-layout';
+
+	// Get the Theme Settings Customizer URL.
+	$query['autofocus[section]'] = 'ajv_proto_layout_section';
+	$customizer_section_link     = add_query_arg( $query, wp_customize_url() );
 
 	?>
 	<table class="form-table">
@@ -81,9 +86,31 @@ function ajv_proto_layout_meta_box( $post ) {
 					<label for="_ajv_proto_post_layout"><?php esc_html_e( 'Select Layout', 'ajv-proto' ); ?></label>
 				</th>
 				<td class="layout-selector">
+					<p>
+						<input type="radio" class="default-layout" name="_ajv_proto_post_layout" id="default-layout" value="default-layout"
+							<?php
+							if ( isset( $post_layout_stored_meta['_ajv_proto_post_layout'] ) ) {
+								checked( $post_layout_stored_meta['_ajv_proto_post_layout'][0], 'default-layout' );
+							} else {
+								checked( $default_layout, 'default-layout' );
+							}
+							?>
+						>
+						<label for="default-layout">
+							<?php
+							printf(
+								/* translators: 1: theme settings URL opening tag, 2: theme settings URL closing tag */
+								esc_html__( 'Default Layout from %1$sTheme Settings%2$s', 'ajv-proto' ),
+								'<a href="' . esc_url( $customizer_section_link ) . '">',
+								'</a>'
+							);
+							?>
+						</label>
+					</p>
+
 					<label for="content-sidebar" class="box">
-						<span class="screen-reader-text"><?php esc_html_e( 'Content, Primary Sidebar', 'ajv-proto' ); ?></span>
-						<img src="<?php echo esc_attr( AJV_PROTO_IMAGES ) . '/post-layouts/content-sidebar.gif'; ?>" alt="Content, Primary Sidebar">
+						<span class="screen-reader-text"><?php echo esc_html__( 'Content, Primary Sidebar', 'ajv-proto' ); ?></span>
+						<img src="<?php echo esc_attr( AJV_PROTO_IMAGES ) . '/post-layouts/content-sidebar.gif'; ?>" alt="Content, Sidebar">
 						<input type="radio" name="_ajv_proto_post_layout" id="content-sidebar" value="content-sidebar" class="screen-reader-text"
 							<?php
 							if ( isset( $post_layout_stored_meta['_ajv_proto_post_layout'] ) ) {
@@ -97,7 +124,7 @@ function ajv_proto_layout_meta_box( $post ) {
 
 					<label for="sidebar-content" class="box">
 						<span class="screen-reader-text"><?php esc_html_e( 'Primary Sidebar, Content', 'ajv-proto' ); ?></span>
-						<img src="<?php echo esc_attr( AJV_PROTO_IMAGES ) . '/post-layouts/sidebar-content.gif'; ?>" alt="Primary Sidebar, Content">
+						<img src="<?php echo esc_attr( AJV_PROTO_IMAGES ) . '/post-layouts/sidebar-content.gif'; ?>" alt="Sidebar, Content">
 						<input type="radio" name="_ajv_proto_post_layout" id="sidebar-content" value="sidebar-content" class="screen-reader-text"
 							<?php
 							if ( isset( $post_layout_stored_meta['_ajv_proto_post_layout'] ) ) {
@@ -149,6 +176,7 @@ add_action( 'save_post', 'ajv_proto_save_layout_meta_box_value' );
  * Save the Layout Settings meta box value.
  *
  * @since 1.0.0
+ *
  * @param int $post_id The post ID number.
  */
 function ajv_proto_save_layout_meta_box_value( $post_id ) {
@@ -175,39 +203,39 @@ add_filter( 'body_class', 'ajv_proto_add_layout_body_classes' );
  * Add the content layout classes to the array of body classes.
  *
  * @since 1.0.0
+ *
  * @param array $classes Array of classes applied to the body class attribute.
+ *
  * @return array $classes The updated array of classes applied to the body class attribute.
  */
 function ajv_proto_add_layout_body_classes( $classes ) {
+
+	if ( ! is_singular() ) {
+		$classes[] = ajv_proto_get_default_layout();
+
+		return $classes;
+	}
 
 	global $post;
 
 	// Get post layout meta data.
 	$layout = isset( $post ) ? get_post_meta( $post->ID, '_ajv_proto_post_layout', true ) : '';
 
-	// Add the default layout body class.
-	if ( empty( $layout ) ) {
-		$classes[] = ajv_proto_get_default_layout();
-	}
-
-	// Add the content-sidebar layout body class.
 	if ( 'content-sidebar' === $layout ) {
+		// Add the content-sidebar layout body class.
 		$classes[] = 'content-sidebar';
-	}
-
-	// Add the sidebar-content layout body class.
-	if ( 'sidebar-content' === $layout ) {
+	} elseif ( 'sidebar-content' === $layout ) {
+		// Add the sidebar-content layout body class.
 		$classes[] = 'sidebar-content';
-	}
-
-	// Add the full-width-content layout body class.
-	if ( 'full-width-content' === $layout ) {
+	} elseif ( 'full-width-content' === $layout ) {
+		// Add the full-width-content layout body class.
 		$classes[] = 'full-width-content';
-	}
-
-	// Add the full-width-padded layout body class.
-	if ( 'full-width-padded' === $layout ) {
+	} elseif ( 'full-width-padded' === $layout ) {
+		// Add the full-width-padded layout body class.
 		$classes[] = 'full-width-padded';
+	} else {
+		// Add the default layout body class.
+		$classes[] = ajv_proto_get_default_layout();
 	}
 
 	return $classes;
