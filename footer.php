@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div><!-- .site-inner -->
 
 		<?php if ( is_active_sidebar( 'footer-widgets' ) ) : ?>
-			<div id="site-footer-widgets" class="footer-widgets">
+			<div id="footer-widgets" class="footer-widgets">
 				<span class="screen-reader-text"><?php echo esc_html__( 'Footer', 'ajv-proto' ); ?></span>
 				<div class="wrap">
 					<?php dynamic_sidebar( 'footer-widgets' ); ?>
@@ -27,26 +27,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		<?php endif; ?>
 
-		<footer class="site-footer" itemscope="" itemtype="https://schema.org/WPFooter">
-			<div class="wrap">				
-				<nav id="site-nav-footer" class="nav-footer" aria-label="Footer" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+		<footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+			<div class="wrap">
+				<nav id="footer-nav" class="footer-nav" aria-label="Footer" itemscope itemtype="https://schema.org/SiteNavigationElement">
 					<?php
-					wp_nav_menu( array(
-						'theme_location' => 'footer',
-						'container'      => false,
-						'menu_id'        => 'menu-footer-menu',
-						'menu_class'     => 'site-nav-menu menu-footer',
-						'depth'          => 1,
-					) );
+					wp_nav_menu(
+						array(
+							'theme_location' => 'footer',
+							'depth'          => 1,
+							'container'      => false,
+							'menu_id'        => 'footer-menu',
+						)
+					);
 					?>
 				</nav>
-				<?php
-				echo '<p>' . esc_html__( 'Copyright', 'ajv-proto' ) . ' &copy; ' . esc_html( date( 'Y' ) );
-				echo ' &middot; <a href="' . esc_url( home_url() ) . '">' . esc_html( get_bloginfo( 'name' ) ) . '</a> &middot; ';
-				echo esc_html__( 'All Rights Reserved', 'ajv-proto' ) . '</p>';
-				?>
+
+				<div class="footer-creds">
+					<p><?php ajv_proto_footer_creds(); ?></p>
+				</div>
 			</div>
 		</footer><!-- .site-footer -->
+
+		<button title="Back To Top" class="to-top">
+			<span class="screen-reader-text"><?php esc_html__( 'Back to top', 'ajv-proto' ); ?></span>
+			<span class="arrow-up"></span>
+		</button>
 	</div><!-- .site-container -->
 
 	<?php wp_footer(); ?>
