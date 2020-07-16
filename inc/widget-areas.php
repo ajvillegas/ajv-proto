@@ -48,15 +48,17 @@ function ajv_proto_register_widget_areas() {
 
 	foreach ( $sidebars as $sidebar ) {
 
-		register_sidebar( array(
-			'id'            => $sidebar['id'],
-			'name'          => $sidebar['name'],
-			'description'   => $sidebar['description'],
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h3 class="widgettitle widget-title">',
-			'after_title'   => '</h3>',
-		) );
+		register_sidebar(
+			array(
+				'id'            => $sidebar['id'],
+				'name'          => $sidebar['name'],
+				'description'   => $sidebar['description'],
+				'before_widget' => '<section id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h3 class="widgettitle widget-title">',
+				'after_title'   => '</h3>',
+			)
+		);
 
 	}
 
