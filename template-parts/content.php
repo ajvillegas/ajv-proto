@@ -14,7 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope="" itemtype="https://schema.org/CreativeWork">
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?> itemscope itemtype="https://schema.org/CreativeWork">
+
 	<header class="entry-header">
 		<?php
 		if ( is_singular() ) :
@@ -40,18 +41,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php
 		if ( is_singular() ) :
 
-			the_content( sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'ajv-proto' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			) );
+			the_content(
+				sprintf(
+					/* translators: %s: Name of current post. Only visible to screen readers. */
+					esc_html__( 'Continue reading %s', 'ajv-proto' ),
+					'<span class="screen-reader-text">' . get_the_title() . '</span>'
+				)
+			);
 
 		else :
 
@@ -59,10 +55,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		endif;
 
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'ajv-proto' ),
-			'after'  => '</div>',
-		) );
+		wp_link_pages(
+			array(
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'ajv-proto' ),
+				'after'  => '</div>',
+			)
+		);
 		?>
 	</div><!-- .entry-content -->
 
@@ -72,3 +70,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
+<?php
