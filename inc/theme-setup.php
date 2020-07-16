@@ -43,42 +43,105 @@ if ( ! function_exists( 'ajv_proto_theme_setup' ) ) {
 		// Add support for full and wide align images.
 		add_theme_support( 'align-wide' );
 
-		// Register wp_nav_menu() locations.
-		register_nav_menus( array(
-			'primary' => esc_html__( 'Primary', 'ajv-proto' ),
-			'footer'  => esc_html__( 'Footer', 'ajv-proto' ),
-		) );
+		// Add support for responsive media embeds.
+		add_theme_support( 'responsive-embeds' );
 
-		// Enable HTML5 markup for search form, comment form, and comments.
-		add_theme_support( 'html5', array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		) );
+		// Adds support for editor font sizes.
+		add_theme_support(
+			'editor-font-sizes',
+			array(
+				array(
+					'name' => __( 'Small', 'ajv-proto' ),
+					'size' => 18,
+					'slug' => 'small',
+				),
+				array(
+					'name' => __( 'Normal', 'ajv-proto' ),
+					'size' => 20,
+					'slug' => 'normal',
+				),
+				array(
+					'name' => __( 'Large', 'ajv-proto' ),
+					'size' => 24,
+					'slug' => 'large',
+				),
+				array(
+					'name' => __( 'Larger', 'ajv-proto' ),
+					'size' => 26,
+					'slug' => 'larger',
+				),
+			)
+		);
+
+		// Adds support for editor color palette.
+		add_theme_support(
+			'editor-color-palette',
+			array(
+				array(
+					'name'  => __( 'Primary Color', 'ajv-proto' ),
+					'slug'  => 'primary',
+					'color' => '#4173bb',
+				),
+				array(
+					'name'  => __( 'Secondary Color', 'ajv-proto' ),
+					'slug'  => 'secondary',
+					'color' => '#333',
+				),
+				array(
+					'name'  => __( 'Tertiary Color', 'ajv-proto' ),
+					'slug'  => 'tertiary',
+					'color' => '#34b79d',
+				),
+			)
+		);
+
+		// Add support for editor styles.
+		add_theme_support( 'editor-styles' );
+
+		// Enqueue editor styles.
+		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+		add_editor_style( "assets/css/editor-style{$suffix}.css" );
 
 		// Enable selective refresh for widgets in the Customizer.
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
+		// Enable HTML5 markup for search form, comment form, and comments.
+		add_theme_support(
+			'html5',
+			array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+			)
+		);
+
 		// Add support for theme logo.
-		add_theme_support( 'custom-logo', array(
-			'width'       => 300,
-			'height'      => 56,
-			'flex-width'  => true,
-			'flex-height' => true,
-		) );
+		add_theme_support(
+			'custom-logo',
+			array(
+				'width'       => 300,
+				'height'      => 56,
+				'flex-width'  => true,
+				'flex-height' => true,
+			)
+		);
 
-		// Add support for editor styles.
-		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		add_editor_style( "assets/css/editor-style{$suffix}.css" );
-
-		// Add image sizes.
-		add_image_size( 'featured-image', 720, 400, true );
-
-		// Add support for the Layout Settings meta box.
+		// Add support for the Layout Settings meta box (see /inc/layouts.php).
 		add_post_type_support( 'post', 'ajv-proto-layouts' );
 		add_post_type_support( 'page', 'ajv-proto-layouts' );
+
+		// Register wp_nav_menu() locations.
+		register_nav_menus(
+			array(
+				'primary' => esc_html__( 'Primary', 'ajv-proto' ),
+				'footer'  => esc_html__( 'Footer', 'ajv-proto' ),
+			)
+		);
+
+		// Add image sizes.
+		add_image_size( 'featured-image', 800, 400, true );
 
 	}
 }
@@ -95,7 +158,7 @@ add_action( 'after_setup_theme', 'ajv_proto_content_width', 0 );
 function ajv_proto_content_width() {
 
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound.
-	$GLOBALS['content_width'] = apply_filters( 'ajv_proto_content_width', 1024 );
+	$GLOBALS['content_width'] = apply_filters( 'ajv_proto_content_width', 1140 );
 
 }
 
@@ -129,7 +192,10 @@ add_filter( 'ajv_proto_default_content_layout', 'ajv_proto_set_default_layout' )
  */
 function ajv_proto_set_default_layout( $layout ) {
 
-	$layout = 'content-sidebar';
+	// Define the default layout.
+	$default_layout = get_theme_mod( 'ajv_proto_default_layout' ) ? get_theme_mod( 'ajv_proto_default_layout' ) : 'default-layout';
+
+	$layout = $default_layout;
 
 	return $layout;
 
@@ -150,6 +216,11 @@ function ajv_proto_body_classes( $classes ) {
 		$classes[] = 'hfeed';
 	}
 
+	// Add class to single post page pages.
+	if ( is_singular() && ! is_front_page() ) {
+		$classes[] = 'singular';
+	}
+
 	return $classes;
 
 }
@@ -163,9 +234,7 @@ add_action( 'wp_head', 'ajv_proto_pingback_header' );
 function ajv_proto_pingback_header() {
 
 	if ( is_singular() && pings_open() ) {
-
 		echo '<link rel="pingback" href="', esc_url( get_bloginfo( 'pingback_url' ) ), '">';
-
 	}
 
 }
@@ -175,9 +244,9 @@ add_filter( 'frontpage_template', 'ajv_proto_front_page_template' );
  * Use front-page.php when Front page displays is set to a static page.
  *
  * @since 1.0.0
+ * @link https://codex.wordpress.org/Creating_a_Static_Front_Page
  * @param string $template front-page.php.
  * @return string $template The template to be used: blank if is_home() is true (defaults to index.php), else $template.
- * @link https://codex.wordpress.org/Creating_a_Static_Front_Page
  */
 function ajv_proto_front_page_template( $template ) {
 
@@ -190,9 +259,9 @@ add_filter( 'comment_form_defaults', 'ajv_proto_filter_comment_form_args' );
  * Filter the comment form default arguments.
  *
  * @since 1.0.0
- * @param array $defaults Existing array of comment form options.
- * @return array $defaults Amended aray of comment form options.
  * @link https://codex.wordpress.org/Function_Reference/comment_form
+ * @param array $defaults Existing array of comment form options.
+ * @return array $defaults Amended array of comment form options.
  */
 function ajv_proto_filter_comment_form_args( $defaults ) {
 
@@ -203,53 +272,99 @@ function ajv_proto_filter_comment_form_args( $defaults ) {
 
 }
 
-add_action( 'get_the_archive_title', 'ajv_proto_filter_archive_title' );
-/**
- * Remove the default prefix from archive titles.
- *
- * @since 1.0.0
- * @param string $title The current archive title.
- * @return string $title The amended archive title.
- */
-function ajv_proto_filter_archive_title( $title ) {
-
-	if ( is_category() ) {
-
-		$title = single_cat_title( '', false );
-
-	} elseif ( is_tag() ) {
-
-		$title = single_tag_title( '', false );
-
-	} elseif ( is_post_type_archive() ) {
-
-		$title = post_type_archive_title( '', false );
-
-	} elseif ( is_author() ) {
-
-		$title = '<span class="vcard">' . get_the_author() . '</span>';
-
-	}
-
-	return $title;
-
-}
-
 add_filter( 'excerpt_more', 'ajv_proto_excerpt_more' );
 /**
  * Filter the excerpt's "read more" link anchor text.
  *
  * @since 1.0.0
- * @param string $more Current "read more" excerpt string.
- * @return string $more Amended "read more" excerpt string.
+ * @param string $more_string Current "read more" excerpt string.
+ * @return string $more_string Amended "read more" excerpt string.
  */
-function ajv_proto_excerpt_more( $more ) {
+function ajv_proto_excerpt_more( $more_string ) {
 
-	$more = ' [...] ' . sprintf( '<a class="more-link" href="%1$s">%2$s</a>',
+	$more_string = ' [...] ' . sprintf(
+		'<a class="more-link" href="%1$s">%2$s</a>',
 		get_permalink( get_the_ID() ),
-		esc_html__( 'Read More', 'ajv-proto' )
+		esc_html__( 'Read More', 'ajv-proto' ) . '<span class="screen-reader-text">' . esc_html__( 'about', 'ajv-proto' ) . ' ' . get_the_title() . '</span>'
 	);
 
-	return $more;
+	return $more_string;
+
+}
+
+add_filter( 'get_the_excerpt', 'ajv_proto_manual_excerpt_more' );
+/**
+ * Filter the retrieved post excerpt.
+ *
+ * This function adds a "read more" link to the manual excerpt.
+ *
+ * @since 1.0.0
+ * @param string $post_excerpt The post excerpt.
+ * @return string $post_excerpt The modified post excerpt.
+ */
+function ajv_proto_manual_excerpt_more( $post_excerpt ) {
+
+	if ( has_excerpt() ) {
+		$more_string = sprintf(
+			'<a class="more-link" href="%1$s">%2$s</a>',
+			get_permalink( get_the_ID() ),
+			esc_html__( 'Read More', 'ajv-proto' ) . '<span class="screen-reader-text">' . esc_html__( 'about', 'ajv-proto' ) . ' ' . get_the_title() . '</span>'
+		);
+
+		return $post_excerpt . $more_string;
+	} else {
+		return $post_excerpt;
+	}
+
+}
+
+add_filter( 'excerpt_length', 'ajv_proto_excerpt_length' );
+/**
+ * Filter the number of words in an excerpt (default 55).
+ *
+ * @since 1.0.0
+ * @param int $number The default number of words.
+ * @return int $number The amended number of words.
+ */
+function ajv_proto_excerpt_length( $number ) {
+
+	return 20;
+
+}
+
+add_filter( 'nav_menu_css_class', 'ajv_proto_blog_menu_item_classes', 10, 3 );
+/**
+ * Customize menu item classes for blog pots.
+ *
+ * @since 1.0.0
+ * @param array  $classes Current menu classes.
+ * @param object $item Current menu item.
+ * @param object $args Menu arguments.
+ * @return array $classes Modified menu classes.
+ */
+function ajv_proto_blog_menu_item_classes( $classes, $item, $args ) {
+
+	if ( ( is_singular( 'post' ) || is_category() || is_tag() ) && 'Blog' === $item->title ) {
+		$classes[] = 'current-menu-item';
+	}
+
+	return array_unique( $classes );
+
+}
+
+add_shortcode( 'year', 'ajv_proto_register_year_shortcode' );
+/**
+ * Register "year" shortcode.
+ *
+ * This function registers a shortcode that displays the current year.
+ * Useful for displaying the year in the footer credits section.
+ *
+ * @since 1.0.0
+ */
+function ajv_proto_register_year_shortcode() {
+
+	$year = date_i18n( 'Y' );
+
+	return $year;
 
 }
