@@ -1,0 +1,85 @@
+/* ## Site Header
+--------------------------------------------- */
+
+.site-header {
+	background: $base-background-color;
+	padding: 3rem $base-spacing;
+
+	@include media(large) {
+		padding: 3rem 0;
+	}
+
+	.wrap {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		// Remove clearfix ::after content to preserve flex.
+		&::after {
+			content: none;
+		}
+
+		@include media(small) {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+
+	.title-area {
+		text-align: center;
+
+		@include media(small) {
+			text-align: left;
+		}
+	}
+
+	.header-widget-area {
+		margin-top: 1.5rem;
+
+		@include media(small) {
+			margin-top: 0;
+		}
+	}
+
+	.title-area,
+	.header-widget-area {
+		width: 100%;
+
+		@media only screen and (min-width: 360px) {
+			width: auto;
+		}
+	}
+
+	.site-title {
+		margin: $base-spacing/2 0 $base-spacing/4 0;
+		font-size: $base-font-size * 1.5;
+		font-weight: 700;
+		margin: 0;
+		line-height: 1.5;
+
+		a {
+			color: $base-font-color;
+			text-decoration: none;
+		}
+	}
+
+	.site-description {
+		font-size: $base-font-size / 1.25;
+		margin-bottom: 0;
+	}
+}
+
+.wp-custom-logo {
+	.site-header .title-area {
+		@media only screen and (min-width: 360px) {
+			width: 300px;
+		}
+	}
+}
+
+.custom-logo-link,
+.custom-logo {
+	display: block;
+}

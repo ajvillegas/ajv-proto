@@ -1,0 +1,219 @@
+/* ## Primary Menu
+--------------------------------------------- */
+
+.primary-nav {
+	@include clearfix;
+	display: block;
+	width: 100%;
+	border-top: 1px solid $light-gray;
+	border-bottom: 1px solid $light-gray;
+	padding: 0 $base-spacing;
+}
+
+.primary-nav ul {
+	display: none;
+	background-color: $base-background-color;
+	list-style: none;
+	margin: 0;
+
+	@include media(small) {
+		display: block;
+	}
+}
+
+.primary-nav ul.nav-menu {
+	padding: 0 0 $small-spacing;
+
+	@include media(small) {
+		padding: 0;
+	}
+}
+
+.primary-nav ul li {
+	display: block;
+	position: relative;
+
+	@include media(small) {
+		display: inline-block;
+	}
+}
+
+.primary-nav ul a {
+	display: block;
+	text-decoration: none;
+	line-height: 1;
+	font-size: 16px;
+	font-weight: 600;
+	padding: 1.4rem 0;
+	color: $base-font-color;
+
+	@include media(small) {
+		line-height: 1.5;
+		padding: 2rem 1.5rem;
+	}
+}
+
+.primary-nav ul a:hover,
+.primary-nav ul a:focus,
+.primary-nav ul .current-menu-item a {
+	color: $primary-color;
+}
+
+/* ### Submenu */
+
+.primary-nav ul ul {
+	padding-left: $base-spacing;
+	margin-top: 2px;
+
+	@include media(small) {
+		padding-left: 0;
+		margin-top: 0;
+		background-color: $base-background-color;
+		border: 1px solid $light-gray;
+		position: absolute;
+		top: 100%;
+		left: -999em;
+		z-index: 99999;
+	}
+}
+
+.primary-nav ul ul ul {
+	@include media(small) {
+		left: -999em;
+		top: -1px;
+	}
+}
+
+.primary-nav ul ul li:hover > ul,
+.primary-nav ul ul li.focus > ul {
+	@include media(small) {
+		left: 100%;
+	}
+}
+
+.primary-nav ul ul a {
+	width: 100%;
+
+	@include media(small) {
+		width: 220px;
+	}
+}
+
+.primary-nav ul li:hover > ul,
+.primary-nav ul li.focus > ul {
+	@include media(small) {
+		left: auto;
+	}
+}
+
+.primary-nav ul .sub-menu a {
+	padding: 1.4rem 0;
+
+	@include media(small) {
+		padding: 1rem 1.5rem;
+	}
+}
+
+/* ### Submenu Marker */
+
+.primary-nav ul > .menu-item-has-children > a::after,
+.primary-nav ul .sub-menu .menu-item-has-children > a::after {
+	display: inline-block;
+	content: '';
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="%23333" d="M5 6l5 5 5-5 2 1-7 7-7-7z"/></svg>');
+	background-size: 13px 13px;
+	height: 13px;
+	width: 13px;
+	vertical-align: middle;
+	margin-left: 5px;
+	position: relative;
+}
+
+.primary-nav ul .sub-menu .menu-item-has-children > a::after {
+	@include media(small) {
+		transform: rotate(-90deg);
+		top: -1px;
+	}
+}
+
+/* ### Menu Toggle */
+
+.menu-toggle {
+	display: block;
+	margin: $small-spacing auto;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	width: 26px;
+	height: 18px;
+	cursor: pointer;
+
+	@include media(small) {
+		display: none;
+	}
+}
+
+.menu-toggle .navicon {
+	// Center line of hamburger icon.
+	position: relative;
+	display: block;
+	background: $dark-gray;
+	width: 26px;
+	height: 3px;
+	transition: background 0.2s ease-in-out;
+
+	// Top and bottom lines of hamburger icon.
+	&::before,
+	&::after {
+		position: absolute;
+		content: '';
+		display: block;
+		background: $dark-gray;
+		width: 100%;
+		height: 100%;
+		transition: all 0.2s ease-in-out;
+	}
+
+	&::before {
+		top: 8px;
+	}
+
+	&::after {
+		top: -8px;
+	}
+}
+
+.menu-toggle[aria-expanded='true'] .navicon {
+	// Center line of hamburger icon.
+	background: transparent;
+
+	// Top and bottom lines of hamburger icon.
+	&::before,
+	&::after {
+		top: 0;
+	}
+
+	&::before {
+		transform: rotate(-45deg);
+	}
+
+	&::after {
+		transform: rotate(45deg);
+	}
+}
+
+.primary-nav.toggled ul {
+	display: block;
+}
+
+/* ## Footer Menu
+--------------------------------------------- */
+
+.footer-nav ul li {
+	display: inline-block;
+}
+
+.footer-nav ul a {
+	display: block;
+	padding: 0.5rem 1rem;
+}

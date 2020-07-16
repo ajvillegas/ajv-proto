@@ -1,0 +1,118 @@
+/* ## Text Badge
+--------------------------------------------- */
+
+.text-badge {
+	display: inline-block;
+	padding: 0 0.6rem;
+	font-size: 85%;
+	font-weight: 400;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 3px;
+	transition: all 0.15s ease-in-out;
+	-webkit-font-smoothing: subpixel-antialiased;
+
+	&.-primary {
+		background-color: $primary-color;
+	}
+
+	&.-secondary {
+		background-color: $secondary-color;
+	}
+
+	&.-tertiary {
+		background-color: $tertiary-color;
+	}
+
+	&.-alert {
+		background-color: $alert-color;
+	}
+
+	&.-error {
+		background-color: $error-color;
+	}
+
+	&.-notice {
+		background-color: $notice-color;
+	}
+
+	&.-success {
+		background-color: $success-color;
+	}
+}
+
+a.text-badge {
+	text-decoration: none;
+
+	&.-primary:focus,
+	&.-primary:hover {
+		background-color: darken($primary-color, 5%);
+	}
+
+	&.-primary:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.5);
+	}
+
+	&.-secondary:focus,
+	&.-secondary:hover {
+		background-color: darken($secondary-color, 5%);
+	}
+
+	&.-secondary:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.2rem rgba($secondary-color, 0.5);
+	}
+
+	&.-tertiary:focus,
+	&.-tertiary:hover {
+		background-color: darken($tertiary-color, 5%);
+	}
+
+	&.-tertiary:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.2rem rgba($tertiary-color, 0.5);
+	}
+
+	&.-alert:focus,
+	&.-alert:hover {
+		background-color: darken($alert-color, 5%);
+	}
+
+	&.-alert:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.2rem rgba($alert-color, 0.5);
+	}
+
+	&.-error:focus,
+	&.-error:hover {
+		background-color: darken($error-color, 5%);
+	}
+
+	&.-error:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.2rem rgba($error-color, 0.5);
+	}
+
+	&.-notice:focus,
+	&.-notice:hover {
+		background-color: darken($notice-color, 5%);
+	}
+
+	&.-notice:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.2rem rgba($notice-color, 0.5);
+	}
+
+	&.-success:focus,
+	&.-success:hover {
+		background-color: darken($success-color, 5%);
+	}
+
+	&.-success:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.2rem rgba($success-color, 0.5);
+	}
+}

@@ -1,0 +1,90 @@
+/* ## WordPress
+--------------------------------------------- */
+
+.alignleft,
+.alignnone,
+.alignright {
+	max-width: 100%;
+}
+
+.aligncenter {
+	display: block;
+	margin: 0 auto $base-spacing;
+}
+
+.alignnone {
+	display: inline-block;
+	margin-bottom: $base-spacing / 2;
+}
+
+.alignleft {
+	margin: 0 0 $base-spacing 0;
+
+	@include media(x-small) {
+		float: left;
+		text-align: left;
+		margin: 0 $base-spacing $base-spacing 0;
+	}
+}
+
+.alignright {
+	margin: 0 0 $base-spacing 0;
+
+	@include media(x-small) {
+		float: right;
+		text-align: right;
+		margin: 0 0 $base-spacing $base-spacing;
+	}
+}
+
+.gallery-caption,
+.wp-caption-text {
+	font-size: 1.4rem;
+	font-weight: 700;
+	margin: 0;
+	text-align: center;
+}
+
+.entry-content .wp-audio-shortcode,
+.entry-content .wp-playlist,
+.entry-content .wp-video {
+	margin: 0 0 $base-spacing;
+}
+
+.gallery {
+	@include clearfix;
+	margin: 0 0 $base-spacing * 2 0;
+	padding: 0;
+
+	.gallery-item {
+		margin: $base-spacing 0;
+		padding: 0;
+		text-align: center;
+		width: 100%;
+		height: auto;
+	}
+
+	.gallery-icon {
+		margin: 0;
+		padding: 0;
+	}
+
+	.wp-caption-text {
+		margin: 0;
+		padding: 0;
+		font-size: 0.8em;
+	}
+}
+
+@for $i from 1 through 9 {
+	.gallery-columns-#{$i} .gallery-item {
+		@include media(medium) {
+			float: left;
+			width: col_width(9 / $i, 9, $max-width, $column-gutter);
+
+			&:nth-child(#{$i}n + #{$i + 1}) {
+				clear: both;
+			}
+		}
+	}
+}

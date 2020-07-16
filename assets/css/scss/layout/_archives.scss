@@ -1,0 +1,95 @@
+/* ## Archives
+--------------------------------------------- */
+
+.post {
+	@include clearfix;
+	margin-bottom: $base-spacing * 2;
+}
+
+.sticky {
+	border-top: 4px solid $dark-gray;
+	border-bottom: 4px solid $dark-gray;
+	padding: $small-spacing 0;
+
+	&:before {
+		display: block;
+		width: 100%;
+		padding: $base-spacing / 2;
+		padding-bottom: $base-spacing / 2.25;
+		line-height: 1;
+		background: $dark-gray;
+		color: white;
+		text-transform: uppercase;
+		font-weight: bold;
+		content: 'Sticky Post';
+		margin-bottom: $base-spacing;
+	}
+}
+
+.archive-description {
+	margin-bottom: $base-spacing * 3;
+}
+
+/* ## Pagination
+--------------------------------------------- */
+
+.pagination {
+	@include clearfix;
+	margin: $base-spacing 0;
+
+	ul {
+		padding-left: 0;
+		margin-bottom: 0;
+		list-style: none;
+
+		li {
+			display: inline;
+		}
+	}
+
+	a,
+	span.page-numbers {
+		background-color: $base-background-color;
+		color: $dark-gray;
+		display: inline-block;
+		font-size: 1.6rem;
+		font-weight: 600;
+		padding: 0.8rem 1.2rem;
+		text-decoration: none;
+		transition: none;
+		border-radius: $base-border-radius;
+	}
+
+	a:focus,
+	a:hover,
+	.page-numbers.current {
+		background-color: $primary-color;
+		color: $base-background-color;
+	}
+}
+
+/* ## Post Entry Pagination
+--------------------------------------------- */
+
+.nav-links {
+	font-size: $base-font-size / 1.25;
+	margin-bottom: $base-spacing * 2;
+}
+
+.nav-links {
+	@include clearfix;
+
+	.nav-previous {
+		float: left;
+		text-align: left;
+	}
+
+	.nav-next {
+		float: right;
+		text-align: right;
+	}
+}
+
+.page-links {
+	margin-bottom: 2rem;
+}

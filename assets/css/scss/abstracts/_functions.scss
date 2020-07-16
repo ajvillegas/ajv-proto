@@ -1,0 +1,8 @@
+// Calculate column width value.
+@function col_width($n, $total_columns, $total_width: 1170px, $gutter_width: 30px) {
+	$col_width: ($total_width - ($gutter_width * ($total_columns - 1))) / $total_columns;
+	$total_width: $total_width;
+	$columns_width: ($n * $col_width) + (($n - 1) * $gutter_width);
+
+	@return percentage($columns_width / $total_width);
+}

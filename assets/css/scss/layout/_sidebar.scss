@@ -1,0 +1,27 @@
+/* ## Primary Sidebar
+--------------------------------------------- */
+
+.sidebar {
+	font-size: 1.8rem;
+
+	.search-form,
+	select {
+		width: 100%;
+		margin-bottom: 0;
+	}
+
+	.widget-title {
+		margin-bottom: $small-spacing;
+	}
+}
+
+.sidebar .widget {
+	margin-bottom: $base-spacing;
+	padding: $base-spacing;
+	background: $very-light-gray;
+}
+
+.sidebar > *:last-child,
+.sidebar .widget > *:last-child {
+	margin-bottom: 0;
+}

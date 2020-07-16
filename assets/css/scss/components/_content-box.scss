@@ -1,0 +1,44 @@
+/* ## Content Box
+--------------------------------------------- */
+
+.content-box {
+	background-color: $notice-color;
+	border: 1px solid darken($notice-color, 10%);
+	color: darken($notice-color, 60%);
+	padding: $base-spacing;
+	margin-bottom: $base-spacing;
+
+	> *:last-of-type {
+		margin-bottom: 0;
+	}
+
+	&.-gray {
+		background-color: $light-gray;
+		border: 1px solid darken($light-gray, 10%);
+		color: darken($light-gray, 60%);
+	}
+
+	&.-green {
+		background-color: $success-color;
+		border: 1px solid darken($success-color, 10%);
+		color: darken($success-color, 60%);
+	}
+
+	&.-purple {
+		background-color: #e2e2f9;
+		border: 1px solid darken(#e2e2f9, 10%);
+		color: darken(#e2e2f9, 60%);
+	}
+
+	&.-red {
+		background-color: $error-color;
+		border: 1px solid darken($error-color, 10%);
+		color: darken($error-color, 60%);
+	}
+
+	&.-yellow {
+		background-color: $alert-color;
+		border: 1px solid darken($alert-color, 10%);
+		color: darken($alert-color, 60%);
+	}
+}

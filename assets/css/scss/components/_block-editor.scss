@@ -1,0 +1,330 @@
+/* ## Headings
+--------------------------------------------- */
+
+h1.light,
+h2.light,
+h3.light,
+h4.light,
+h5.light,
+h6.light {
+	color: $very-light-gray;
+}
+
+/* ## Font Sizes
+--------------------------------------------- */
+
+p.has-small-font-size {
+	font-size: 1.8rem;
+}
+
+p.has-regular-font-size {
+	font-size: 2rem;
+}
+
+p.has-large-font-size {
+	font-size: 2.4rem;
+}
+
+p.has-larger-font-size {
+	font-size: 2.6rem;
+}
+
+/* ## Drop Caps
+--------------------------------------------- */
+
+p.has-drop-cap:not(:focus)::first-letter {
+	margin: 0.02em 0.08em 0 -0.08em;
+}
+
+p.has-larger-font-size.has-drop-cap:not(:focus)::first-letter,
+p.has-small-font-size.has-drop-cap:not(:focus)::first-letter {
+	margin-right: 0.01em;
+}
+
+/* ## Color Palette
+--------------------------------------------- */
+
+.has-primary-background-color {
+	background-color: $primary-color !important;
+}
+
+.has-primary-color {
+	color: $primary-color !important;
+}
+
+.has-secondary-background-color {
+	background-color: $secondary-color !important;
+}
+
+.has-secondary-color {
+	color: $secondary-color !important;
+}
+
+.has-tertiary-background-color {
+	background-color: $tertiary-color !important;
+}
+
+.has-tertiary-color {
+	color: $tertiary-color !important;
+}
+
+/* ## Background Color
+--------------------------------------------- */
+
+p.has-background {
+	padding: $base-spacing / 1.2 $base-spacing;
+}
+
+p.has-text-color a,
+p.has-background a {
+	color: inherit;
+}
+
+p.has-text-color a:focus,
+p.has-background a:focus,
+p.has-text-color a:hover,
+p.has-background a:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+p.has-background.light-text a {
+	color: #fff;
+	text-decoration: underline;
+}
+
+p.has-background.light-text a:focus,
+p.has-background.light-text a:hover {
+	text-decoration: none;
+}
+
+/* ## Blockquotes and Captions
+--------------------------------------------- */
+
+.wp-block-pullquote p,
+.wp-block-quote.is-style-large p {
+	font-size: 2.6rem;
+}
+
+.wp-block-pullquote.is-style-solid-color p {
+	color: #fff;
+	margin-bottom: 4.2rem;
+	text-align: center;
+}
+
+.wp-block-pullquote.is-style-solid-color {
+	background-color: #000;
+}
+
+.wp-block-pullquote:not(.is-style-solid-color)[style*='border-color'] {
+	border: 2px solid;
+	border-left: none;
+	border-right: none;
+}
+
+.wp-block-quote cite,
+.wp-block-pullquote cite,
+.wp-block-quote.is-style-large cite {
+	text-align: left !important;
+}
+
+.wp-block-pullquote.is-style-solid-color cite {
+	color: #fff;
+	font-style: italic;
+}
+
+.wp-block-pullquote .has-text-color cite,
+.wp-block-pullquote .has-text-color p {
+	color: currentColor;
+}
+
+.wp-block-audio figcaption,
+.wp-block-embed figcaption,
+.wp-block-image figcaption {
+	color: #666;
+	font-size: 1.8rem;
+	font-style: italic;
+	margin-bottom: $base-spacing;
+	margin-top: 1rem;
+}
+
+.wp-block-quote.is-style-large,
+.wp-block-quote.is-large,
+.wp-block-pullquote.is-style-large,
+.wp-block-pullquote.is-large {
+	margin: $base-spacing $base-spacing $base-spacing 0;
+	padding: 0 0 0 $base-spacing;
+}
+
+/* ## Alignment
+--------------------------------------------- */
+
+.wp-block-button.alignleft,
+.wp-block-cover.alignleft,
+.wp-block-image .alignleft {
+	margin-right: $base-spacing;
+}
+
+.wp-block-button.alignright,
+.wp-block-cover.alignright,
+.wp-block-image .alignright {
+	margin-left: $base-spacing;
+}
+
+.wp-block-image.alignwide,
+.wp-block-image.alignfull,
+.wp-block-embed.alignwide,
+.wp-block-embed.alignfull,
+.wp-block-cover.alignwide,
+.wp-block-cover.alignfull {
+	margin-bottom: $base-spacing;
+}
+
+.content-sidebar .alignfull,
+.sidebar-content .alignfull {
+	margin: 0 0 $base-spacing;
+	width: 100%;
+}
+
+.full-width-content .alignfull,
+.full-width-padded .alignfull {
+	margin-left: calc(-100vw / 2 + 100% / 2);
+	margin-right: calc(-100vw / 2 + 100% / 2);
+	max-width: 100vw;
+}
+
+.full-width-padded .alignwide {
+	@include media(medium) {
+		margin-left: calc(-100vw / 2 + 100% / 2);
+		margin-right: calc(-100vw / 2 + 100% / 2);
+		max-width: 100vw;
+	}
+
+	@include media(large) {
+		margin-left: -195px;
+		margin-right: -195px;
+		max-width: $max-width;
+	}
+}
+
+/* ## Columns Block
+--------------------------------------------- */
+
+.wp-block-columns {
+	margin-bottom: $base-spacing;
+
+	@media only screen and (min-width: 600px) {
+		flex-wrap: nowrap;
+	}
+
+	> *:first-child {
+		@include media(small) {
+			margin-top: 0;
+		}
+	}
+
+	> *:last-child {
+		@include media(small) {
+			margin-bottom: 0;
+		}
+	}
+
+	&[class*='has-'] > * {
+		@media only screen and (min-width: 600px) {
+			margin-right: $base-spacing;
+			margin-left: 0;
+		}
+	}
+
+	&[class*='has-'] > *:last-child {
+		@media only screen and (min-width: 600px) {
+			margin-right: 0;
+		}
+	}
+}
+
+.wp-block-columns.alignfull {
+	padding: 0 $base-spacing;
+}
+
+/* ## Cover Image Block
+--------------------------------------------- */
+
+.full-width-content .wp-block-cover.alignfull,
+.full-width-padded .wp-block-cover.alignfull {
+	width: 100vw;
+}
+
+.wp-block-cover .wp-block-cover-text {
+	font-size: 4.8rem;
+}
+
+/* ## Category Block
+--------------------------------------------- */
+
+.wp-block-categories,
+.wp-block-categories ol,
+.wp-block-categories ul {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.wp-block-categories li {
+	list-style-type: none;
+}
+
+.wp-block-categories.aligncenter {
+	text-align: center;
+}
+
+.wp-block-categories-list.alignfull {
+	padding: 0 $base-spacing;
+}
+
+/* ## Latest Posts Block
+--------------------------------------------- */
+
+.wp-block-latest-posts {
+	clear: both;
+	margin-left: 0;
+}
+
+.wp-block-latest-posts li {
+	list-style-type: none;
+}
+
+.wp-block-latest-posts.aligncenter {
+	text-align: center;
+}
+
+.wp-block-latest-posts.alignfull {
+	padding: 0 $base-spacing;
+}
+
+/* ## Other Blocks
+--------------------------------------------- */
+
+hr.wp-block-separator {
+	border: none;
+	border-top: 1px solid $dark-gray;
+	margin: $base-spacing auto;
+}
+
+.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+	max-width: 100px;
+}
+
+.wp-block-audio audio {
+	display: inline-block;
+	width: 100%;
+}
+
+.wp-block-gallery {
+	padding-left: 0;
+}
+
+.wp-block-media-text.is-stacked-on-mobile figure {
+	@include media(small) {
+		margin-bottom: $base-spacing;
+	}
+}

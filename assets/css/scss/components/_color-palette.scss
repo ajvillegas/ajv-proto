@@ -1,0 +1,227 @@
+/* ## Color Palette Template
+--------------------------------------------- */
+
+.color-palette {
+	@include clearfix;
+
+	> .section {
+		margin-bottom: $small-spacing;
+	}
+
+	> .section,
+	> .section > .colorgroup,
+	> .section > .textgroup {
+		@include clearfix;
+	}
+
+	> .section > .colorgroup > .color,
+	> .section > .textgroup > .color {
+		margin-bottom: percentage($column-gutter / $max-width);
+		width: 100%;
+
+		@include media(medium) {
+			float: left;
+			margin-left: percentage($column-gutter / $max-width);
+		}
+	}
+
+	> .section > .colorgroup > .color {
+		box-sizing: border-box;
+		position: relative;
+		min-height: 185px;
+
+		@include media(medium) {
+			width: col_width(1, 4, $max-width, $column-gutter);
+			padding-top: calc(#{col_width(1, 4, $max-width, $column-gutter)} - 2px);
+			min-height: initial;
+		}
+	}
+
+	> .section > .textgroup > .color {
+		display: table;
+		min-height: 185px;
+
+		@include media(medium) {
+			width: col_width(1, 2, $max-width, $column-gutter);
+		}
+	}
+
+	> .section > .colorgroup > .color:nth-child(4n + 1),
+	> .section > .textgroup > .color:nth-child(2n + 1) {
+		margin-left: 0;
+	}
+
+	> .section > .colorgroup > .color > .info {
+		margin: 0;
+	}
+
+	> .section > .colorgroup > .color > .info > .heading,
+	> .section > .colorgroup > .color > .info > .value {
+		display: block;
+		position: absolute;
+		left: 1rem;
+		font-size: $base-font-size / 1.1;
+	}
+
+	> .section > .colorgroup > .color > .info > .heading {
+		text-transform: uppercase;
+		top: 1rem;
+	}
+
+	> .section > .colorgroup > .color > .info > .value {
+		bottom: 1rem;
+	}
+
+	> .section > .textgroup > .color > p {
+		display: table-cell;
+		vertical-align: middle;
+		padding: 3rem;
+		margin: 0;
+
+		@include media(small) {
+			padding: 6rem;
+		}
+	}
+
+	// Define colors.
+	> .section > .colorgroup > .color,
+	> .section > .textgroup > .color {
+		&.-primary {
+			background-color: $primary-color;
+			border: 1px solid $primary-color;
+
+			.heading,
+			.value {
+				color: darken($primary-color, 60%);
+			}
+		}
+
+		&.-secondary {
+			background-color: $secondary-color;
+			border: 1px solid $secondary-color;
+
+			.heading,
+			.value {
+				color: lighten($dark-gray, 30%);
+			}
+		}
+
+		&.-tertiary {
+			background-color: $tertiary-color;
+			border: 1px solid $tertiary-color;
+
+			.heading,
+			.value {
+				color: darken($tertiary-color, 60%);
+			}
+		}
+
+		&.-background {
+			background-color: $base-background-color;
+			border: 1px solid darken($base-background-color, 15%);
+
+			.heading,
+			.value {
+				color: darken($base-background-color, 60%);
+			}
+		}
+	}
+
+	> .section > .colorgroup > .color {
+		&.-darkgray {
+			background-color: $dark-gray;
+			border: 1px solid $dark-gray;
+
+			.heading,
+			.value {
+				color: lighten($dark-gray, 30%);
+			}
+		}
+
+		&.-mediumgray {
+			background-color: $medium-gray;
+			border: 1px solid $medium-gray;
+
+			.heading,
+			.value {
+				color: darken($medium-gray, 60%);
+			}
+		}
+
+		&.-lightgray {
+			background-color: $light-gray;
+			border: 1px solid $light-gray;
+
+			.heading,
+			.value {
+				color: darken($light-gray, 60%);
+			}
+		}
+
+		&.-verylightgray {
+			background-color: $very-light-gray;
+			border: 1px solid $very-light-gray;
+
+			.heading,
+			.value {
+				color: darken($very-light-gray, 60%);
+			}
+		}
+
+		&.-alert {
+			background-color: $alert-color;
+			border: 1px solid $alert-color;
+
+			.heading,
+			.value {
+				color: darken($alert-color, 60%);
+			}
+		}
+
+		&.-error {
+			background-color: $error-color;
+			border: 1px solid $error-color;
+
+			.heading,
+			.value {
+				color: darken($error-color, 60%);
+			}
+		}
+
+		&.-notice {
+			background-color: $notice-color;
+			border: 1px solid $notice-color;
+
+			.heading,
+			.value {
+				color: darken($notice-color, 60%);
+			}
+		}
+
+		&.-success {
+			background-color: $success-color;
+			border: 1px solid $success-color;
+
+			.heading,
+			.value {
+				color: darken($success-color, 60%);
+			}
+		}
+	}
+
+	> .section > .textgroup > .color > p > .primary {
+		color: $primary-color;
+	}
+
+	> .section > .textgroup > .color > p > .secondary {
+		color: $secondary-color;
+	}
+
+	> .section > .textgroup > .color > p > .tertiary {
+		color: $tertiary-color;
+	}
+
+	> .section > .textgroup > .color > p > .background {
+		color: $base-background-color;
+	}
+}
