@@ -1,93 +1,68 @@
-#, fuzzy
+# Copyright (C) 2020 AJV_Proto
+# This file is distributed under the same license as the AJV_Proto package.
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"Project-Id-Version: AJV Proto\n"
-"POT-Creation-Date: 2018-08-09 17:03-0700\n"
-"PO-Revision-Date: 2018-08-09 17:02-0700\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: AJV_Proto\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"Language-Team: Alexis J. Villegas <alexis@ajvillegas.com>\n"
+"Last-Translator: Alexis J. Villegas <alexis@ajvillegas.com>\n"
+"Report-Msgid-Bugs-To: https://www.alexisvillegas.com/\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: style.css\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: 404.php:27 archive.php:27 index.php:32 page-templates/template-colors.php:44
-#: page-templates/template-typography.php:44 page.php:27 search.php:27
-#: single.php:27
-msgid "You are here:"
-msgstr ""
-
-#: 404.php:35
+#: 404.php:23
 msgid "Oops! That page can't be found."
 msgstr ""
 
-#. translators: %s: homepage URL
-#: 404.php:43
-#, php-format
-msgid ""
-"It looks like nothing was found at this location. Perhaps you can return "
-"back to the site's <a href=\"%s\">homepage</a> and see if you can find what "
-"you're looking for. Or, you can try finding it by using the search form "
-"below."
+#. translators: 1: homepage URL opening tag, 2: homepage URL closing tag
+#: 404.php:30
+msgid "It looks like nothing was found at this location. Perhaps you can return back to the site's %1$shomepage%2$s and see if you can find what you're looking for. Or, you can try finding it by using the search form below."
 msgstr ""
 
-#: 404.php:55
+#: 404.php:37
 msgid "Sitemap"
+msgstr ""
+
+#: archive.php:28, index.php:33, page.php:28, search.php:28, single.php:28, page-templates/template-colors.php:65, page-templates/template-typography.php:46
+msgid "You are here:"
 msgstr ""
 
 #: comments.php:28
 msgid "Reader Comments"
 msgstr ""
 
-#: comments.php:39
-msgid "One Comment"
-msgstr ""
-
 #. translators: comment count number.
 #: comments.php:43
-#, php-format
 msgctxt "comments title"
 msgid "%s Comment"
 msgid_plural "%s Comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: comments.php:68
+#: comments.php:39
+msgid "One Comment"
+msgstr ""
+
+#: comments.php:70
 msgid "Comments are closed."
 msgstr ""
 
-#: footer.php:23 inc/theme-setup.php:49
+#: footer.php:23, inc/theme-setup.php:139, inc/customizer/register-settings.php:68
 msgid "Footer"
 msgstr ""
 
-#: footer.php:44
-msgid "Copyright"
+#: footer.php:52
+msgid "Back to top"
 msgstr ""
 
-#: footer.php:46
-msgid "All Rights Reserved"
-msgstr ""
-
-#: header.php:35 inc/widget-areas.php:29
+#: header.php:38, inc/widget-areas.php:29
 msgid "Utility Bar"
-msgstr ""
-
-#: header.php:42
-msgid "Back To Top"
-msgstr ""
-
-#: header.php:42
-msgid "Top"
 msgstr ""
 
 #: header.php:48
@@ -106,311 +81,16 @@ msgstr ""
 msgid "Skip to footer"
 msgstr ""
 
-#: header.php:92
+#: header.php:91
 msgid "Header Widget Area"
 msgstr ""
 
-#: inc/admin-functions.php:29
-msgid "theme developed by"
-msgstr ""
-
-#: inc/layouts.php:56
-msgid "Layout Settings"
-msgstr ""
-
-#: inc/layouts.php:81
-msgid "Select Layout"
-msgstr ""
-
-#: inc/layouts.php:85
-msgid "Content, Primary Sidebar"
-msgstr ""
-
-#: inc/layouts.php:99
-msgid "Primary Sidebar, Content"
-msgstr ""
-
-#: inc/layouts.php:113
-msgid "Full Width Padded"
-msgstr ""
-
-#: inc/layouts.php:127
-msgid "Full Width Content"
-msgstr ""
-
-#: inc/scripts-and-styles.php:38
-msgctxt "Source Sans Pro font: on or off?"
-msgid "on"
-msgstr ""
-
-#: inc/scripts-and-styles.php:99
+#: header.php:102
 msgid "Menu"
 msgstr ""
 
-#: inc/scripts-and-styles.php:101
-msgid "Submenu"
-msgstr ""
-
-#: inc/scripts-and-styles.php:159 inc/tinymce.php:50
-msgid "Lead Text"
-msgstr ""
-
-#: inc/scripts-and-styles.php:160 inc/tinymce.php:56
-msgid "Code"
-msgstr ""
-
-#: inc/scripts-and-styles.php:161 inc/tinymce.php:61
-msgid "Highlight"
-msgstr ""
-
-#: inc/scripts-and-styles.php:162 inc/tinymce.php:66
-msgid "Label Link"
-msgstr ""
-
-#: inc/scripts-and-styles.php:163 inc/tinymce.php:72
-msgid "List Style"
-msgstr ""
-
-#: inc/scripts-and-styles.php:164 inc/tinymce.php:76
-msgid "List Style 1"
-msgstr ""
-
-#: inc/scripts-and-styles.php:165 inc/tinymce.php:81
-msgid "List Style 2"
-msgstr ""
-
-#: inc/scripts-and-styles.php:166 inc/tinymce.php:88
-msgid "Content Box"
-msgstr ""
-
-#: inc/scripts-and-styles.php:167 inc/tinymce.php:92
-msgid "Blue"
-msgstr ""
-
-#: inc/scripts-and-styles.php:168 inc/tinymce.php:97
-msgid "Gray"
-msgstr ""
-
-#: inc/scripts-and-styles.php:169 inc/tinymce.php:102
-msgid "Green"
-msgstr ""
-
-#: inc/scripts-and-styles.php:170 inc/tinymce.php:107
-msgid "Purple"
-msgstr ""
-
-#: inc/scripts-and-styles.php:171 inc/tinymce.php:112
-msgid "Red"
-msgstr ""
-
-#: inc/scripts-and-styles.php:172 inc/tinymce.php:117
-msgid "Yellow"
-msgstr ""
-
-#: inc/scripts-and-styles.php:174
-msgctxt "Button title"
-msgid "Insert Button"
-msgstr ""
-
-#: inc/scripts-and-styles.php:175
-msgctxt "Dialog window title"
-msgid "Insert Button"
-msgstr ""
-
-#: inc/scripts-and-styles.php:176
-msgid "Button Text"
-msgstr ""
-
-#: inc/scripts-and-styles.php:177
-msgid "Button URL"
-msgstr ""
-
-#: inc/scripts-and-styles.php:178
-msgid "Target"
-msgstr ""
-
-#: inc/scripts-and-styles.php:179
-msgid "Same Window"
-msgstr ""
-
-#: inc/scripts-and-styles.php:180
-msgid "New Window"
-msgstr ""
-
-#: inc/scripts-and-styles.php:181
-msgid "Size"
-msgstr ""
-
-#: inc/scripts-and-styles.php:182
-msgid "Default"
-msgstr ""
-
-#: inc/scripts-and-styles.php:183
-msgid "Small"
-msgstr ""
-
-#: inc/scripts-and-styles.php:184
-msgid "Large"
-msgstr ""
-
-#: inc/scripts-and-styles.php:185
-msgid "Color"
-msgstr ""
-
-#: inc/scripts-and-styles.php:186 inc/theme-setup.php:48
-msgid "Primary"
-msgstr ""
-
-#: inc/scripts-and-styles.php:187
-msgid "Secondary"
-msgstr ""
-
-#: inc/scripts-and-styles.php:188
-msgid "Tertiary"
-msgstr ""
-
-#: inc/scripts-and-styles.php:189
-msgid "Ghost"
-msgstr ""
-
-#: inc/scripts-and-styles.php:190
-msgid "Alignment"
-msgstr ""
-
-#: inc/scripts-and-styles.php:191
-msgid "None"
-msgstr ""
-
-#: inc/scripts-and-styles.php:192
-msgid "Left"
-msgstr ""
-
-#: inc/scripts-and-styles.php:193
-msgid "Right"
-msgstr ""
-
-#: inc/scripts-and-styles.php:194
-msgid "Center"
-msgstr ""
-
-#: inc/scripts-and-styles.php:195
-msgid "Style"
-msgstr ""
-
-#: inc/scripts-and-styles.php:196
-msgid "Square"
-msgstr ""
-
-#: inc/scripts-and-styles.php:197
-msgid "Round"
-msgstr ""
-
-#. translators: %s: post author.
-#: inc/template-tags.php:52
-#, php-format
-msgid "by %s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:82
-msgid ", "
-msgstr ""
-
-#. translators: 1: list of categories.
-#: inc/template-tags.php:86
-#, php-format
-msgid "Filed Under: %2$s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:93
-msgctxt "list item separator"
-msgid ", "
-msgstr ""
-
-#. translators: 1: list of tags.
-#: inc/template-tags.php:97
-#, php-format
-msgid "Tagged With: %2$s"
-msgstr ""
-
-#. translators: %s: Name of current post. Only visible to screen readers.
-#. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:108 template-parts/content-page.php:42
-#, php-format
-msgid "Edit <span class=\"screen-reader-text\">%s</span>"
-msgstr ""
-
-#: inc/template-tags.php:178 inc/template-tags.php:193
-msgid "Previous Page"
-msgstr ""
-
-#: inc/template-tags.php:179 inc/template-tags.php:197
-msgid "Next Page"
-msgstr ""
-
-#: inc/template-tags.php:217 template-parts/content-page.php:29
-#: template-parts/content.php:63
-msgid "Pages:"
-msgstr ""
-
-#: inc/template-tags.php:225
-msgid "Categories:"
-msgstr ""
-
-#: inc/template-tags.php:228
-msgid "Authors:"
-msgstr ""
-
-#: inc/template-tags.php:231
-msgid "Monthly:"
-msgstr ""
-
-#: inc/template-tags.php:234
-msgid "Recent Posts:"
-msgstr ""
-
-#: inc/theme-setup.php:200
-msgid "Add a Comment"
-msgstr ""
-
-#: inc/theme-setup.php:250
-msgid "Read More"
-msgstr ""
-
-#: inc/widget-areas.php:30
-msgid "This is the top utility bar widget area."
-msgstr ""
-
-#: inc/widget-areas.php:34
-msgid "Header"
-msgstr ""
-
-#: inc/widget-areas.php:35
-msgid ""
-"This is the header widget area. It typically displays next to the site logo "
-"or title."
-msgstr ""
-
-#: inc/widget-areas.php:39 sidebar.php:26
-msgid "Primary Sidebar"
-msgstr ""
-
-#: inc/widget-areas.php:40
-msgid "This is the primary sidebar widget area."
-msgstr ""
-
-#: inc/widget-areas.php:44
-msgid "Footer Widgets"
-msgstr ""
-
-#: inc/widget-areas.php:45
-msgid "This is the footer widgets area."
-msgstr ""
-
 #. translators: %s: search query.
-#: search.php:40
-#, php-format
+#: search.php:42
 msgid "Search Results for: %s"
 msgstr ""
 
@@ -428,50 +108,286 @@ msgctxt "search button text"
 msgid "Search"
 msgstr ""
 
+#: sidebar.php:27, inc/widget-areas.php:39
+msgid "Primary Sidebar"
+msgstr ""
+
+#: single.php:42
+msgid "Previous Post"
+msgstr ""
+
+#: single.php:43
+msgid "Next Post"
+msgstr ""
+
+#: inc/admin-functions.php:29
+msgid "theme developed by"
+msgstr ""
+
+#: inc/admin-functions.php:60
+msgid "Website Help & Support"
+msgstr ""
+
+#: inc/admin-functions.php:83
+msgid "I'm here to help! If you have any questions please don't hesitate to reach out."
+msgstr ""
+
+#. translators: %s: Easy WP Guide WordPress Manual URL
+#: inc/admin-functions.php:89
+msgid "To learn all about the WordPress admin panel, checkout the %s for illustrated written tutorials."
+msgstr ""
+
+#: inc/admin-functions.php:95
+msgid "Developed by:"
+msgstr ""
+
+#: inc/admin-functions.php:96
+msgid "Website:"
+msgstr ""
+
+#: inc/admin-functions.php:101
+msgid "Contact:"
+msgstr ""
+
+#: inc/layouts.php:56
+msgid "Layout Settings"
+msgstr ""
+
+#: inc/layouts.php:86
+msgid "Select Layout"
+msgstr ""
+
+#. translators: 1: theme settings URL opening tag, 2: theme settings URL closing tag
+#: inc/layouts.php:103
+msgid "Default Layout from %1$sTheme Settings%2$s"
+msgstr ""
+
+#: inc/layouts.php:112
+msgid "Content, Primary Sidebar"
+msgstr ""
+
+#: inc/layouts.php:126
+msgid "Primary Sidebar, Content"
+msgstr ""
+
+#: inc/layouts.php:140, inc/customizer/register-settings.php:113
+msgid "Full Width Padded"
+msgstr ""
+
+#: inc/layouts.php:154, inc/customizer/register-settings.php:117
+msgid "Full Width Content"
+msgstr ""
+
+#: inc/scripts-and-styles.php:38
+msgctxt "Source Sans Pro font: on or off?"
+msgid "on"
+msgstr ""
+
+#. translators: %s: post author.
+#: inc/template-tags.php:62
+msgid "by %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:92
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: inc/template-tags.php:97
+msgid "Filed Under: %2$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:104
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: inc/template-tags.php:109
+msgid "Tagged With: %2$s"
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers.
+#. translators: %s: Name of current post. Only visible to screen readers.
+#: inc/template-tags.php:119, template-parts/content-page.php:46
+msgid "Edit %s"
+msgstr ""
+
+#: inc/template-tags.php:200, inc/template-tags.php:187
+msgid "Previous Page"
+msgstr ""
+
+#: inc/template-tags.php:204, inc/template-tags.php:188
+msgid "Next Page"
+msgstr ""
+
+#: inc/template-tags.php:223, template-parts/content-page.php:33, template-parts/content.php:60
+msgid "Pages:"
+msgstr ""
+
+#: inc/template-tags.php:231
+msgid "Categories:"
+msgstr ""
+
+#: inc/template-tags.php:234
+msgid "Authors:"
+msgstr ""
+
+#: inc/template-tags.php:237
+msgid "Monthly:"
+msgstr ""
+
+#: inc/template-tags.php:240
+msgid "Recent Posts:"
+msgstr ""
+
+#: inc/template-tags.php:268
+msgid "Copyright"
+msgstr ""
+
+#: inc/template-tags.php:270
+msgid "All Rights Reserved"
+msgstr ""
+
+#: inc/theme-setup.php:54
+msgid "Small"
+msgstr ""
+
+#: inc/theme-setup.php:59
+msgid "Normal"
+msgstr ""
+
+#: inc/theme-setup.php:64
+msgid "Large"
+msgstr ""
+
+#: inc/theme-setup.php:69
+msgid "Larger"
+msgstr ""
+
+#: inc/theme-setup.php:81
+msgid "Primary Color"
+msgstr ""
+
+#: inc/theme-setup.php:86
+msgid "Secondary Color"
+msgstr ""
+
+#: inc/theme-setup.php:91
+msgid "Tertiary Color"
+msgstr ""
+
+#: inc/theme-setup.php:138
+msgid "Primary"
+msgstr ""
+
+#: inc/theme-setup.php:269
+msgid "Add a Comment"
+msgstr ""
+
+#: inc/theme-setup.php:288, inc/theme-setup.php:311
+msgid "Read More"
+msgstr ""
+
+#: inc/theme-setup.php:288, inc/theme-setup.php:311
+msgid "about"
+msgstr ""
+
+#: inc/widget-areas.php:30
+msgid "This is the top utility bar widget area."
+msgstr ""
+
+#: inc/widget-areas.php:34
+msgid "Header"
+msgstr ""
+
+#: inc/widget-areas.php:35
+msgid "This is the header widget area. It typically displays next to the site logo or title."
+msgstr ""
+
+#: inc/widget-areas.php:40
+msgid "This is the primary sidebar widget area."
+msgstr ""
+
+#: inc/widget-areas.php:44
+msgid "Footer Widgets"
+msgstr ""
+
+#: inc/widget-areas.php:45
+msgid "This is the footer widgets area."
+msgstr ""
+
+#: page-templates/template-colors.php:5
+msgid "Color Palette"
+msgstr ""
+
+#: page-templates/template-typography.php:5
+msgid "Typography Test"
+msgstr ""
+
 #: template-parts/content-none.php:19
 msgid "Nothing Found"
 msgstr ""
 
-#. translators: 1: link to WP admin new post page.
-#: template-parts/content-none.php:29
-#, php-format
-msgid ""
-"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+#: template-parts/content-none.php:44
+msgid "It seems we can't find what you're looking for. Perhaps searching can help."
 msgstr ""
 
-#: template-parts/content-none.php:42
-msgid ""
-"Sorry, but nothing matched your search terms. Please try again with some "
-"different keywords."
+#: template-parts/content-none.php:36
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
 msgstr ""
 
-#: template-parts/content-none.php:50
-msgid ""
-"It seems we can't find what you're looking for. Perhaps searching can help."
+#: template-parts/content-none.php:28
+msgid "Ready to publish your first post? %1$sGet started here%2$s."
 msgstr ""
 
-#. translators: %s: Name of current post. Only visible to screen readers
-#: template-parts/content.php:46
-#, php-format
-msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+#. translators: %s: Name of current post. Only visible to screen readers.
+#: template-parts/content.php:47
+msgid "Continue reading %s"
 msgstr ""
 
-#. Theme Name of the plugin/theme
-msgid "AJV Proto"
+#: inc/customizer/register-settings.php:32
+msgid "Theme Settings"
 msgstr ""
 
-#. Theme URI of the plugin/theme
-msgid "http://www.alexisvillegas.com/services/"
+#: inc/customizer/register-settings.php:33
+msgid "Edit the theme's default settings."
 msgstr ""
 
-#. Description of the plugin/theme
-msgid "A starter theme for creating custom WordPress websites."
+#: inc/customizer/register-settings.php:56
+msgid "Site Layout"
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "Alexis J. Villegas"
+#: inc/customizer/register-settings.php:57
+msgid "Select the default site layout for post and pages."
 msgstr ""
 
-#. Author URI of the plugin/theme
-msgid "http://www.alexisvillegas.com/"
+#: inc/customizer/register-settings.php:69
+msgid "Edit the text that displays in your site footer."
+msgstr ""
+
+#: inc/customizer/register-settings.php:100
+msgid "Default Site Layout"
+msgstr ""
+
+#: inc/customizer/register-settings.php:105
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/customizer/register-settings.php:109
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/customizer/register-settings.php:138
+msgid "Footer Credits"
+msgstr ""
+
+#: inc/customizer/register-settings.php:139
+msgid "You can use the [year] shortcode to dynamically display the current year."
+msgstr ""
+
+#: inc/customizer/register-settings.php:170
+msgid "Site Icon (Favicon)"
 msgstr ""
