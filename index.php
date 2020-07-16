@@ -26,12 +26,14 @@ get_header();
 
 		<?php
 		if ( function_exists( 'breadcrumb_trail' ) ) {
-			breadcrumb_trail( array(
-				'show_on_front' => false,
-				'labels'        => array(
-					'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
-				),
-			) );
+			breadcrumb_trail(
+				array(
+					'show_on_front' => false,
+					'labels'        => array(
+						'browse' => esc_html__( 'You are here:', 'ajv-proto' ),
+					),
+				)
+			);
 		}
 
 		if ( have_posts() ) :
