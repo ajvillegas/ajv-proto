@@ -68,6 +68,10 @@ function ajv_proto_login_logo() {
 
 		?>
 		<style type="text/css">
+			.login {
+				background-color: inherit;
+			}
+
 			.login h1 a {
 				background-image: url(<?php echo esc_url( $logo[0] ); ?>);
 				-webkit-background-size: 320px 60px;
@@ -91,14 +95,12 @@ add_filter( 'login_headerurl', 'ajv_proto_login_logo_url' );
 function ajv_proto_login_logo_url() {
 
 	if ( has_custom_logo() ) {
-
 		return home_url();
-
 	}
 
 }
 
-add_filter( 'login_headertitle', 'ajv_proto_login_logo_title' );
+add_filter( 'login_headertext', 'ajv_proto_login_logo_title' );
 /**
  * Change WordPress login logo link name.
  *
@@ -107,9 +109,7 @@ add_filter( 'login_headertitle', 'ajv_proto_login_logo_title' );
 function ajv_proto_login_logo_title() {
 
 	if ( has_custom_logo() ) {
-
 		return get_bloginfo( 'name' );
-
 	}
 
 }
