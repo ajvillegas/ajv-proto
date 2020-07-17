@@ -2,17 +2,19 @@
 
 Contributors: ajvillegas
 Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, threaded-comments, translation-ready
-Requires at least: 4.5
-Tested up to: 4.9
-Stable tag: 1.0.0
+Requires at least: 4.6
+Tested up to: 5.4
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A standards compliant starter theme for creating custom WordPress websites.
+A starter theme for creating custom WordPress websites.
 
 == Description ==
 
-This is a custom, standards compliant WordPress starter theme based on Automattic's [Underscores](https://github.com/Automattic/_s).
+AJV Proto is a custom WordPress starter theme based on Automattic's [Underscores](https://github.com/Automattic/_s).
+
+It features options for controlling layout globally or individually on each page/post, and a Gulp.js workflow for easy local development.
 
 **Prefixing Your Theme**
 
@@ -24,24 +26,23 @@ In order to make the theme your own, you'll have to change all the AJV Proto the
 * ajv_proto -> my_theme_name
 * ajv-proto -> my-theme-name
 
-**Responsive Menus**
+**Gulp.js Workflow**
 
-The AJV Proto theme uses a modified version of the [ResponsiveMenus.js](https://github.com/copyblogger/responsive-menus) script developed by StudioPress. In order to edit the settings, go to `/inc/scripts-and-styles.php` and edit the settings array in the `wp_localize_script` function for the `ajv-proto-responsive-menus` script.
+The AJV Proto theme uses the Gulp.js task runner for compiling CSS, generating RTL stylesheets, translation POT files, optimizing images, as well as concatenating, transpiling (Babel) and minifying JS files.
 
-Please refer to the [ResponsiveMenus.js](https://github.com/copyblogger/responsive-menus) page for more information regarding the option parameters.
+The Gulp.js workflow is based on the Ahmad Awais' [WPGulp](https://github.com/ahmadawais/WPGulp) project and it is extensively documented throughout.
 
 **Working with SCSS**
 
-This theme uses SCSS to generate the main CSS stylesheet. All the files are located under the `/scss` folder. You should only edit the theme's stylesheet file header in the `\scss\styles.scss` file to avoid overriding the comment block when CSS is compiled.
+This theme uses SCSS to generate the main CSS stylesheet. All the files are located under the `assets/css/scss` folder. You should only edit the theme's stylesheet file header in the `assets/css/scss/styles.scss` file to avoid overriding the comment block when CSS is compiled.
 
-You can use your favorite task runner or software for compiling your CSS. Alternatively, you can use the [WP-SCSS plugin](https://wordpress.org/plugins/wp-scss/) which uses the [scssphp](https://github.com/leafo/scssphp) compiler library written in PHP. The theme file system is compatible with the plugin, but you'll have to specify the file paths in the plugin settings page.
+**Custom Dashboard Widget**
 
-Under WP-SCSS Settings page > Configure paths, enter the following:
+AJV Proto adds a custom WordPress Dashboard widget with the developer's contact information and logo, perfect for adding support and contact information to client websites.
 
-**Scss Location** -> "/scss/" (no quotes)  
-**CSS Location**  -> "/" (no quotes)
+The contact information is extracted from the theme's stylesheet file header (`assets/css/scss/styles.scss`) and from theme constants defined in the `inc/init.php` file.
 
-Now you can edit the SCSS files directly and the CSS will compile into `styles.css` in the theme root every time the page is reloaded in the front-end. Remember to clear the browser cache afterwards to make sure it loads the latest CSS.
+To modify the widget's content edit the `ajv_proto_dashboard_widget()` function under the `inc/admin-functions.php` file.
 
 == Installation ==
 
@@ -62,14 +63,23 @@ Now you can edit the SCSS files directly and the CSS will compile into `styles.c
 
 = Does this theme support any plugins? =
 
-AJV Proto includes support for Infinite Scroll in Jetpack.
+AJV Proto includes support for Infinite Scroll in [Jetpack](https://wordpress.org/plugins/jetpack/) and it integrates with the [Breadcrumb Trail](https://wordpress.org/plugins/breadcrumb-trail/) plugin out of the box.
 
 == Changelog ==
+
+= 1.1.0 =
+* Added a Gulp.js workflow.
+* Updated code syntax to follow WordPress Coding Standards.
+* Added custom WordPress Dashboard widget.
+* Added support for block editor.
+* Added Customizer theme settings.
 
 = 1.0.0 =
 * Initial release.
 
 == Credits ==
 
-* Based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-* normalize.css https://necolas.github.io/normalize.css/, (C) 2012-2016 Nicolas Gallagher and Jonathan Neal, [MIT](https://opensource.org/licenses/MIT)
+* Based on Underscores [https://underscores.me/](https://underscores.me/), (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* Gulp.js workflow based on WPGulp [https://github.com/ahmadawais/WPGulp](https://github.com/ahmadawais/WPGulp), Ahmad Awais, [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* Customizer controls based on Customizer Custom Controls [https://github.com/maddisondesigns/customizer-custom-controls](https://github.com/maddisondesigns/customizer-custom-controls), Maddison Designs, [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* normalize.css [https://necolas.github.io/normalize.css/](https://necolas.github.io/normalize.css/), (C) 2012-2016 Nicolas Gallagher and Jonathan Neal, [MIT](https://opensource.org/licenses/MIT)
