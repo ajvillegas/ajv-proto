@@ -721,6 +721,8 @@ a.text-badge.-success:focus { outline: none; -webkit-box-shadow: 0 0 0 0.2rem rg
 
 .entry-header .entry-meta { margin-bottom: 2rem; }
 
+.entry-footer .entry-meta { margin-top: 3rem; }
+
 .cat-links, .tag-links { display: block; }
 
 .entry-header .svg-icon svg, .entry-footer .svg-icon svg { width: auto; height: 1.6rem; position: relative; top: 2px; margin-right: 5px; fill: #505050; }
