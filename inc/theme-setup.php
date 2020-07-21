@@ -283,9 +283,9 @@ add_filter( 'excerpt_more', 'ajv_proto_excerpt_more' );
 function ajv_proto_excerpt_more( $more_string ) {
 
 	$more_string = ' [...] ' . sprintf(
-		'<a class="more-link" href="%1$s" aria-label="' . esc_html__( 'Read more about', 'ajv-proto' ) . ' ' . get_the_title() . '">%2$s</a>',
+		'<a class="more-link" href="%1$s">%2$s</a>',
 		get_permalink( get_the_ID() ),
-		esc_html__( 'Read More', 'ajv-proto' )
+		esc_html__( 'Read More', 'ajv-proto' ) . '<span class="screen-reader-text">' . esc_html__( 'about', 'ajv-proto' ) . ' ' . get_the_title() . '</span>'
 	);
 
 	return $more_string;
@@ -306,9 +306,9 @@ function ajv_proto_manual_excerpt_more( $post_excerpt ) {
 
 	if ( has_excerpt() ) {
 		$more_string = sprintf(
-			'<a class="more-link" href="%1$s" aria-label="' . esc_html__( 'Read more about', 'ajv-proto' ) . ' ' . get_the_title() . '">%2$s</a>',
+			'<a class="more-link" href="%1$s">%2$s</a>',
 			get_permalink( get_the_ID() ),
-			esc_html__( 'Read More', 'ajv-proto' )
+			esc_html__( 'Read More', 'ajv-proto' ) . '<span class="screen-reader-text">' . esc_html__( 'about', 'ajv-proto' ) . ' ' . get_the_title() . '</span>'
 		);
 
 		return $post_excerpt . $more_string;
