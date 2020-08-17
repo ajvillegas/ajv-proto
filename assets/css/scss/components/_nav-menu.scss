@@ -55,7 +55,7 @@
 
 .primary-nav ul a:hover,
 .primary-nav ul a:focus,
-.primary-nav ul .current-menu-item a {
+.primary-nav ul .current-menu-item > a {
 	color: $primary-color;
 }
 
@@ -64,23 +64,26 @@
 .primary-nav ul ul {
 	padding-left: $base-spacing;
 	margin-top: 2px;
+	position: absolute;
+	left: -999em;
 
 	@include media(small) {
 		padding-left: 0;
 		margin-top: 0;
 		background-color: $base-background-color;
 		border: 1px solid $light-gray;
-		position: absolute;
 		top: 100%;
-		left: -999em;
 		z-index: 99999;
 	}
 }
 
-.primary-nav ul ul ul {
+.primary-nav ul li:hover > ul,
+.primary-nav ul li.focus > ul {
+	position: initial;
+
 	@include media(small) {
-		left: -999em;
-		top: -1px;
+		position: absolute;
+		left: auto;
 	}
 }
 
@@ -88,6 +91,13 @@
 .primary-nav ul ul li.focus > ul {
 	@include media(small) {
 		left: 100%;
+	}
+}
+
+.primary-nav ul ul ul {
+	@include media(small) {
+		left: -999em;
+		top: -1px;
 	}
 }
 
@@ -99,16 +109,7 @@
 	}
 }
 
-.primary-nav ul li:hover > ul,
-.primary-nav ul li.focus > ul {
-	@include media(small) {
-		left: auto;
-	}
-}
-
 .primary-nav ul .sub-menu a {
-	padding: 1.4rem 0;
-
 	@include media(small) {
 		padding: 1rem 1.5rem;
 	}
@@ -129,7 +130,14 @@
 	position: relative;
 }
 
-.primary-nav ul .sub-menu .menu-item-has-children > a::after {
+.primary-nav ul > .menu-item-has-children:hover > a::after,
+.primary-nav ul > .menu-item-has-children.focus > a::after {
+	transform: rotate(-180deg);
+}
+
+.primary-nav ul .sub-menu .menu-item-has-children > a::after,
+.primary-nav ul .sub-menu .menu-item-has-children:hover > a::after,
+.primary-nav ul .sub-menu .menu-item-has-children.focus > a::after {
 	@include media(small) {
 		transform: rotate(-90deg);
 		top: -1px;
