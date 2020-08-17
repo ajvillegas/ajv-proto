@@ -95,6 +95,14 @@
 			}
 		}
 	}( container ) );
+
+	document.addEventListener( 'click', function( event ) {
+		if ( ! event.target.closest( '.menu-item' ) ) {
+			for ( i = 0, len = links.length; i < len; i++ ) {
+				links[i].parentNode.classList.remove( 'focus' );
+			}
+		}
+	}, false );
 }() );
 'use strict';
 
