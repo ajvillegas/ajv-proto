@@ -265,9 +265,9 @@ if ( ! function_exists( 'ajv_proto_footer_creds' ) ) {
 
 			echo wp_kses_post( $footer_creds );
 		} else {
-			echo '<p>' . esc_html__( 'Copyright', 'ajv-proto' ) . ' &copy; ' . esc_html( date( 'Y' ) );
+			echo esc_html__( 'Copyright', 'ajv-proto' ) . ' &copy; ' . esc_html( date_i18n( 'Y' ) );
 			echo ' &middot; <a href="' . esc_url( home_url() ) . '">' . esc_html( get_bloginfo( 'name' ) ) . '</a> &middot; ';
-			echo esc_html__( 'All Rights Reserved', 'ajv-proto' ) . '</p>';
+			echo esc_html__( 'All Rights Reserved', 'ajv-proto' );
 		}
 
 	}
