@@ -75,11 +75,17 @@ button:not(.menu-toggle),
 	}
 }
 
-button.customize-partial-edit-shortcut-button:hover,
-button.customize-partial-edit-shortcut-button:focus {
-	color: #fff;
+button.customize-partial-edit-shortcut-button {
+	border-radius: 50%;
 	border: 2px solid #fff;
-	top: 2px;
+	padding: 3px;
+
+	&:hover,
+	&:focus {
+		color: #fff;
+		border: 2px solid #fff;
+		top: 2px;
+	}
 }
 
 /* ## Back to Top
