@@ -53,7 +53,16 @@ function ajv_proto_add_layout_meta_box() {
 		)
 	) as $type ) {
 		if ( post_type_supports( $type, 'ajv-proto-layouts' ) ) {
-			add_meta_box( 'ajv-proto-layout-meta-box', esc_html__( 'Layout Settings', 'ajv-proto' ), 'ajv_proto_layout_meta_box', $type, 'normal', 'high' );
+			add_meta_box(
+				'ajv-proto-layout-meta-box',
+				esc_html__( 'Layout Settings', 'ajv-proto' ),
+				'ajv_proto_layout_meta_box',
+				$type,
+				'normal',
+				'high',
+				// phpcs:ignore
+				// array( '__back_compat_meta_box' => true ) // Hide meta box when using the block editor.
+			);
 		}
 	}
 
@@ -196,6 +205,28 @@ function ajv_proto_save_layout_meta_box_value( $post_id ) {
 		update_post_meta( $post_id, '_ajv_proto_post_layout', sanitize_text_field( wp_unslash( $_POST['_ajv_proto_post_layout'] ) ) ); // WPCS: input var ok.
 	}
 
+}
+
+add_action( 'init', 'ajv_proto_register_layout_meta' );
+/**
+ * Register the layout meta key to make available to the REST API.
+ *
+ * @since 1.1.0
+ */
+function ajv_proto_register_layout_meta() {
+	register_meta(
+		'post',
+		'_ajv_proto_post_layout',
+		array(
+			'show_in_rest'      => true,
+			'type'              => 'string',
+			'single'            => true,
+			'sanitize_callback' => 'sanitize_text_field',
+			'auth_callback'     => function() {
+				return current_user_can( 'edit_posts' );
+			},
+		)
+	);
 }
 
 add_filter( 'body_class', 'ajv_proto_add_layout_body_classes' );
