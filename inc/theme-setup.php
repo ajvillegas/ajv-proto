@@ -368,3 +368,66 @@ function ajv_proto_register_year_shortcode() {
 	return $year;
 
 }
+
+add_action( 'init', 'ajv_proto_frontpage_block_template' );
+/**
+ * Register a front page block template.
+ *
+ * @since 1.1.0
+ */
+function ajv_proto_frontpage_block_template() {
+
+	$frontpage_id = get_option( 'page_on_front' );
+
+	// Bail if page is not set as front page.
+	if ( ! is_admin() || ! isset( $_GET['post'] ) || $frontpage_id !== $_GET['post'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+		return;
+	}
+
+	$post_type_object = get_post_type_object( 'page' );
+
+	$post_type_object->template = array(
+		array(
+			'core/paragraph',
+			array(
+				'placeholder' => 'Add Description...',
+			),
+		),
+	);
+
+	$post_type_object->template_lock = 'all';
+
+}
+
+add_action( 'init', 'ajv_proto_post_meta_block_template' );
+/**
+ * Register a page block template based on post meta.
+ *
+ * @since 1.1.0
+ */
+function ajv_proto_post_meta_block_template() {
+
+	$post_id = isset( $_GET['post'] ) ? $_GET['post'] : isset( $_POST['post_ID'] ); // phpcs:ignore
+
+	// Get post layout meta data.
+	$layout = get_post_meta( $post_id, '_ajv_proto_post_layout', true );
+
+	// Bail if page is not the assigned specified post meta value.
+	if ( ! is_admin() || ! isset( $_GET['post'] ) || 'full-width-padded' !== $layout ) { // phpcs:ignore WordPress.Security.NonceVerification
+		return;
+	}
+
+	$post_type_object = get_post_type_object( 'page' );
+
+	$post_type_object->template = array(
+		array(
+			'core/paragraph',
+			array(
+				'placeholder' => 'Add Description...',
+			),
+		),
+	);
+
+	$post_type_object->template_lock = 'all';
+
+}
