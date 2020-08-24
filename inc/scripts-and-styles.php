@@ -92,8 +92,13 @@ add_action( 'enqueue_block_editor_assets', 'ajv_proto_block_editor_styles' );
  */
 function ajv_proto_block_editor_styles() {
 
+	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
 	// Google Fonts.
 	wp_enqueue_style( 'ajv-proto-google-fonts', ajv_proto_google_fonts_url(), array(), AJV_PROTO_THEME_VERSION, 'all' );
+
+	// Block editor scripts.
+	wp_enqueue_script( 'theme-editor', AJV_PROTO_JS . "/editor{$suffix}.js", array( 'wp-blocks', 'wp-dom' ), AJV_PROTO_THEME_VERSION, true );
 
 }
 
