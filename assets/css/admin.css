@@ -1,5 +1,6 @@
 /* # Admin Styles
 ---------------------------------------------------------------------------------------------------- */
+
 /* ## WP Login Modal
 --------------------------------------------- */
 #wp-auth-check-wrap #wp-auth-check {
@@ -87,4 +88,11 @@
 
 .widget-content .custom-media-button {
 	margin-top: 5px;
+}
+
+/* ## Block Editor Admin
+--------------------------------------------- */
+
+.components-button.is-primary:hover:not(:disabled) {
+	color: #fff !important;
 }
