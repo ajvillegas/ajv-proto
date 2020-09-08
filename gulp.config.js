@@ -39,6 +39,11 @@ module.exports = {
 	jsCustomDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
 	jsCustomFile: 'custom', // Compiled JS custom file name. Default set to custom i.e. custom.js.
 
+	// JS Editor options.
+	jsEditorSRC: './assets/js/editor/*.js', // Path to JS custom scripts folder.
+	jsEditorDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
+	jsEditorFile: 'editor', // Compiled JS custom file name. Default set to custom i.e. custom.js.
+
 	// Images options.
 	imgSRC: './assets/images/raw/**/*', // Source folder of images which should be optimized and watched. You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
 	imgDST: './assets/images/', // Destination folder of optimized images. Must be different from the imagesSRC folder.
@@ -47,6 +52,7 @@ module.exports = {
 	watchStyles: './assets/css/scss/**/*.scss', // Path to all *.scss files inside scss folder and inside them.
 	watchJsVendor: './assets/js/vendor/*.js', // Path to all vendor JS files.
 	watchJsCustom: './assets/js/custom/*.js', // Path to all custom JS files.
+	watchJsEditor: './assets/js/editor/*.js', // Path to all editor JS files.
 	watchPHP: './**/*.php', // Path to all PHP files.
 
 	// Translation options.
