@@ -24,7 +24,7 @@ const rtlcss = require( 'gulp-rtlcss' ); // Generates RTL stylesheet.
 
 // JS related plugins.
 const concat = require( 'gulp-concat' ); // Concatenates JS files.
-const uglify = require( 'gulp-uglify' ); // Minifies JS files.
+const uglify = require( 'gulp-terser' ); // Minifies JS files.
 const babel = require( 'gulp-babel' ); // Compiles ESNext to browser compatible JS.
 const eslint = require( 'gulp-eslint' ); // Lints and fixes JS code using ESLint.
 
@@ -412,6 +412,46 @@ gulp.task( 'customJS', () => {
 });
 
 /**
+ * Task: `editorJS`.
+ *
+ * Concatenates, lints, fixes and uglifies editor JS scripts.
+ *
+ * This task does the following:
+ *  1. Gets the source folder for JS custom files
+ *  2. Concatenates all the files and generates editor.js
+ *  3. Lints and fixes the code in the editor.js file
+ *  4. Renames the JS file with suffix .min.js
+ *  5. Uglifes/Minifies the JS file and generates editor.min.js
+ */
+gulp.task( 'editorJS', () => {
+	return gulp
+		.src( config.jsEditorSRC, { since: gulp.lastRun( 'editorJS' ) }) // Only run on changed files.
+		.pipe( plumber( errorHandler ) )
+		.pipe( strip({ ignore: /.*eslint.*/g }) ) // Strip comments except ESLint configuration comments.
+		.pipe( remember( config.jsEditorSRC ) ) // Bring all files back to stream.
+		.pipe( concat( config.jsEditorFile + '.js' ) )
+		.pipe(
+			eslint({
+				fix: true
+			})
+		)
+		.pipe( eslint.format() )
+		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
+		.pipe( gulpIf( isFixed, gulp.dest( config.jsEditorDestination ) ) )
+		.pipe( eslint.failAfterError() )
+		.pipe(
+			rename({
+				basename: config.jsEditorFile,
+				suffix: '.min'
+			})
+		)
+		.pipe( uglify() )
+		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
+		.pipe( gulp.dest( config.jsEditorDestination ) )
+		.pipe( notify({ message: '\n\n✅  ===> EDITOR JS — completed!\n', onLast: true }) );
+});
+
+/**
  * Task: `images`.
  *
  * Minifies PNG, JPEG, GIF and SVG images.
@@ -497,6 +537,7 @@ gulp.task(
 		'stylesEditor',
 		'vendorsJS',
 		'customJS',
+		'editorJS',
 		'images',
 		browsersync,
 		() => {
@@ -504,6 +545,7 @@ gulp.task(
 			gulp.watch( config.watchStyles, gulp.parallel( 'styles', 'stylesAdmin', 'stylesEditor' ) ); // Reload on SCSS file changes.
 			gulp.watch( config.watchJsVendor, gulp.series( 'vendorsJS', reload ) ); // Reload on vendorsJS file changes.
 			gulp.watch( config.watchJsCustom, gulp.series( 'customJS', reload ) ); // Reload on customJS file changes.
+			gulp.watch( config.watchJsEditor, gulp.series( 'editorJS', reload ) ); // Reload on editorJS file changes.
 			gulp.watch( config.imgSRC, gulp.series( 'images', reload ) ); // Reload on raw image file changes.
 		}
 	)
