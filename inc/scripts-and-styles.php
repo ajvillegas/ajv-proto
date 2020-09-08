@@ -86,7 +86,7 @@ function ajv_proto_scripts_and_styles() {
 
 add_action( 'enqueue_block_editor_assets', 'ajv_proto_block_editor_styles' );
 /**
- * Enqueues admin block editor fonts and styles.
+ * Enqueues admin block editor scripts and styles.
  *
  * @since  1.1.0
  */
