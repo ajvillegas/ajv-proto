@@ -72,7 +72,7 @@
 						el(
 							PanelColorSettings,
 							{
-								title: 'Color Settings',
+								title: 'Color settings',
 								initialOpen: true,
 								colorSettings: [
 									{
@@ -150,6 +150,132 @@
 						el(
 							'span',
 							{ style: blockInnerStyle }
+						)
+					)
+				)
+			);
+		}
+	});
+}(
+	window.wp.blocks,
+	window.wp.blockEditor,
+	window.wp.element,
+	window.wp.components
+) );
+
+/* eslint-disable no-dupe-keys */
+
+( function( blocks, editor, element ) {
+	const __ = wp.i18n.__;
+	const el = element.createElement;
+	const registerBlockType = blocks.registerBlockType;
+	const { InspectorControls, PanelColorSettings, InnerBlocks } = editor;
+	const { Fragment } = element;
+	const template = [
+		[ 'core/heading', { content: 'Title', className: 'container' }, [] ],
+		[ 'core/paragraph', { content: 'Description', className: 'container' }, [] ]
+	];
+
+	registerBlockType( 'ajv-proto/cta-section', {
+		title: __( 'CTA Section', 'ajv-proto' ),
+		icon: 'megaphone',
+		category: 'common',
+		supports: {
+			align: true,
+			align: [ 'wide', 'full' ]
+		},
+		keywords: [ 'ajv-proto', 'CTA', 'Call to Action' ],
+		attributes: {
+			backgroundColor: {
+				type: 'string',
+				default: '#4173bb'
+			}
+		},
+		example: {
+			attributes: {
+				backgroundColor: '#4173bb'
+			}
+		},
+
+		edit: ( function( props ) {
+			const blockParentStyle = {
+				backgroundColor: props.attributes.backgroundColor,
+				padding: '40px',
+				margin: '0'
+			};
+
+			return [
+				el(
+					Fragment,
+					{ key: 'fragment' },
+					el(
+						InspectorControls,
+						{},
+						el(
+							PanelColorSettings,
+							{
+								title: 'Color settings',
+								initialOpen: true,
+								colorSettings: [
+									{
+										value: props.attributes.backgroundColor,
+										label: 'Background color',
+										onChange: ( value ) => {
+											props.setAttributes(
+												{ backgroundColor: value }
+											);
+										}
+									}
+								]
+							}
+						)
+					)
+				),
+				el(
+					'div',
+					{
+						key: 'cta-section',
+						className: props.className,
+						style: blockParentStyle
+					},
+					el(
+						'div',
+						{
+							className: 'wrap'
+						},
+						el(
+							InnerBlocks,
+							{
+								template: template,
+								templateLock: 'all'
+							}
+						)
+					)
+				)
+			];
+		}),
+
+		save: function( props ) {
+			const blockParentStyle = {
+				backgroundColor: props.attributes.backgroundColor,
+				padding: '40px',
+				margin: '0'
+			};
+
+			return (
+				el(
+					'div',
+					{
+						className: props.className,
+						style: blockParentStyle
+					},
+					el(
+						'div',
+						{
+							className: 'wrap'
+						},
+						el(
+							InnerBlocks.Content
 						)
 					)
 				)
