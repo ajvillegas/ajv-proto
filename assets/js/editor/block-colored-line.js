@@ -82,7 +82,7 @@
 						el(
 							PanelColorSettings,
 							{
-								title: 'Color Settings',
+								title: 'Color settings',
 								initialOpen: true,
 								colorSettings: [
 									{
