@@ -95,6 +95,10 @@ if ( ! function_exists( 'ajv_proto_theme_setup' ) ) {
 			)
 		);
 
+		// Disable editor color gradients.
+		add_theme_support( 'disable-custom-gradients' );
+		add_theme_support( 'editor-gradient-presets', array() );
+
 		// Add support for editor styles.
 		add_theme_support( 'editor-styles' );
 
