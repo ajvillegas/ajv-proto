@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="entry-content">
 		<section id="typography">
-			<p class="lead-text">At sight of these strange, swift, and terrible creatures the crowd near the water's edge seemed to me to be for a moment horror-struck. There was no screaming or shouting, but a silence.</p>
+			<p class="has-large-font-size">At sight of these strange, swift, and terrible creatures the crowd near the water's edge seemed to me to be for a moment horror-struck. There was no screaming or shouting, but a silence.</p>
 
 			<p>Then a hoarse murmur and a movement of feet - a splashing from the water. A man, too frightened to drop the portmanteau he carried on his shoulder, swung round and sent me staggering with a blow from the corner of his burden. A woman thrust at me with her hand and rushed past me. I turned with the rush of the people, but I was not too terrified for thought. The terrible Heat-Ray was in my mind. To get under water! That was it!</p>
 
@@ -57,14 +57,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<p>The following <code>&lt;code&gt;</code> snippet can be used to get tomorrow's date in JavaScript.</p>
 
-			<pre>
-// Get tomorrow's date.
+			<pre class="wp-block-code"><code>// Get tomorrow's date.
 var tomorrow = function tomorrow() {
 var t = new Date();
 
 t.setDate(t.getDate() + 1);
 return t.toISOString().split('T')[0];
-};</pre>
+};</code></pre>
 
 			<hr>
 
@@ -124,7 +123,7 @@ return t.toISOString().split('T')[0];
 
 			<p>In another moment it was on the bank, and in a stride wading halfway across. The knees of its foremost legs bent at the farther bank, and in another moment it had raised itself to its full height again, close to the village of Shepperton.</p>
 
-			<blockquote>
+			<blockquote class="wp-block-quote">
 				<p>Forthwith the six guns which, unknown to anyone on the right bank, had been hidden behind the outskirts of that village, fired simultaneously. The sudden near concussion, the last close upon the first, made my heart jump.</p>
 
 				<cite>
