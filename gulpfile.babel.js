@@ -21,6 +21,7 @@ const beautify = require( 'gulp-beautify' ); // Beautifies CSS, JS and HTML file
 const autoprefixer = require( 'gulp-autoprefixer' ); // Autoprefixing magic.
 const mmq = require( 'gulp-merge-media-queries' ); // Combine matching media queries into one.
 const rtlcss = require( 'gulp-rtlcss' ); // Generates RTL stylesheet.
+const remToPx = require( 'gulp-rem-to-px' ); // Convert rem to pixels.
 
 // JS related plugins.
 const concat = require( 'gulp-concat' ); // Concatenates JS files.
@@ -265,10 +266,11 @@ gulp.task( 'stylesAdmin', () => {
  *  1. Gets the source SCSS file
  *  2. Compiles SASS to CSS
  *  3. Autoprefixes it
- *  4. Beautifies the CSS file and generates editor-style.css
- *  5. Renames the CSS file with suffix .min.css
- *  6. Minifies the CSS file and generates editor-style.min.css
- *  7. Injects CSS or reloads the browser via browserSync
+ *  4. Converts rem units to pixels
+ *  5. Beautifies the CSS file and generates editor-style.css
+ *  6. Renames the CSS file with suffix .min.css
+ *  7. Minifies the CSS file and generates editor-style.min.css
+ *  8. Injects CSS or reloads the browser via browserSync
  */
 gulp.task( 'stylesEditor', () => {
 	return gulp
@@ -290,6 +292,11 @@ gulp.task( 'stylesEditor', () => {
 			})
 		)
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
+		.pipe(
+			remToPx({
+				fontSize: 10
+			})
+		) // Convert rem to pixels.
 		.pipe( gulp.dest( config.styleAdminDest ) )
 		.pipe( filter( '**/*.css' ) ) // Filtering stream to only css files.
 		.pipe( browserSync.stream() ) // Reloads admin.css if that is enqueued.
@@ -428,6 +435,18 @@ gulp.task( 'editorJS', () => {
 		.src( config.jsEditorSRC, { since: gulp.lastRun( 'editorJS' ) }) // Only run on changed files.
 		.pipe( plumber( errorHandler ) )
 		.pipe( strip({ ignore: /.*eslint.*/g }) ) // Strip comments except ESLint configuration comments.
+		.pipe(
+			babel({
+				presets: [
+					[
+						'@babel/preset-env', // Preset to compile your modern JS to ES5.
+						{
+							targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
+						}
+					]
+				]
+			})
+		)
 		.pipe( remember( config.jsEditorSRC ) ) // Bring all files back to stream.
 		.pipe( concat( config.jsEditorFile + '.js' ) )
 		.pipe(
@@ -474,7 +493,7 @@ gulp.task( 'images', () => {
 			cache(
 				imagemin([
 					imagemin.gifsicle({ interlaced: true }),
-					imagemin.jpegtran({ progressive: true }),
+					imagemin.mozjpeg({ progressive: true }),
 					imagemin.optipng({ optimizationLevel: 3 }), // 0-7 low-high.
 					imagemin.svgo({
 						plugins: [ { removeViewBox: true }, { cleanupIDs: false } ]
