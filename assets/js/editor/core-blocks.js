@@ -7,7 +7,7 @@
  * @license    GPL-2.0+
  */
 
-wp.domReady( () => {
+wp.domReady( function() {
 
 	// Unregister core blocks.
 	wp.blocks.unregisterBlockType( 'core/verse' );
@@ -17,33 +17,36 @@ wp.domReady( () => {
 		'core/quote',
 		[ 'large' ]
 	);
+});
+
+wp.domReady( function() {
 
 	// Start in a checked state.
 	let checked = true;
 
 	// Trigger side effect after block editor is done saving meta box values.
-	wp.data.subscribe( () => {
+	wp.data.subscribe( function() {
 		const isSavingMetaBoxes = wp.data.select( 'core/edit-post' ).isSavingMetaBoxes();
+
+		// Get the meta box input.
+		const metaboxInput = document.querySelector( '#ajv-proto-layout-meta-box .selected input[type="radio"]' );
+
+		// If meta box input, get its value.
+		const metaboxValue = metaboxInput ? metaboxInput.value : 'default-layout';
+
+		// Get the meta value from the database.
+		const databaseValue = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'meta' )._ajv_proto_post_layout;
 
 		if ( isSavingMetaBoxes ) {
 			checked = false;
 		} else {
 			if ( ! checked ) {
 
-				// Get the meta box input.
-				const metaboxInput = document.querySelector( '#ajv-proto-layout-meta-box .selected input[type="radio"]' );
-
-				// If meta box input, get its value.
-				const metaboxValue = metaboxInput ? metaboxInput.value : 'default-layout';
-
-				// Get the meta value from the database.
-				const databaseValue = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'meta' )._ajv_proto_post_layout;
-
 				// Check if values are different.
 				if ( metaboxValue !== databaseValue ) {
 
 					// Reload the page from the server.
-					window.location.reload( true );
+					window.location.reload();
 				}
 
 				checked = true;
@@ -52,7 +55,7 @@ wp.domReady( () => {
 	});
 
 	// Trigger side effect after block editor is done saving the post.
-	/* wp.data.subscribe( () => {
+	/* wp.data.subscribe( function() {
 		const isSavingPost = wp.data.select( 'core/editor' ).isSavingPost();
 
 		if ( isSavingPost ) {
