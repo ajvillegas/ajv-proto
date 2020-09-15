@@ -197,7 +197,7 @@ add_filter( 'ajv_proto_default_content_layout', 'ajv_proto_set_default_layout' )
 function ajv_proto_set_default_layout( $layout ) {
 
 	// Define the default layout.
-	$default_layout = get_theme_mod( 'ajv_proto_default_layout' ) ? get_theme_mod( 'ajv_proto_default_layout' ) : 'default-layout';
+	$default_layout = get_theme_mod( 'ajv_proto_default_layout' ) ? get_theme_mod( 'ajv_proto_default_layout' ) : 'content-sidebar';
 
 	$layout = $default_layout;
 
