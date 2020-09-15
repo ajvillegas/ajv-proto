@@ -29,12 +29,12 @@ function ajv_proto_get_default_layout() {
 		'full-width-padded',
 	);
 
-	$default_layout = sanitize_title_with_dashes( apply_filters( 'ajv_proto_default_content_layout', 'default-layout' ) );
+	$default_layout = sanitize_title_with_dashes( apply_filters( 'ajv_proto_default_content_layout', 'content-sidebar' ) );
 
 	if ( in_array( $default_layout, $layouts, true ) ) {
 		return $default_layout;
 	} else {
-		return 'default-layout';
+		return 'content-sidebar';
 	}
 
 }
