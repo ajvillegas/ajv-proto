@@ -19,10 +19,17 @@ $base-spacing: $base-font-size * $base-line-height; // 30px
 $small-spacing: $base-spacing / 1.5; // 20px
 $base-z-index: 0;
 
+// Editor Colors.
+$colors: (
+	primary: #4173bb,
+	secondary: #333,
+	tertiary: #34b79d,
+);
+
 // Base colors.
-$primary-color: #4173bb;
-$secondary-color: #333;
-$tertiary-color: #34b79d;
+$primary-color: map-get($colors, primary);
+$secondary-color: map-get($colors, secondary);
+$tertiary-color: map-get($colors, tertiary);
 
 $dark-gray: #333;
 $medium-gray: #767676;

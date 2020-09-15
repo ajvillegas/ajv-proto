@@ -131,7 +131,8 @@ textarea {
 /* ## Search Form
 --------------------------------------------- */
 
-.search-form {
+.search-form,
+.wp-block-search {
 	position: relative;
 	width: 100%;
 
@@ -161,9 +162,26 @@ textarea {
 		bottom: 0;
 		border-radius: 0;
 	}
+
+	button[type='submit'] {
+		position: absolute;
+		height: 48px;
+		bottom: 0;
+		right: 0;
+
+		&:hover,
+		&:focus {
+			top: initial;
+		}
+	}
+
+	.wp-block-search__label {
+		margin-bottom: 1rem;
+	}
 }
 
-.entry-content .search-form {
+.entry-content .search-form,
+.entry-content .wp-block-search {
 	margin-bottom: $small-spacing;
 }
 

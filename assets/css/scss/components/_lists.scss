@@ -9,18 +9,24 @@ ol {
 }
 
 ul.default-ul,
-article ul {
+article ul,
+ul.block-editor-block-list__block,
+.block-editor-block-list__block ul {
 	@include default-ul;
 }
 
 ol.default-ol,
-article ol {
+article ol,
+ol.block-editor-block-list__block,
+.block-editor-block-list__block ol {
 	@include default-ol;
 }
 
-article ul ul,
-article ol ol {
-	margin-bottom: 0;
+article ol.alignright,
+article ul.alignright,
+.block-editor-block-list__block ul.alignright,
+.block-editor-block-list__block ol.alignright {
+	text-align: left;
 }
 
 ul,

@@ -1,0 +1,19 @@
+/* ## Content Width
+--------------------------------------------- */
+
+.wp-block {
+	max-width: 750px;
+}
+
+.wrap {
+	max-width: $max-width;
+	margin: 0 auto;
+}
+
+.wp-block[data-align='wide'] {
+	max-width: $max-width;
+}
+
+.wp-block[data-align='full'] {
+	max-width: none;
+}

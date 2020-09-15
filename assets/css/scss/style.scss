@@ -20,12 +20,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ---------------------------------------------------------------------------------------------------- */
 
 @import 'base/normalize';
+@import 'base/document';
 @import 'base/base-styles';
+@import 'base/classic-editor';
 @import 'base/accessibility';
-@import 'base/lists';
-@import 'base/tables';
-@import 'base/forms';
-@import 'base/wordpress';
 
 /* # Structure and Layout
 ---------------------------------------------------------------------------------------------------- */
@@ -42,16 +40,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 @import 'components/utility-bar';
 @import 'components/nav-menu';
-@import 'components/buttons';
-@import 'components/content-box';
-@import 'components/text-badge';
 @import 'components/entry-meta';
+@import 'components/blocks-core';
+@import 'components/lists';
+@import 'components/tables';
+@import 'components/forms';
+@import 'components/buttons';
+@import 'components/buttons-front';
+@import 'components/blocks-custom';
 @import 'components/comments';
 @import 'components/plugins';
 @import 'components/widgets';
+
+// Optional components.
+@import 'components/content-box';
+@import 'components/text-badge';
 @import 'components/color-palette';
-
-/* # Block Editor
----------------------------------------------------------------------------------------------------- */
-
-@import 'components/block-editor';

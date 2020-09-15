@@ -1,0 +1,23 @@
+/* ## Document
+--------------------------------------------- */
+
+html {
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	font-size: 57.5%;
+
+	// Disable smooth scroll for users with reduced motion activated.
+	@media screen and (prefers-reduced-motion: reduce) {
+		scroll-behavior: auto;
+	}
+
+	@include media(x-small) {
+		font-size: 62.5%; // 10px browser default.
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}

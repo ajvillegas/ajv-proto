@@ -1,50 +1,28 @@
-/* ## Document
---------------------------------------------- */
-
-html {
-	box-sizing: border-box;
-	scroll-behavior: smooth;
-	font-size: 57.5%;
-
-	// Disable smooth scroll for users with reduced motion activated.
-	@media screen and (prefers-reduced-motion: reduce) {
-		scroll-behavior: auto;
-	}
-
-	@include media(x-small) {
-		font-size: 62.5%; // 10px browser default.
-	}
-}
-
-*,
-*::before,
-*::after {
-	box-sizing: inherit;
-}
-
 /* ## Typography
 --------------------------------------------- */
 
 body {
 	background-color: $base-background-color;
 	color: $base-font-color;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	font-family: $base-font-family;
 	font-size: $base-font-size;
 	font-weight: 400;
 	line-height: $base-line-height;
-	margin: 0;
 	word-wrap: break-word;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
+
+/* ### Headings */
 
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.editor-post-title__block .editor-post-title__input {
 	font-family: $heading-font-family;
 	line-height: $heading-line-height;
 	margin: 0 0 $small-spacing;
@@ -70,124 +48,89 @@ h6 {
 	}
 }
 
-h1.entry-title,
+.editor-post-title__block .editor-post-title__input {
+	font-size: modular-scale((6 - 1), 1.8rem, $major-third);
+}
+
 h2.entry-title {
 	font-size: modular-scale((6 - 1), 1.8rem, $major-third);
 }
 
-h1.entry-title,
-h4.widget-title {
-	padding-top: 0;
-}
-
-.entry-title a,
-.sidebar .widget-title a {
+.entry-title a {
 	color: $dark-gray;
 	text-decoration: none;
-}
 
-.entry-title a:focus,
-.entry-title a:hover {
-	color: $primary-color;
+	&:focus,
+	&:hover {
+		color: $primary-color;
+	}
 }
 
 .widget-title {
 	font-size: 1.8rem;
-	margin-bottom: $base-spacing;
+	margin-bottom: $small-spacing;
 }
+
+/* ### Paragraph */
 
 p {
 	margin: 0 0 $small-spacing;
 	padding: 0;
+
+	&.has-small-font-size {
+		font-size: $base-font-size * 0.9; // 18px
+	}
+
+	&.has-regular-font-size {
+		font-size: $base-font-size; // 20px
+	}
+
+	&.has-large-font-size {
+		font-size: $base-font-size * 1.2; // 24px
+	}
+
+	&.has-larger-font-size {
+		font-size: $base-font-size * 1.3; // 26px
+	}
 }
 
-p.lead-text {
-	font-size: $base-font-size * 1.2;
+p.has-drop-cap:not(:focus)::first-letter {
+	margin: 0.2rem 0.8rem 0 -0.8rem;
 }
 
-code,
-kbd,
-tt {
-	font-size: $base-font-size / 1.1;
-	background-color: $dark-gray;
-	color: $base-background-color;
-	padding: 0.2rem 0.4rem;
+p.has-larger-font-size.has-drop-cap:not(:focus)::first-letter,
+p.has-small-font-size.has-drop-cap:not(:focus)::first-letter {
+	margin-right: 0.1rem;
 }
 
-pre code {
-	font-size: 1.6rem;
-	background-color: inherit;
+p.has-background {
+	padding: $base-spacing / 1.2 $base-spacing;
+}
+
+p.has-text-color a,
+p.has-background a {
 	color: inherit;
-	padding: inherit;
 }
 
-pre:not(.wp-block-verse),
-.wp-block-preformatted pre,
-.wp-block-code textarea {
-	font-size: 1.6rem;
-	color: #000;
-	border: 1px solid $medium-gray;
-	width: 100%;
-	border-left: 6px solid $medium-gray;
-	padding: 14px;
-	overflow: auto;
-	word-wrap: normal;
-	// Fixed line height.
-	line-height: 24px;
-	// Use linear-gradient for background image.
-	background-image: linear-gradient(180deg, #eeeeee 50%, #f9f9f9 50%);
-	// Size background so that the height is 2x line-height.
-	background-size: 100% 48px;
-	// Offset the background along the y-axis by top padding.
-	background-position: 0 14px;
+p.has-text-color a:focus,
+p.has-background a:focus,
+p.has-text-color a:hover,
+p.has-background a:hover {
+	color: inherit;
+	text-decoration: none;
 }
 
-mark {
-	padding: 0.2rem;
-	background-color: #fcefa9;
-	font-size: 95%;
+p.has-background.light-text a {
+	color: #fff;
+	text-decoration: underline;
 }
 
-sup {
-	text-transform: lowercase;
+p.has-background.light-text a:focus,
+p.has-background.light-text a:hover {
+	text-decoration: none;
 }
 
-address {
-	margin-bottom: $base-spacing;
-}
-
-hr {
-	border-bottom: $base-border;
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	margin: $base-spacing * 1.5 0;
-}
-
-blockquote,
-.wp-block-quote,
-.wp-block-pullquote {
-	border-left: 4px solid $primary-color;
-	margin: $base-spacing 0 $base-spacing $base-spacing;
-	padding-left: 2rem;
-	font-size: 2.1rem;
-	font-style: italic;
-}
-
-blockquote cite,
-.wp-block-quote cite,
-.wp-block-pullquote cite {
-	color: #666;
-	font-size: 1.8rem;
-	text-align: inherit;
-	display: block;
-	margin-top: 1rem;
-}
-
-q {
-	font-size: $base-font-size;
-	font-style: italic;
-}
+/* ### Links */
 
 a {
 	color: $primary-color;
@@ -205,10 +148,39 @@ a[href^='fax'] {
 	text-decoration: none;
 }
 
+/* ### Focus Styles */
+
 :focus {
 	outline: none;
 	border-radius: 2px;
 	box-shadow: 0 0 0 2px rgba($primary-color, 0.5);
+}
+
+/* ### General Tags */
+
+mark {
+	padding: 0.2rem;
+	background-color: #fcefa9;
+	font-size: 95%;
+}
+
+sup {
+	text-transform: lowercase;
+}
+
+address {
+	margin-bottom: $base-spacing;
+}
+
+hr {
+	border: none;
+	border-top: $base-border;
+	margin: $base-spacing * 1.5 auto;
+}
+
+q {
+	font-size: $base-font-size;
+	font-style: italic;
 }
 
 /* ## Embedded Content
@@ -233,7 +205,7 @@ figure {
 	margin: 0;
 }
 
-/* ### Embed Wrappers */
+/* ### Embed Containers */
 
 .embed-container {
 	position: relative;
