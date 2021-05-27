@@ -221,29 +221,6 @@ wp.domReady( function() {
 	wp.blocks.unregisterBlockType( 'core/verse' );
 	wp.blocks.unregisterBlockStyle( 'core/quote', [ 'large' ]);
 });
-wp.domReady( function() {
-	var checked = true;
-
-	wp.data.subscribe( function() {
-		var isSavingMetaBoxes = wp.data.select( 'core/edit-post' ).isSavingMetaBoxes();
-		var metaboxInput = document.querySelector( '#ajv-proto-layout-meta-box .selected input[type="radio"]' );
-		var metaboxValue = metaboxInput ? metaboxInput.value : 'default-layout';
-
-		var databaseValue = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'meta' )._ajv_proto_post_layout;
-
-		if ( isSavingMetaBoxes ) {
-			checked = false;
-		} else {
-			if ( ! checked ) {
-				if ( metaboxValue !== databaseValue ) {
-					window.location.reload();
-				}
-
-				checked = true;
-			}
-		}
-	});
-});
 'use strict';
 
 wp.domReady( function() {

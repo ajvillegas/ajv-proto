@@ -19,7 +19,8 @@ wp.domReady( function() {
 	);
 });
 
-wp.domReady( function() {
+// This functions makes the editor fail with `Uncaught TypeError: Cannot read property '_ajv_proto_post_layout' of undefined` error.
+/* wp.domReady( function() {
 
 	// Start in a checked state.
 	let checked = true;
@@ -55,16 +56,16 @@ wp.domReady( function() {
 	});
 
 	// Trigger side effect after block editor is done saving the post.
-	/* wp.data.subscribe( function() {
-		const isSavingPost = wp.data.select( 'core/editor' ).isSavingPost();
-
-		if ( isSavingPost ) {
-			checked = false;
-		} else {
-			if ( ! checked ) {
-				console.log( 'Done saving post.' );
-				checked = true;
-			}
-		}
-	} ); */
-});
+	//wp.data.subscribe( function() {
+	//	const isSavingPost = wp.data.select( 'core/editor' ).isSavingPost();
+	//
+	//	if ( isSavingPost ) {
+	//		checked = false;
+	//	} else {
+	//		if ( ! checked ) {
+	//			console.log( 'Done saving post.' );
+	//			checked = true;
+	//		}
+	//	}
+	//} );
+}); */
