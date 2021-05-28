@@ -95,9 +95,93 @@
 	margin-top: 5px;
 }
 
-/* ## Block Editor Buttons
+/* ## Block Editor
 --------------------------------------------- */
 
 .components-button.is-primary:hover:not(:disabled) {
 	color: #fff !important;
+}
+
+#editor .block-editor-writing-flow__click-redirect {
+	min-height: 50px;
+}
+
+#editor .postbox > .postbox-header .hndle {
+	border-bottom: none;
+}
+
+#editor .edit-post-layout__metaboxes {
+	padding: 0;
+}
+
+#editor .edit-post-layout__metaboxes .edit-post-meta-boxes-area {
+	margin: 0;
+}
+
+.wp-block-image-selector {
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+
+	button,
+	img {
+		display: block;
+	}
+
+	img {
+		box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+	}
+
+	img[src*='svg'] {
+		background: #eee;
+		min-width: 100px;
+	}
+}
+
+.components-range-control {
+	width: 100%;
+}
+
+// Custom Columns Block extension.
+.responsive-column-options {
+	.components-panel__row:nth-child(2) {
+		margin-top: 10px;
+	}
+
+	.components-radio-control {
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
+
+	.components-radio-control__option {
+		display: flex;
+		margin-bottom: 10px;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+
+		> label {
+			position: relative;
+			top: -1px;
+		}
+	}
+
+	.components-range-control {
+		margin-left: 22px;
+
+		svg {
+			fill: #777;
+		}
+	}
+}
+
+/* ## Autoptimize Settings
+--------------------------------------------- */
+
+.wp-admin.settings_page_autoptimize #autoptimize_admin_feed {
+	display: none !important;
+}
+
+.wp-admin.settings_page_autoptimize #autoptimize_main {
+	width: 100%;
 }
