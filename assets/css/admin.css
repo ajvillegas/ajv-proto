@@ -73,7 +73,6 @@
 --------------------------------------------- */
 @media only screen and (min-width: 481px) {
 	.widget-liquid-right {
-		position: -webkit-sticky;
 		position: sticky;
 		top: 42px;
 	}
@@ -89,8 +88,90 @@
 	margin-top: 5px;
 }
 
-/* ## Block Editor Buttons
+/* ## Block Editor
 --------------------------------------------- */
 .components-button.is-primary:hover:not(:disabled) {
 	color: #fff !important;
+}
+
+#editor .block-editor-writing-flow__click-redirect {
+	min-height: 50px;
+}
+
+#editor .postbox>.postbox-header .hndle {
+	border-bottom: none;
+}
+
+#editor .edit-post-layout__metaboxes {
+	padding: 0;
+}
+
+#editor .edit-post-layout__metaboxes .edit-post-meta-boxes-area {
+	margin: 0;
+}
+
+.wp-block-image-selector {
+	-webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.wp-block-image-selector button,
+.wp-block-image-selector img {
+	display: block;
+}
+
+.wp-block-image-selector img {
+	-webkit-box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.wp-block-image-selector img[src*='svg'] {
+	background: #eee;
+	min-width: 100px;
+}
+
+.components-range-control {
+	width: 100%;
+}
+
+.responsive-column-options .components-panel__row:nth-child(2) {
+	margin-top: 10px;
+}
+
+.responsive-column-options .components-radio-control .components-base-control__field {
+	margin-bottom: 0;
+}
+
+.responsive-column-options .components-radio-control__option {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.responsive-column-options .components-radio-control__option:last-of-type {
+	margin-bottom: 0;
+}
+
+.responsive-column-options .components-radio-control__option>label {
+	position: relative;
+	top: -1px;
+}
+
+.responsive-column-options .components-range-control {
+	margin-left: 22px;
+}
+
+.responsive-column-options .components-range-control svg {
+	fill: #777;
+}
+
+/* ## Autoptimize Settings
+--------------------------------------------- */
+.wp-admin.settings_page_autoptimize #autoptimize_admin_feed {
+	display: none !important;
+}
+
+.wp-admin.settings_page_autoptimize #autoptimize_main {
+	width: 100%;
 }

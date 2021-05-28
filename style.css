@@ -4,7 +4,7 @@ Theme URI: https://github.com/ajvillegas/ajv-proto
 Description: A starter theme for creating custom WordPress websites.
 Author: Alexis J. Villegas
 Author URI: http://www.alexisvillegas.com/
-Version: 1.1.0
+Version: 1.1.1
 Text Domain: ajv-proto
 Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, threaded-comments, translation-ready
 License: GPL-2.0+
@@ -266,7 +266,7 @@ figure { margin: 0; }
 
 .full-width-padded .content > * { width: 100%; }
 
-@media only screen and (min-width: 900px) { .full-width-padded .content > * { margin: 0 auto; width: 65.7894736842%; } }
+@media only screen and (min-width: 900px) { .full-width-padded .content > * { margin-right: auto; margin-left: auto; width: 65.7894736842%; } }
 
 .full-width-content .content { width: 100%; }
 
@@ -512,27 +512,27 @@ figure { margin: 0; }
 
 /* ## Alignment
 --------------------------------------------- */
-.aligncenter { display: block; margin: 0 auto 3rem; }
+.aligncenter, .wp-block[data-align='center'] > .wp-block-image { display: block; margin: 0 auto 3rem; }
 
 .alignnone { display: inline-block; margin-bottom: 1.5rem; }
 
-.alignleft { margin: 0 0 3rem 0; }
+.alignleft, div[class^='wp-block-'] .alignleft { margin: 0 0 3rem 0; }
 
-@media only screen and (min-width: 380px) { .alignleft { float: left; text-align: left; margin: 0 3rem 3rem 0; } }
+@media only screen and (min-width: 380px) { .alignleft, div[class^='wp-block-'] .alignleft { float: left; text-align: left; margin: 0 3rem 3rem 0; } }
 
-.alignright { margin: 0 0 3rem 0; }
+.alignright, div[class^='wp-block-'] .alignright { margin: 0 0 3rem 0; }
 
-@media only screen and (min-width: 380px) { .alignright { float: right; text-align: right; margin: 0 0 3rem 3rem; } }
-
-.alignwide, .alignfull { margin-bottom: 3rem; }
+@media only screen and (min-width: 380px) { .alignright, div[class^='wp-block-'] .alignright { float: right; text-align: right; margin: 0 0 3rem 3rem; } }
 
 .content-sidebar .alignfull, .sidebar-content .alignfull { margin: 0 0 3rem; width: 100%; }
 
-.full-width-content .alignfull, .full-width-padded .alignfull { margin-left: calc(-100vw / 2 + 100% / 2); margin-right: calc(-100vw / 2 + 100% / 2); max-width: 100vw; }
+.full-width-content .alignfull, .full-width-padded .alignfull { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); max-width: 100vw; }
 
-@media only screen and (min-width: 900px) { .full-width-padded .alignwide { margin-left: calc(-100vw / 2 + 100% / 2); margin-right: calc(-100vw / 2 + 100% / 2); max-width: 100vw; } }
+@media only screen and (min-width: 900px) { .full-width-padded .alignwide { margin-left: calc(37.5% - 37.5vw); margin-right: calc(37.5% - 37.5vw); max-width: 100vw; } }
 
 @media only screen and (min-width: 1200px) { .full-width-padded .alignwide { margin-left: -195px; margin-right: -195px; max-width: 1140px; } }
+
+.wp-block-group__inner-container, .wp-block-cover__inner-container { margin-left: auto; margin-right: auto; }
 
 /* ## Color Palette
 --------------------------------------------- */
@@ -540,25 +540,25 @@ figure { margin: 0; }
 
 .has-primary-background-color { background-color: #4173bb !important; }
 
-.has-primary-background-color:hover, .has-primary-background-color:focus { background-color: #2d5082 !important; }
+.wp-block-button__link.has-primary-background-color:hover, .wp-block-button__link.has-primary-background-color:focus { background-color: #2d5082 !important; }
 
 .has-secondary-color { color: #333 !important; }
 
 .has-secondary-background-color { background-color: #333 !important; }
 
-.has-secondary-background-color:hover, .has-secondary-background-color:focus { background-color: #0d0d0d !important; }
+.wp-block-button__link.has-secondary-background-color:hover, .wp-block-button__link.has-secondary-background-color:focus { background-color: #0d0d0d !important; }
 
 .has-tertiary-color { color: #34b79d !important; }
 
 .has-tertiary-background-color { background-color: #34b79d !important; }
 
-.has-tertiary-background-color:hover, .has-tertiary-background-color:focus { background-color: #237b6a !important; }
+.wp-block-button__link.has-tertiary-background-color:hover, .wp-block-button__link.has-tertiary-background-color:focus { background-color: #237b6a !important; }
 
 /* ## Blockquotes & Pullquotes
 --------------------------------------------- */
-.wp-block-quote, .wp-block-quote.is-style-large { border-left: 4px solid #4173bb; margin: 3rem 0 3rem 3rem; padding: 0 0 0 2rem; font-style: italic; }
+.wp-block-quote, .wp-block-quote.is-style-large { border-left: 4px solid #4173bb; padding: 0 0 0 2rem; font-style: italic; }
 
-.wp-block-quote.has-text-align-right, .wp-block-quote.is-style-large.has-text-align-right { border-left: none; border-right: 4px solid #4173bb; margin: 3rem 3rem 3rem 0; padding: 0 2rem 0 0; }
+.wp-block-quote.has-text-align-right, .wp-block-quote.is-style-large.has-text-align-right { border-left: none; border-right: 4px solid #4173bb; padding: 0 2rem 0 0; }
 
 .wp-block-pullquote { margin: 3rem 0; }
 
@@ -583,6 +583,14 @@ blockquote cite, .wp-block-quote cite, .wp-block-pullquote cite, .wp-block-quote
 .wp-block-audio figcaption, .wp-block-embed figcaption, .wp-block-image figcaption { color: #666; font-size: 1.8rem; font-style: italic; margin-top: 1rem; margin-bottom: 3rem; }
 
 .wp-block-image figcaption { font-size: 14px; }
+
+/* ## Group Block
+--------------------------------------------- */
+.wp-block-group::after { clear: both; content: ""; display: block; }
+
+.wp-block-group.has-background { padding: 2rem 3rem; }
+
+.wp-block-group__inner-container > *:last-child { margin-bottom: 0; }
 
 /* ## Preformatted Elements
 --------------------------------------------- */
@@ -640,7 +648,7 @@ pre, .wp-block-verse, .wp-block-preformatted, .wp-block-code { font-family: mono
 
 .wp-block-audio audio { display: inline-block; width: 100%; }
 
-.wp-block-group.has-background { padding: 2rem 3rem; }
+.wp-block-image figure > a { display: block; }
 
 /* ## Lists
 --------------------------------------------- */
