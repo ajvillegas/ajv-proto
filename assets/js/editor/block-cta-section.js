@@ -9,120 +9,211 @@
  * @license    GPL-2.0+
  */
 
-( function( blocks, editor, element ) {
+( function( blocks, editor, element, components ) {
 	const __ = wp.i18n.__;
 	const el = element.createElement;
 	const registerBlockType = blocks.registerBlockType;
-	const { InspectorControls, PanelColorSettings, InnerBlocks } = editor;
+	const { InspectorControls, PanelColorSettings, MediaUpload, InnerBlocks } = editor;
 	const { Fragment } = element;
+	const { PanelBody, PanelRow, Button } = components;
 	const template = [
-		[ 'core/heading', { content: 'Title', className: 'container' }, [] ],
-		[ 'core/paragraph', { content: 'Description', className: 'container' }, [] ]
+		[ 'core/heading', { content: 'Title' } ],
+		[ 'core/paragraph', { content: 'Description...' } ]
 	];
 
 	registerBlockType( 'ajv-proto/cta-section', {
 		title: __( 'CTA Section', 'ajv-proto' ),
+		description: __( 'Add a call-to-action section.', 'ajv-proto' ),
 		icon: 'megaphone',
-		category: 'common', // Block category (common, formatting, layout, widgets, embed).
+		category: 'common',
 		supports: {
 			align: true,
 			align: [ 'wide', 'full' ]
 		},
-		keywords: [ 'ajv-proto', 'CTA', 'Call to Action' ],
+		keywords: [ 'Custom Block', 'CTA', 'Call to Action' ],
 		attributes: {
 			backgroundColor: {
 				type: 'string',
-				default: '#4173bb'
-			}
-		}, // Placeholders to store customized settings information about the block.
-		example: { // Used to define default values for the attributes.
-			attributes: {
-				backgroundColor: '#4173bb'
+				default: '#34b79d'
+			},
+			image: {
+				type: 'string',
+				default: ''
 			}
 		},
+		example: {
+			attributes: {
+				backgroundColor: '#34b79d',
+				image: ''
+			},
+			innerBlocks: [
+				{
+					name: 'core/heading',
+					attributes: {
+						content: __( 'Title', 'ajv-proto' )
+					}
+				},
+				{
+					name: 'core/paragraph',
+					attributes: {
+						content: __( 'Description...', 'ajv-proto' )
+					}
+				}
+			]
+		},
 
-		// The 'edit' property must be a valid function.
-		edit: ( function( props ) {
-			const blockParentStyle = {
-				backgroundColor: props.attributes.backgroundColor,
-				padding: '40px',
-				margin: '0'
-			};
+		edit: function( props ) {
+			let blockStyles;
+
+			// Define block styles.
+			if ( props.attributes.image ) {
+				blockStyles = {
+					padding: '40px',
+					backgroundColor: props.attributes.backgroundColor,
+					backgroundImage: 'url(' + props.attributes.image + ')',
+					backgroundSize: 'cover'
+				};
+			} else {
+				blockStyles = {
+					padding: '40px',
+					backgroundColor: props.attributes.backgroundColor
+				};
+			}
 
 			return [
-				el(
-					Fragment,
-					{ key: 'fragment' },
-					el(
-						InspectorControls,
+				el( Fragment,
+					{
+						key: 'fragment'
+					},
+					el( InspectorControls,
 						{},
-						el(
-							PanelColorSettings,
+						el( PanelColorSettings,
 							{
-								title: 'Color settings',
+								title: __( 'Color settings', 'ajv-proto' ),
 								initialOpen: true,
 								colorSettings: [
 									{
 										value: props.attributes.backgroundColor,
-										label: 'Background color',
+										label: __( 'Background color', 'ajv-proto' ),
 										onChange: ( value ) => {
 											props.setAttributes(
-												{ backgroundColor: value }
+												{
+													backgroundColor: value
+												}
 											);
 										}
 									}
 								]
 							}
+						),
+						el( PanelBody,
+							{
+								title: __( 'Image settings', 'ajv-proto' ),
+								initialOpen: false
+							},
+							el( PanelRow,
+								{},
+								el( 'div',
+									{
+										className: 'wp-block-image-selector'
+									},
+									el( MediaUpload,
+										{
+											onSelect: ( value ) => {
+												props.setAttributes({
+													image: value.url
+												});
+											},
+											type: 'image',
+											value: props.attributes.image,
+											render: function( obj ) {
+												return el( Button,
+													{
+														className: props.attributes.image ? 'image-button' : 'button button-large',
+														style: {
+															height: 'auto',
+															padding: props.attributes.image ? 'inherit' : '0 10px'
+														},
+														title: 'Click to edit',
+														onClick: obj.open
+													},
+													! props.attributes.image ? __( 'Upload Image', 'ajv-proto' ) : el( 'img', { src: props.attributes.image, alt: '' })
+												);
+											}
+										}
+									)
+								)
+							),
+							props.attributes.image ?
+								el( PanelRow,
+									{},
+									el( Button,
+										{
+											className: 'button is-large',
+											title: 'Remove Image',
+											onClick: () => {
+												props.setAttributes({
+													image: ''
+												});
+											}
+										},
+										__( 'Remove Image', 'ajv-proto' )
+									)
+								) :
+								null
 						)
 					)
 				),
-				el(
-					'div',
+				el( 'div',
 					{
 						key: 'cta-section',
 						className: props.className,
-						style: blockParentStyle
+						style: blockStyles
 					},
-					el(
-						'div',
+					el( 'div',
 						{
-							className: 'wrap'
+							className: 'block-wrap'
 						},
-						el(
-							InnerBlocks,
+						el( InnerBlocks,
 							{
 								template: template,
-								templateLock: 'all'
+								templateLock: false // Can use 'all', 'block' or false.
 							}
 						)
 					)
 				)
 			];
-		}),
+		},
 
-		// The 'save' property must be specified and must be a valid function.
 		save: function( props ) {
-			const blockParentStyle = {
-				backgroundColor: props.attributes.backgroundColor,
-				padding: '40px',
-				margin: '0'
-			};
+			let blockStyles;
+
+			// Define block styles.
+			if ( props.attributes.image ) {
+				blockStyles = {
+					padding: '40px',
+					backgroundColor: props.attributes.backgroundColor,
+					backgroundImage: 'url(' + props.attributes.image + ')',
+					backgroundSize: 'cover'
+				};
+			} else {
+				blockStyles = {
+					padding: '40px',
+					backgroundColor: props.attributes.backgroundColor
+				};
+			}
 
 			return (
-				el(
-					'div',
+				el( 'div',
 					{
 						className: props.className,
-						style: blockParentStyle
-					}, // The className property is automatically enabled for each block.
-					el(
-						'div',
+						style: blockStyles
+					},
+					el( 'div',
 						{
-							className: 'wrap'
+							className: 'block-wrap'
 						},
-						el(
-							InnerBlocks.Content
-						)
+						el( InnerBlocks.Content )
 					)
 				)
 			);
