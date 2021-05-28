@@ -48,16 +48,18 @@ add_action( 'customize_register', 'ajv_proto_register_customizer_sections' );
 function ajv_proto_register_customizer_sections( $wp_customize ) {
 
 	// Section: Site Layout.
-	$wp_customize->add_section(
-		'ajv_proto_layout_section',
-		array(
-			'priority'    => 10,
-			'panel'       => 'ajv_proto_theme_settings',
-			'title'       => esc_html__( 'Site Layout', 'ajv-proto' ),
-			'description' => esc_html__( 'Select the default site layout for post and pages.', 'ajv-proto' ),
-			'capability'  => 'edit_theme_options',
-		)
-	);
+	if ( current_theme_supports( 'ajv-proto-layouts' ) ) {
+		$wp_customize->add_section(
+			'ajv_proto_layout_section',
+			array(
+				'priority'    => 10,
+				'panel'       => 'ajv_proto_theme_settings',
+				'title'       => esc_html__( 'Site Layout', 'ajv-proto' ),
+				'description' => esc_html__( 'Select the default site layout for post and pages.', 'ajv-proto' ),
+				'capability'  => 'edit_theme_options',
+			)
+		);
+	}
 
 	// Section: Footer.
 	$wp_customize->add_section(

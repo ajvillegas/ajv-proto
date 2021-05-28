@@ -47,6 +47,11 @@ add_action( 'admin_menu', 'ajv_proto_add_layout_meta_box' );
  */
 function ajv_proto_add_layout_meta_box() {
 
+	// Bail if theme doesn't support layout settings.
+	if ( ! current_theme_supports( 'ajv-proto-layouts' ) ) {
+		return;
+	}
+
 	foreach ( (array) get_post_types(
 		array(
 			'public' => true,
