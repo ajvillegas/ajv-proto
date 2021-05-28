@@ -17,3 +17,10 @@
 .wp-block[data-align='full'] {
 	max-width: none;
 }
+
+.wp-block-group__inner-container,
+.wp-block-cover__inner-container {
+	> .wp-block {
+		max-width: none;
+	}
+}
