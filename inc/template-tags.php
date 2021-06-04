@@ -113,15 +113,17 @@ if ( ! function_exists( 'ajv_proto_entry_footer' ) ) {
 			}
 		}
 
-		edit_post_link(
-			sprintf(
-				/* translators: %s: Name of current post. Only visible to screen readers. */
-				esc_html__( 'Edit %s', 'ajv-proto' ),
-				'<span class="screen-reader-text">' . get_the_title() . '</span>'
-			),
-			'<div class="edit-link">',
-			'</div>'
-		);
+		if ( apply_filters( 'ajv_proto_display_edit_post_link', true ) ) {
+			edit_post_link(
+				sprintf(
+					/* translators: %s: Name of current post. Only visible to screen readers. */
+					esc_html__( 'Edit %s', 'ajv-proto' ),
+					'<span class="screen-reader-text">' . get_the_title() . '</span>'
+				),
+				'<div class="edit-link">',
+				'</div>'
+			);
+		}
 
 	}
 }
@@ -181,6 +183,11 @@ if ( ! function_exists( 'ajv_proto_archive_pagination' ) ) {
 	 * @param string $pagination The pagination style.
 	 */
 	function ajv_proto_archive_pagination( $pagination = 'numeric' ) {
+
+		// Bail if no pagination.
+		if ( ! ajv_proto_is_paginated() ) {
+			return;
+		}
 
 		if ( 'numeric' === $pagination ) {
 			$args = array(
