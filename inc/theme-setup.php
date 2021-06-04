@@ -395,6 +395,28 @@ function ajv_proto_remove_protected_title_prefix( $format ) {
 
 }
 
+add_filter( 'wp_trim_words', 'ajv_proto_filter_wp_trim_words', 11, 4 );
+/**
+ * Filter the excerpt's "read more" link anchor text.
+ *
+ * This function adds a "read more" link when there is no text
+ * or the content is too short.
+ *
+ * @since 1.2.0
+ * @param string $text The trimmed text.
+ * @param int    $num_words The number of words to trim the text to.
+ * @param string $more An optional string to append to the end of the trimmed text.
+ * @param string $original_text The text before it was trimmed.
+ * @return string $text Amended trimmed text.
+ */
+function ajv_proto_filter_wp_trim_words( $text, $num_words, $more, $original_text ) {
+
+	$text = mb_substr( $text, -1 * mb_strlen( $more ) ) === $more ? $text : $text . $more;
+
+	return $text;
+
+}
+
 add_filter( 'excerpt_more', 'ajv_proto_excerpt_more' );
 /**
  * Filter the excerpt's "read more" link anchor text.
