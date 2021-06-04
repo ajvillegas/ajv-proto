@@ -497,6 +497,29 @@ function ajv_proto_blog_menu_item_classes( $classes, $item, $args ) {
 
 }
 
+// phpcs:ignore
+// add_filter( 'pre_get_posts', 'ajv_proto_ignore_sticky_posts' );
+/**
+ * Filter the query variable object before the actual query is run.
+ *
+ * This function removes support for sticky posts to prevent issues with
+ * the grid style loop and the number of posts being shown on a page.
+ *
+ * @since 1.2.0
+ * @param object $query The WP_Query instance (passed by reference).
+ */
+function ajv_proto_ignore_sticky_posts( $query ) {
+
+	/**
+	 * Not a query for an admin page and it's the main query
+	 * for a front end page of your site.
+	 */
+	if ( ! is_admin() && $query->is_main_query() ) {
+		$query->set( 'ignore_sticky_posts', 1 );
+	}
+
+}
+
 add_shortcode( 'year', 'ajv_proto_register_year_shortcode' );
 /**
  * Register "year" shortcode.
