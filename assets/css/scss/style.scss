@@ -4,7 +4,7 @@ Theme URI: https://github.com/ajvillegas/ajv-proto
 Description: A starter theme for creating custom WordPress websites.
 Author: Alexis J. Villegas
 Author URI: http://www.alexisvillegas.com/
-Version: 1.1.1
+Version: 1.2.0
 Text Domain: ajv-proto
 Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, threaded-comments, translation-ready
 License: GPL-2.0+
@@ -29,6 +29,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ---------------------------------------------------------------------------------------------------- */
 
 @import 'layout/containers';
+@import 'layout/grid-layout';
 @import 'layout/columns';
 @import 'layout/header';
 @import 'layout/footer';
