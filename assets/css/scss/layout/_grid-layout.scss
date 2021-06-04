@@ -1,0 +1,29 @@
+/* ## Grid Layout
+--------------------------------------------- */
+
+:root {
+	--child-width: 250px;
+}
+
+.grid,
+.wp-block-ajv-proto-grid > .block-editor-inner-blocks > .block-editor-block-list__layout {
+	display: grid;
+	grid-gap: $column-gutter;
+}
+
+@supports (width: unquote('min(var(--child-width), 100%)')) {
+	.grid {
+		grid-template-columns: repeat(auto-fill, minmax(unquote('min(var(--child-width), 100%)'), 1fr));
+	}
+}
+
+.wp-block-ajv-proto-grid > .block-editor-inner-blocks > .block-editor-block-list__layout .wp-block {
+	margin-left: initial;
+	margin-right: initial;
+}
+
+.wp-block-ajv-proto-grid > *,
+.wp-block-ajv-proto-grid > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
+	margin-top: 0;
+	margin-bottom: 0;
+}
