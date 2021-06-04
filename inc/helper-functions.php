@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function ajv_proto_get_icon( $slug = '' ) {
 
 	// Load the Filesystem API in the front-end.
-	include_once 'wp-admin/includes/file.php';
+	include_once ABSPATH . 'wp-admin/includes/file.php';
 
 	// Initialize the WP_Filesystem class.
 	WP_Filesystem();
@@ -41,6 +41,23 @@ function ajv_proto_get_icon( $slug = '' ) {
 
 	if ( $wp_filesystem->exists( $icon_path ) ) {
 		return $wp_filesystem->get_contents( $icon_path );
+	}
+
+}
+
+/**
+ * Check if archive has more than one page.
+ *
+ * @since 1.2.0
+ */
+function ajv_proto_is_paginated() {
+
+	global $wp_query;
+
+	if ( $wp_query->max_num_pages > 1 ) {
+		return true;
+	} else {
+		return false;
 	}
 
 }
