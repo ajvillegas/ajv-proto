@@ -1,5 +1,8 @@
 /* eslint camelcase: "off" */
 
+// Disable notifications.
+process.env.DISABLE_NOTIFIER = true;
+
 /**
  * Load Gulp configuration file.
  *
