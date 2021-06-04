@@ -1,0 +1,14 @@
+/* ## Group Block
+--------------------------------------------- */
+
+.wp-block-group {
+	@include clearfix;
+
+	&.has-background {
+		padding: $small-spacing $base-spacing;
+	}
+}
+
+.wp-block-group__inner-container > *:last-child {
+	margin-bottom: 0;
+}

@@ -1,0 +1,21 @@
+/* ## Latest Posts Block
+--------------------------------------------- */
+
+.wp-block-latest-posts.wp-block-latest-posts__list {
+	list-style-type: none;
+}
+
+.wp-block-latest-posts {
+	clear: both;
+	margin-left: 0;
+}
+
+.wp-block-latest-posts.aligncenter,
+.wp-block[data-align='center'] .wp-block-latest-posts {
+	text-align: center;
+}
+
+.wp-block-latest-posts.alignfull,
+.wp-block[data-align='full'] .wp-block-latest-posts {
+	padding: 0 $base-spacing;
+}

@@ -1,0 +1,173 @@
+/* ## Columns Block
+--------------------------------------------- */
+
+//* Reset Default Styles *//
+
+.wp-block-columns {
+	margin-bottom: 0;
+}
+
+@media (min-width: 782px) {
+	.wp-block-columns {
+		flex-wrap: initial;
+	}
+}
+
+.wp-block-columns.has-background {
+	padding: 0;
+}
+
+@media (max-width: 599px) {
+	.wp-block-column {
+		flex-basis: inherit !important;
+	}
+}
+
+@media (min-width: 600px) and (max-width: 781px) {
+	.wp-block-column {
+		flex-basis: inherit !important;
+	}
+
+	.wp-block-column:nth-child(even) {
+		margin-left: 0;
+	}
+}
+
+@media (min-width: 782px) {
+	.wp-block-column {
+		flex-grow: 0;
+	}
+
+	.wp-block-column:not(:first-child) {
+		margin-left: 0;
+	}
+}
+
+//* Theme Styles *//
+
+.wp-block-columns {
+	flex-wrap: nowrap;
+	margin-bottom: $column-gutter;
+}
+
+.wp-block-column {
+	flex-basis: 0;
+	flex-grow: 1;
+	margin-bottom: 0;
+
+	&:not(:first-child) {
+		margin-left: $column-gutter;
+	}
+}
+
+.wp-block-column[style*='flex-basis'] {
+	flex-grow: 0;
+}
+
+.wp-block-columns.has-background {
+	padding: $small-spacing $base-spacing;
+}
+
+.full-width-content .wp-block-columns.alignfull,
+.full-width-padded .wp-block-columns.alignfull,
+.wp-block[data-align='full'] .wp-block-columns {
+	padding: 0 $base-spacing;
+}
+
+//* Responsive Layouts *//
+
+@media only screen and (max-width: 1199px) {
+	.wp-block-columns[class*='col-'] {
+		flex-wrap: wrap;
+		margin-bottom: 0;
+
+		.wp-block-column {
+			flex-grow: 0;
+			margin-left: 0;
+			margin-bottom: $column-gutter;
+		}
+	}
+}
+
+// Small screens.
+// We use max-width media query instead of min-width
+// so we can override any inline flex-basis value.
+@media only screen and (max-width: 599px) {
+	.wp-block-columns.col-small-1 .wp-block-column {
+		@include col-1;
+	}
+
+	.wp-block-columns.col-small-2 .wp-block-column {
+		@include col-2;
+	}
+
+	.wp-block-columns.col-small-3 .wp-block-column {
+		@include col-3;
+	}
+
+	.wp-block-columns.col-small-4 .wp-block-column {
+		@include col-4;
+	}
+
+	.wp-block-columns.col-small-5 .wp-block-column {
+		@include col-5;
+	}
+
+	.wp-block-columns.col-small-6 .wp-block-column {
+		@include col-6;
+	}
+}
+
+// Medium size screens.
+@media (min-width: 600px) and (max-width: 781px) {
+	.wp-block-columns.col-medium-1 .wp-block-column {
+		@include col-1;
+	}
+
+	.wp-block-columns.col-medium-2 .wp-block-column {
+		@include col-2;
+	}
+
+	.wp-block-columns.col-medium-3 .wp-block-column {
+		@include col-3;
+	}
+
+	.wp-block-columns.col-medium-4 .wp-block-column {
+		@include col-4;
+	}
+
+	.wp-block-columns.col-medium-5 .wp-block-column {
+		@include col-5;
+	}
+
+	.wp-block-columns.col-medium-6 .wp-block-column {
+		@include col-6;
+	}
+}
+
+// Larger screens.
+@media (min-width: 782px) and (max-width: 1199px) {
+	.wp-block-columns.col-large-1 .wp-block-column {
+		@include col-1;
+	}
+
+	.wp-block-columns.col-large-2 .wp-block-column {
+		@include col-2;
+	}
+
+	.wp-block-columns.col-large-3 .wp-block-column {
+		@include col-3;
+	}
+
+	.wp-block-columns.col-large-4 .wp-block-column {
+		@include col-4;
+	}
+
+	.wp-block-columns.col-large-5 .wp-block-column {
+		@include col-5;
+	}
+
+	.wp-block-columns.col-large-6 .wp-block-column {
+		@include col-6;
+	}
+}

@@ -1,0 +1,12 @@
+/* ## Category Block
+--------------------------------------------- */
+
+.wp-block-categories.aligncenter,
+.wp-block[data-align='center'] .wp-block-categories__list {
+	text-align: center;
+}
+
+.wp-block-categories-list.alignfull,
+.wp-block[data-align='full'] .wp-block-categories__list {
+	padding: 0 $base-spacing;
+}

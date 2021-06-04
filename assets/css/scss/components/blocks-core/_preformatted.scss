@@ -1,0 +1,35 @@
+/* ## Preformatted Elements
+--------------------------------------------- */
+
+pre,
+.wp-block-verse,
+.wp-block-preformatted,
+.wp-block-code {
+	font-family: monospace;
+	font-size: 16px;
+	white-space: pre-wrap;
+	// Fixed line height.
+	line-height: 24px !important;
+}
+
+.wp-block-code {
+	white-space: pre !important;
+	color: #000;
+	border: 1px solid $medium-gray;
+	border-radius: $base-border-radius;
+	width: 100%;
+	border-left: 6px solid $medium-gray;
+	padding: 14px;
+	overflow: auto;
+	word-wrap: normal;
+	// Use linear-gradient for background image.
+	background-image: linear-gradient(180deg, #eeeeee 50%, #f9f9f9 50%);
+	// Size background so that the height is 2x line-height.
+	background-size: 100% 48px;
+	// Offset the background along the y-axis by top padding.
+	background-position: 0 14px;
+}
+
+.wp-block-code code {
+	background: transparent;
+}
