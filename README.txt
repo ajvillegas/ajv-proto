@@ -3,8 +3,8 @@
 Contributors: ajvillegas
 Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, threaded-comments, translation-ready
 Requires at least: 4.6
-Tested up to: 5.5
-Stable tag: 1.1.0
+Tested up to: 5.7
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,16 @@ To modify the widget's content edit the `ajv_proto_dashboard_widget()` function 
 AJV Proto includes support for Infinite Scroll in [Jetpack](https://wordpress.org/plugins/jetpack/) and it integrates with the [Breadcrumb Trail](https://wordpress.org/plugins/breadcrumb-trail/) plugin out of the box.
 
 == Changelog ==
+
+= 1.2.0 =
+* Added custom CSS Grid block.
+* Added Cover and Group block inner container width setings.
+* Added custom responsive column settings to the Columns block.
+* Added filter from removing the layout settings in both posts and the Customizer.
+* Updated the custom sample CTA block.
+* Updated the SCSS partials for better organization.
+* Updated theme template tags.
+* Updated the `[year]` shortcode to optionaly include the copyright sysmbol.
 
 = 1.1.0 =
 * Added a Gulp.js workflow.
