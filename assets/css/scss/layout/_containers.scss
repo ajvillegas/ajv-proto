@@ -17,6 +17,11 @@
 	padding: $base-spacing * 2 $base-spacing;
 }
 
+.full-width-content .site-inner,
+.full-width-padded .site-inner {
+	padding-top: 0;
+}
+
 .entry {
 	background-color: $base-background-color;
 	padding: 0;
@@ -26,6 +31,14 @@
 .entry-content,
 .entry-summary {
 	padding-top: 3rem;
+}
+
+.first-block-align-full .entry-content {
+	padding-top: 0 !important;
+}
+
+.last-block-align-full .site-inner {
+	padding-bottom: 0 !important;
 }
 
 /* ### Content */
