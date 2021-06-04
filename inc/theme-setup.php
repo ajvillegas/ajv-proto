@@ -183,6 +183,9 @@ function ajv_proto_custom_image_sizes( $size_names ) {
 
 }
 
+// Remove all the edit post button when logged in.
+add_filter( 'ajv_proto_display_edit_post_link', '__return_false' );
+
 add_action( 'after_setup_theme', 'ajv_proto_content_width', 0 );
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
