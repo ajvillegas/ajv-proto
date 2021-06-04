@@ -528,10 +528,24 @@ add_shortcode( 'year', 'ajv_proto_register_year_shortcode' );
  * Useful for displaying the year in the footer credits section.
  *
  * @since 1.0.0
+ * @param array $atts The shortcut default attributes.
  */
-function ajv_proto_register_year_shortcode() {
+function ajv_proto_register_year_shortcode( $atts ) {
 
-	$year = date_i18n( 'Y' );
+	// Define attributes and default values.
+	$atts = shortcode_atts(
+		array(
+			'copy' => 'true',
+		),
+		$atts,
+		'year'
+	);
+
+	if ( 'true' === strtolower( $atts['copy'] ) || empty( $atts['copy'] ) ) {
+		$year = '<span class="copyright">&copy;</span> ' . date_i18n( 'Y' );
+	} else {
+		$year = date_i18n( 'Y' );
+	}
 
 	return $year;
 
