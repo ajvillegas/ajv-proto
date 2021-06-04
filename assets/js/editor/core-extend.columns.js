@@ -98,12 +98,8 @@
 								{
 									options: [
 										{
-											label: __( 'Automatically stack columns on smaller screen sizes.', 'ajv-proto' ),
-											value: 'default-stack'
-										},
-										{
 											label: __( 'Use the same column count on all screen sizes.', 'ajv-proto' ),
-											value: 'no-stack'
+											value: 'default-stack'
 										},
 										{
 											label: __( 'Specify custom column counts for other screen sizes:', 'ajv-proto' ),
@@ -138,7 +134,7 @@
 							el( RangeControl,
 								{
 									min: 1,
-									max: 4,
+									max: 6,
 									initialPosition: 1,
 									value: props.attributes.columnsMedium,
 									beforeIcon: 'tablet',
@@ -154,7 +150,7 @@
 							el( RangeControl,
 								{
 									min: 1,
-									max: 3,
+									max: 6,
 									initialPosition: 1,
 									value: props.attributes.columnsSmall,
 									beforeIcon: 'smartphone',
@@ -185,10 +181,6 @@
 		// Bail if it's another block than our defined ones.
 		if ( ! allowedBlocks.includes( blockType.name ) || 'default-stack' === attributes.responsiveBehavior ) {
 			return extraProps;
-		}
-
-		if ( 'no-stack' === attributes.responsiveBehavior ) {
-			extraProps.className = extraProps.className + ' col-no-stack';
 		}
 
 		if ( 'responsive-stack' === attributes.responsiveBehavior ) {
