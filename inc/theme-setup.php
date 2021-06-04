@@ -379,6 +379,22 @@ function ajv_proto_filter_archive_title( $title ) {
 
 }
 
+add_action( 'protected_title_format', 'ajv_proto_remove_protected_title_prefix' );
+/**
+ * Filter the text prepended to the post title for protected posts.
+ *
+ * @since 1.2.0
+ * @param string $format The text displayed before the post title.
+ * @return string
+ */
+function ajv_proto_remove_protected_title_prefix( $format ) {
+
+	$format = __( '%s', 'ajv-proto' ); // phpcs:ignore
+
+	return $format;
+
+}
+
 add_filter( 'excerpt_more', 'ajv_proto_excerpt_more' );
 /**
  * Filter the excerpt's "read more" link anchor text.
