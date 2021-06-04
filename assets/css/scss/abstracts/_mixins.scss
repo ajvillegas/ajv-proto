@@ -101,3 +101,60 @@
 		opacity: 0.5 $imp;
 	}
 }
+
+// Define column block responsive layouts.
+
+// One column.
+@mixin col-1 {
+	flex-basis: 100% !important;
+	margin-left: 0;
+}
+
+// Two columns.
+@mixin col-2 {
+	flex-basis: calc(50% - (#{$column-gutter} - 15px)) !important;
+
+	&:nth-child(even) {
+		margin-left: $column-gutter;
+	}
+}
+
+// Three columns.
+@mixin col-3 {
+	flex-basis: calc(33.333% - (#{$column-gutter} - 10px)) !important;
+	margin-left: $column-gutter;
+
+	&:nth-child(3n + 1) {
+		margin-left: 0;
+	}
+}
+
+// Four columns.
+@mixin col-4 {
+	flex-basis: calc(25% - (#{$column-gutter} - 7.5px)) !important;
+	margin-left: $column-gutter;
+
+	&:nth-child(4n + 1) {
+		margin-left: 0;
+	}
+}
+
+// Five columns.
+@mixin col-5 {
+	flex-basis: calc(20% - (#{$column-gutter} - 6px)) !important;
+	margin-left: $column-gutter;
+
+	&:nth-child(5n + 1) {
+		margin-left: 0;
+	}
+}
+
+// Six columns.
+@mixin col-6 {
+	flex-basis: calc(16.6666667% - (#{$column-gutter} - 5px)) !important;
+	margin-left: $column-gutter;
+
+	&:nth-child(6n + 1) {
+		margin-left: 0;
+	}
+}
