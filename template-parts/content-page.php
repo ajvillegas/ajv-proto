@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 	</div><!-- .entry-content -->
 
-	<?php if ( get_edit_post_link() ) : ?>
+	<?php if ( get_edit_post_link() && apply_filters( 'ajv_proto_display_edit_post_link', true ) ) : ?>
 		<footer class="entry-footer">
 			<?php
 			edit_post_link(
