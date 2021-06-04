@@ -160,6 +160,29 @@ if ( ! function_exists( 'ajv_proto_theme_setup' ) ) {
 	}
 }
 
+add_filter( 'image_size_names_choose', 'ajv_proto_custom_image_sizes' );
+/**
+ * Add new image sizes to list of default image sizes so
+ * wp_prepare_attachment_for_js() and JS can access them.
+ *
+ * @since 1.2.0
+ * @param  array $size_names An array containing default image sizes and their names.
+ * @return array $size_names Merged array containing new image sizes and their names.
+ */
+function ajv_proto_custom_image_sizes( $size_names ) {
+
+	// Add new image sizes to array.
+	$new_size_names = array(
+		'featured-image' => esc_html__( 'Featured Image', 'ajv-proto' ),
+	);
+
+	// Combine the two arrays.
+	$size_names = array_merge( $new_size_names, $size_names );
+
+	return $size_names;
+
+}
+
 add_action( 'after_setup_theme', 'ajv_proto_content_width', 0 );
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
