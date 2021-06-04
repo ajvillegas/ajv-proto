@@ -1,4 +1,4 @@
-/* eslint-disable no-dupe-keys */
+/* eslint-disable no-undef */
 
 /**
  * Custom 'CTA Section' block.
@@ -26,10 +26,9 @@
 		description: __( 'Add a call-to-action section.', 'ajv-proto' ),
 		icon: 'megaphone',
 		category: 'common',
-		supports: {
-			align: true,
-			align: [ 'wide', 'full' ]
-		},
+		supports: _defineProperty({
+			align: true
+		}, 'align', [ 'wide' ]),
 		keywords: [ 'Custom Block', 'CTA', 'Call to Action' ],
 		attributes: {
 			backgroundColor: {
