@@ -65,6 +65,16 @@ div[class^='wp-block-'] .alignright {
 .wp-block-cover__inner-container {
 	margin-left: auto;
 	margin-right: auto;
+	max-width: $max-width;
+
+	.wp-block {
+		margin-top: 0;
+	}
+}
+
+div[data-align='full'] {
+	margin-left: -10px;
+	margin-right: -10px;
 }
 
 /* ## Color Palette
@@ -87,79 +97,6 @@ div[class^='wp-block-'] .alignright {
 	}
 }
 
-/* ## Blockquotes & Pullquotes
---------------------------------------------- */
-
-.wp-block-quote,
-.wp-block-quote.is-style-large {
-	border-left: 4px solid $primary-color;
-	padding: 0 0 0 2rem;
-	font-style: italic;
-
-	&.has-text-align-right {
-		border-left: none;
-		border-right: 4px solid $primary-color;
-		padding: 0 2rem 0 0;
-	}
-}
-
-.wp-block-pullquote {
-	margin: $base-spacing 0;
-}
-
-.wp-block-quote p,
-.wp-block-pullquote p {
-	font-size: 2.4rem;
-}
-
-.wp-block-pullquote p,
-.wp-block-quote.is-style-large p {
-	font-size: 2.6rem;
-}
-
-.wp-block-pullquote:not(.is-style-solid-color) {
-	border: 2px solid;
-	border-color: inherit;
-	border-left: none;
-	border-right: none;
-}
-
-blockquote cite,
-.wp-block-quote cite,
-.wp-block-pullquote cite,
-.wp-block-quote .wp-block-quote__citation,
-.wp-block-pullquote .wp-block-pullquote__citation {
-	text-transform: capitalize;
-	color: #666;
-	font-size: $base-font-size * 0.9;
-	font-style: italic !important;
-	text-align: inherit !important;
-	display: block;
-	margin-top: 1rem;
-}
-
-.wp-block-pullquote .has-text-color .wp-block-pullquote__citation,
-.wp-block-pullquote .has-text-color cite,
-.wp-block-pullquote .has-text-color p {
-	color: currentColor;
-}
-
-.wp-block-quote[class*='align'] .wp-block-quote__citation,
-.wp-block-pullquote[class*='align'] .wp-block-pullquote__citation {
-	text-align: inherit;
-}
-
-.wp-block-pullquote.is-style-solid-color {
-	background-color: #222;
-	border: none;
-
-	p,
-	cite,
-	.wp-block-pullquote__citation {
-		color: #fff;
-	}
-}
-
 /* ## Captions
 --------------------------------------------- */
 
@@ -170,171 +107,20 @@ blockquote cite,
 	font-size: $base-font-size * 0.9;
 	font-style: italic;
 	margin-top: 1rem;
-	margin-bottom: $base-spacing;
 }
 
 .wp-block-image figcaption {
 	font-size: 14px;
 }
 
-/* ## Group Block
---------------------------------------------- */
-
-.wp-block-group {
-	@include clearfix;
-
-	&.has-background {
-		padding: $small-spacing $base-spacing;
-	}
-}
-
-.wp-block-group__inner-container > *:last-child {
-	margin-bottom: 0;
-}
-
-/* ## Preformatted Elements
---------------------------------------------- */
-
-pre,
-.wp-block-verse,
-.wp-block-preformatted,
-.wp-block-code {
-	font-family: monospace;
-	font-size: 16px;
-	white-space: pre-wrap;
-	// Fixed line height.
-	line-height: 24px !important;
-}
-
-.wp-block-code {
-	white-space: pre !important;
-	color: #000;
-	border: 1px solid $medium-gray;
-	border-radius: $base-border-radius;
-	width: 100%;
-	border-left: 6px solid $medium-gray;
-	padding: 14px;
-	overflow: auto;
-	word-wrap: normal;
-	// Use linear-gradient for background image.
-	background-image: linear-gradient(180deg, #eeeeee 50%, #f9f9f9 50%);
-	// Size background so that the height is 2x line-height.
-	background-size: 100% 48px;
-	// Offset the background along the y-axis by top padding.
-	background-position: 0 14px;
-}
-
-.wp-block-code code {
-	background: transparent;
-}
-
-/* ## Columns Block
---------------------------------------------- */
-
-.wp-block-columns {
-	margin-bottom: $base-spacing;
-
-	@media only screen and (min-width: 600px) {
-		flex-wrap: nowrap;
-	}
-
-	> *:first-child {
-		@include media(small) {
-			margin-top: 0;
-		}
-	}
-
-	> *:last-child {
-		@include media(small) {
-			margin-bottom: 0;
-		}
-	}
-
-	&[class*='has-'] > * {
-		@media only screen and (min-width: 600px) {
-			margin-right: $base-spacing;
-			margin-left: 0;
-		}
-	}
-
-	&[class*='has-'] > *:last-child {
-		@media only screen and (min-width: 600px) {
-			margin-right: 0;
-		}
-	}
-}
-
-.wp-block-columns.alignfull,
-.wp-block[data-align='full'] .wp-block-columns > .editor-inner-blocks {
-	padding: 0 $base-spacing;
-}
-
-/* ## Cover Image Block
---------------------------------------------- */
-
-.full-width-content .wp-block-cover.alignfull,
-.full-width-padded .wp-block-cover.alignfull {
-	width: 100vw;
-}
-
-/* ## Category Block
---------------------------------------------- */
-
-.wp-block-categories.aligncenter,
-.wp-block[data-align='center'] .wp-block-categories__list {
-	text-align: center;
-}
-
-.wp-block-categories-list.alignfull,
-.wp-block[data-align='full'] .wp-block-categories__list {
-	padding: 0 $base-spacing;
-}
-
-/* ## Gallery Block
---------------------------------------------- */
-
-.wp-block-gallery {
-	padding-left: 0;
-}
-
-.wp-block-gallery .blocks-gallery-item {
-	margin-bottom: $small-spacing;
-}
-
-/* ## Latest Posts Block
---------------------------------------------- */
-
-.wp-block-latest-posts.wp-block-latest-posts__list {
-	list-style-type: none;
-}
-
-.wp-block-latest-posts {
-	clear: both;
-	margin-left: 0;
-}
-
-.wp-block-latest-posts.aligncenter,
-.wp-block[data-align='center'] .wp-block-latest-posts {
-	text-align: center;
-}
-
-.wp-block-latest-posts.alignfull,
-.wp-block[data-align='full'] .wp-block-latest-posts {
-	padding: 0 $base-spacing;
-}
-
-/* ## Other Blocks
---------------------------------------------- */
-
-.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
-	max-width: 100px;
-}
-
-.wp-block-audio audio {
-	display: inline-block;
-	width: 100%;
-}
-
-.wp-block-image figure > a {
-	display: block;
-}
+@import 'components/blocks-core/audio';
+@import 'components/blocks-core/blockquotes';
+@import 'components/blocks-core/category';
+@import 'components/blocks-core/columns';
+@import 'components/blocks-core/cover';
+@import 'components/blocks-core/gallery';
+@import 'components/blocks-core/group';
+@import 'components/blocks-core/image';
+@import 'components/blocks-core/latest-posts';
+@import 'components/blocks-core/preformatted';
+@import 'components/blocks-core/separator';
