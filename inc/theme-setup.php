@@ -265,6 +265,49 @@ function ajv_proto_body_classes( $classes ) {
 
 }
 
+add_filter( 'body_class', 'ajv_proto_blocks_body_classes' );
+/**
+ * Add custom body classes to help with block styling.
+ *
+ * - `has-no-blocks` if content contains no blocks.
+ * - `first-block-[block-name]` to allow changes based on the first block (such as removing padding above a Cover block).
+ * - `first-block-align-[alignment]` to allow styling adjustment if the first block is wide or full-width.
+ * - `last-block-align-[alignment]` to allow styling adjustment if the last block is wide or full-width.
+ *
+ * @since 1.2.0
+ * @param array $classes Array of classes applied to the body class attribute.
+ * @return array $classes The updated array of classes applied to the body class attribute.
+ */
+function ajv_proto_blocks_body_classes( $classes ) {
+
+	if ( ! is_singular() || ! function_exists( 'has_blocks' ) || ! function_exists( 'parse_blocks' ) ) {
+		return $classes;
+	}
+
+	if ( ! has_blocks() ) {
+		$classes[] = 'has-no-blocks';
+		return $classes;
+	}
+
+	$post_object = get_post( get_the_ID() );
+	$blocks      = (array) parse_blocks( $post_object->post_content );
+
+	if ( isset( $blocks[0]['blockName'] ) ) {
+		$classes[] = 'first-block-' . str_replace( '/', '-', $blocks[0]['blockName'] );
+	}
+
+	if ( isset( $blocks[0]['attrs']['align'] ) ) {
+		$classes[] = 'first-block-align-' . $blocks[0]['attrs']['align'];
+	}
+
+	if ( isset( end( $blocks )['attrs']['align'] ) ) {
+		$classes[] = 'last-block-align-' . end( $blocks )['attrs']['align'];
+	}
+
+	return $classes;
+
+}
+
 add_action( 'wp_head', 'ajv_proto_pingback_header' );
 /**
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.
