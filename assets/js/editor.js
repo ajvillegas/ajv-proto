@@ -1,14 +1,23 @@
 'use strict';
 
+/* eslint-disable no-unused-vars */
 function _defineProperty( obj, key, value ) {
 	if ( key in obj ) {
-		Object.defineProperty( obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+		Object.defineProperty( obj, key, {
+			value: value,
+			enumerable: true,
+			configurable: true,
+			writable: true
+		});
 	} else {
 		obj[key] = value;
-	} return obj;
-}
+	}
 
-/* eslint-disable no-dupe-keys */
+	return obj;
+}
+'use strict';
+
+/* eslint-disable no-undef */
 ( function( blocks, editor, element, components ) {
 	var __ = wp.i18n.__;
 	var el = element.createElement;
@@ -34,7 +43,7 @@ function _defineProperty( obj, key, value ) {
 		category: 'common',
 		supports: _defineProperty({
 			align: true
-		}, 'align', [ 'wide', 'full' ]),
+		}, 'align', [ 'wide' ]),
 		keywords: [ 'Custom Block', 'CTA', 'Call to Action' ],
 		attributes: {
 			backgroundColor: {
@@ -163,6 +172,73 @@ function _defineProperty( obj, key, value ) {
 			}, el( 'div', {
 				className: 'block-wrap'
 			}, el( InnerBlocks.Content ) ) );
+		}
+	});
+}( window.wp.blocks, window.wp.blockEditor, window.wp.element, window.wp.components ) );
+'use strict';
+
+/* eslint-disable no-undef */
+( function( blocks, editor, element, components ) {
+	var __ = wp.i18n.__;
+	var el = element.createElement;
+	var registerBlockType = blocks.registerBlockType;
+	var InspectorControls = editor.InspectorControls,
+		InnerBlocks = editor.InnerBlocks;
+	var Fragment = element.Fragment;
+	var PanelBody = components.PanelBody,
+		PanelRow = components.PanelRow,
+		RangeControl = components.RangeControl;
+	var template = [ [ 'core/paragraph' ], [ 'core/paragraph' ], [ 'core/paragraph' ], [ 'core/paragraph' ] ];
+
+	registerBlockType( 'ajv-proto/grid', {
+		title: __( 'Grid', 'ajv-proto' ),
+		description: __( 'Display inner blocks in a grid pattern.', 'ajv-proto' ),
+		icon: 'screenoptions',
+		category: 'layout',
+		keywords: [ 'Custom Block', 'Grid', 'Columns' ],
+		attributes: {
+			childWidth: {
+				type: 'string',
+				default: '250'
+			}
+		},
+		example: undefined,
+		edit: function edit( props ) {
+			return [ el( Fragment, {
+				key: 'fragment'
+			}, el( InspectorControls, {}, el( PanelBody, {
+				title: __( 'Grid Settings', 'ajv-proto' ),
+				initialOpen: true
+			}, el( PanelRow, {}, el( RangeControl, {
+				min: 50,
+				max: 1000,
+				initialPosition: 250,
+				value: props.attributes.childWidth,
+				label: __( 'Column min-width in pixels', 'ajv-proto' ),
+				onChange: function onChange( value ) {
+					50 < value ? props.setAttributes({
+						childWidth: value
+					}) : props.setAttributes({
+						childWidth: 50
+					});
+				}
+			}) ) ) ) ), el( 'style', {
+				type: 'text/css'
+			}, '#block-' + props.clientId + ' .block-editor-inner-blocks > .block-editor-block-list__layout { grid-template-columns: repeat(auto-fill,minmax(min(' + props.attributes.childWidth + 'px,100%),1fr)); }' ), el( 'div', {
+				key: 'grid-section',
+				className: props.className
+			}, el( InnerBlocks, {
+				template: template,
+				templateLock: false
+			}) ) ];
+		},
+		save: function save( props ) {
+			return el( 'div', {
+				className: 'grid '.concat( props.className || '' ),
+				style: {
+					'--child-width': props.attributes.childWidth + 'px'
+				}
+			}, el( InnerBlocks.Content ) );
 		}
 	});
 }( window.wp.blocks, window.wp.blockEditor, window.wp.element, window.wp.components ) );
@@ -380,11 +456,8 @@ wp.domReady( function() {
 				initialOpen: true
 			}, el( PanelRow, {}, el( RadioControl, {
 				options: [ {
-					label: __( 'Automatically stack columns on smaller screen sizes.', 'ajv-proto' ),
-					value: 'default-stack'
-				}, {
 					label: __( 'Use the same column count on all screen sizes.', 'ajv-proto' ),
-					value: 'no-stack'
+					value: 'default-stack'
 				}, {
 					label: __( 'Specify custom column counts for other screen sizes:', 'ajv-proto' ),
 					value: 'responsive-stack'
@@ -411,7 +484,7 @@ wp.domReady( function() {
 				}
 			}) ), el( PanelRow, {}, el( RangeControl, {
 				min: 1,
-				max: 4,
+				max: 6,
 				initialPosition: 1,
 				value: props.attributes.columnsMedium,
 				beforeIcon: 'tablet',
@@ -425,7 +498,7 @@ wp.domReady( function() {
 				}
 			}) ), el( PanelRow, {}, el( RangeControl, {
 				min: 1,
-				max: 3,
+				max: 6,
 				initialPosition: 1,
 				value: props.attributes.columnsSmall,
 				beforeIcon: 'smartphone',
@@ -444,10 +517,6 @@ wp.domReady( function() {
 	var applyColumnClasses = function applyColumnClasses( extraProps, blockType, attributes ) {
 		if ( ! allowedBlocks.includes( blockType.name ) || 'default-stack' === attributes.responsiveBehavior ) {
 			return extraProps;
-		}
-
-		if ( 'no-stack' === attributes.responsiveBehavior ) {
-			extraProps.className = extraProps.className + ' col-no-stack';
 		}
 
 		if ( 'responsive-stack' === attributes.responsiveBehavior ) {
