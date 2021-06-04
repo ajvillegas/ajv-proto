@@ -355,6 +355,30 @@ function ajv_proto_filter_comment_form_args( $defaults ) {
 
 }
 
+add_action( 'get_the_archive_title', 'ajv_proto_filter_archive_title' );
+/**
+ * Filter the default archive titles.
+ *
+ * @since 1.2.0
+ * @param string $title The current archive title.
+ * @return string $title The amended archive title.
+ */
+function ajv_proto_filter_archive_title( $title ) {
+
+	if ( is_home() ) {
+		$title = get_the_title( get_option( 'page_for_posts', true ) );
+	} elseif ( is_category() ) {
+		$title = single_cat_title( '', false );
+	} elseif ( is_tag() ) {
+		$title = single_tag_title( '', false );
+	} elseif ( is_post_type_archive() ) {
+		$title = post_type_archive_title( '', false );
+	}
+
+	return $title;
+
+}
+
 add_filter( 'excerpt_more', 'ajv_proto_excerpt_more' );
 /**
  * Filter the excerpt's "read more" link anchor text.
