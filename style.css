@@ -727,6 +727,14 @@ pre, .wp-block-verse, .wp-block-preformatted, .wp-block-code { font-family: mono
 --------------------------------------------- */
 .wp-block-separator:not(.is-style-wide):not(.is-style-dots) { max-width: 100px; }
 
+/* ## Spacer Block
+--------------------------------------------- */
+@media only screen and (max-width: 599px) { .wp-block-spacer { height: var(--spacer-small) !important; } }
+
+@media (min-width: 600px) and (max-width: 781px) { .wp-block-spacer { height: var(--spacer-medium) !important; } }
+
+@media (min-width: 782px) and (max-width: 1199px) { .wp-block-spacer { height: var(--spacer-large) !important; } }
+
 /* ## Lists
 --------------------------------------------- */
 ul, ol { list-style-type: none; margin: 0; padding: 0; }

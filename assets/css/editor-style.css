@@ -890,6 +890,26 @@ pre,
 	max-width: 100px;
 }
 
+/* ## Spacer Block
+--------------------------------------------- */
+@media only screen and (max-width: 599px) {
+	.wp-block-spacer {
+		height: var(--spacer-small) !important;
+	}
+}
+
+@media (min-width: 600px) and (max-width: 781px) {
+	.wp-block-spacer {
+		height: var(--spacer-medium) !important;
+	}
+}
+
+@media (min-width: 782px) and (max-width: 1199px) {
+	.wp-block-spacer {
+		height: var(--spacer-large) !important;
+	}
+}
+
 /* ## Lists
 --------------------------------------------- */
 ul,
