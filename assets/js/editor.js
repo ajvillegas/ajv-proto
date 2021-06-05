@@ -253,6 +253,133 @@ wp.domReady( function() {
 ( function( editor, element, components, compose, hooks ) {
 	var __ = wp.i18n.__;
 	var el = element.createElement;
+	var addFilter = hooks.addFilter;
+	var InspectorControls = editor.InspectorControls;
+	var Fragment = element.Fragment;
+	var PanelBody = components.PanelBody,
+		PanelRow = components.PanelRow,
+		RadioControl = components.RadioControl,
+		RangeControl = components.RangeControl;
+	var createHigherOrderComponent = compose.createHigherOrderComponent;
+	var allowedBlocks = [ 'core/columns' ];
+
+	var addAttributes = function addAttributes( settings ) {
+		if ( ! allowedBlocks.includes( settings.name ) ) {
+			return settings;
+		}
+
+		settings.attributes = Object.assign( settings.attributes, {
+			responsiveBehavior: {
+				type: 'string',
+				default: 'default-stack'
+			},
+			columnsLarge: {
+				type: 'number',
+				default: 1
+			},
+			columnsMedium: {
+				type: 'number',
+				default: 1
+			},
+			columnsSmall: {
+				type: 'number',
+				default: 1
+			}
+		});
+		return settings;
+	};
+
+	var withResponsiveControls = createHigherOrderComponent( function( BlockEdit ) {
+		return function( props ) {
+			if ( ! allowedBlocks.includes( props.name ) ) {
+				return el( Fragment, {}, el( BlockEdit, props ) );
+			}
+
+			return el( Fragment, {}, el( BlockEdit, props ), el( InspectorControls, {}, el( PanelBody, {
+				className: 'responsive-setting-options',
+				title: __( 'Responsive settings', 'ajv-proto' ),
+				initialOpen: true
+			}, el( PanelRow, {}, el( RadioControl, {
+				options: [ {
+					label: __( 'Use the same column count on all screen sizes.', 'ajv-proto' ),
+					value: 'default-stack'
+				}, {
+					label: __( 'Specify custom column counts for other screen sizes:', 'ajv-proto' ),
+					value: 'responsive-stack'
+				} ],
+				onChange: function onChange( value ) {
+					props.setAttributes({
+						responsiveBehavior: value
+					});
+				},
+				selected: props.attributes.responsiveBehavior
+			}) ), el( PanelRow, {}, el( RangeControl, {
+				min: 1,
+				max: 6,
+				initialPosition: 1,
+				value: props.attributes.columnsLarge,
+				beforeIcon: 'laptop',
+				label: __( 'Larger screens', 'ajv-proto' ),
+				onChange: function onChange( value ) {
+					1 < value ? props.setAttributes({
+						columnsLarge: value
+					}) : props.setAttributes({
+						columnsLarge: 1
+					});
+				}
+			}) ), el( PanelRow, {}, el( RangeControl, {
+				min: 1,
+				max: 6,
+				initialPosition: 1,
+				value: props.attributes.columnsMedium,
+				beforeIcon: 'tablet',
+				label: __( 'Medium screens', 'ajv-proto' ),
+				onChange: function onChange( value ) {
+					1 < value ? props.setAttributes({
+						columnsMedium: value
+					}) : props.setAttributes({
+						columnsMedium: 1
+					});
+				}
+			}) ), el( PanelRow, {}, el( RangeControl, {
+				min: 1,
+				max: 6,
+				initialPosition: 1,
+				value: props.attributes.columnsSmall,
+				beforeIcon: 'smartphone',
+				label: __( 'Small screens', 'ajv-proto' ),
+				onChange: function onChange( value ) {
+					1 < value ? props.setAttributes({
+						columnsSmall: value
+					}) : props.setAttributes({
+						columnsSmall: 1
+					});
+				}
+			}) ) ) ) );
+		};
+	}, 'withResponsiveControls' );
+
+	var applyColumnClasses = function applyColumnClasses( extraProps, blockType, attributes ) {
+		if ( ! allowedBlocks.includes( blockType.name ) || 'default-stack' === attributes.responsiveBehavior ) {
+			return extraProps;
+		}
+
+		if ( 'responsive-stack' === attributes.responsiveBehavior ) {
+			extraProps.className = extraProps.className + ' col-large-'.concat( attributes.columnsLarge, ' col-medium-' ).concat( attributes.columnsMedium, ' col-small-' ).concat( attributes.columnsSmall );
+		}
+
+		return extraProps;
+	};
+
+	addFilter( 'blocks.registerBlockType', 'ajv-proto/add-attributes', addAttributes );
+	addFilter( 'editor.BlockEdit', 'ajv-proto/with-responsive-controls', withResponsiveControls );
+	addFilter( 'blocks.getSaveContent.extraProps', 'ajv-proto/apply-column-classes', applyColumnClasses );
+}( window.wp.blockEditor, window.wp.element, window.wp.components, window.wp.compose, window.wp.hooks ) );
+'use strict';
+
+( function( editor, element, components, compose, hooks ) {
+	var __ = wp.i18n.__;
+	var el = element.createElement;
 	var cloneElement = element.cloneElement;
 	var addFilter = hooks.addFilter;
 	var InspectorControls = editor.InspectorControls;
@@ -398,10 +525,10 @@ wp.domReady( function() {
 		}
 	};
 
-	addFilter( 'blocks.registerBlockType', 'recplex/add-container-attributes', addContainerAttributes );
-	addFilter( 'editor.BlockEdit', 'recplex/with-width-controls', withWidthControls );
-	addFilter( 'editor.BlockListBlock', 'recplex/with-width-styles', withWidthStyles );
-	addFilter( 'blocks.getSaveElement', 'recplex/apply-children-styles', applyChildrenStyles );
+	addFilter( 'blocks.registerBlockType', 'ajv-proto/add-container-attributes', addContainerAttributes );
+	addFilter( 'editor.BlockEdit', 'ajv-proto/with-width-controls', withWidthControls );
+	addFilter( 'editor.BlockListBlock', 'ajv-proto/with-width-styles', withWidthStyles );
+	addFilter( 'blocks.getSaveElement', 'ajv-proto/apply-children-styles', applyChildrenStyles );
 }( window.wp.blockEditor, window.wp.element, window.wp.components, window.wp.compose, window.wp.hooks ) );
 'use strict';
 
@@ -416,7 +543,7 @@ wp.domReady( function() {
 		RadioControl = components.RadioControl,
 		RangeControl = components.RangeControl;
 	var createHigherOrderComponent = compose.createHigherOrderComponent;
-	var allowedBlocks = [ 'core/columns' ];
+	var allowedBlocks = [ 'core/spacer' ];
 
 	var addAttributes = function addAttributes( settings ) {
 		if ( ! allowedBlocks.includes( settings.name ) ) {
@@ -426,17 +553,17 @@ wp.domReady( function() {
 		settings.attributes = Object.assign( settings.attributes, {
 			responsiveBehavior: {
 				type: 'string',
-				default: 'default-stack'
+				default: 'default-height'
 			},
-			columnsLarge: {
+			heightLarge: {
 				type: 'number',
 				default: 1
 			},
-			columnsMedium: {
+			heightMedium: {
 				type: 'number',
 				default: 1
 			},
-			columnsSmall: {
+			heightSmall: {
 				type: 'number',
 				default: 1
 			}
@@ -451,16 +578,16 @@ wp.domReady( function() {
 			}
 
 			return el( Fragment, {}, el( BlockEdit, props ), el( InspectorControls, {}, el( PanelBody, {
-				className: 'responsive-column-options',
-				title: __( 'Responsive settings', 'ajv-proto' ),
+				className: 'responsive-setting-options',
+				title: __( 'Responsive height settings', 'ajv-proto' ),
 				initialOpen: true
 			}, el( PanelRow, {}, el( RadioControl, {
 				options: [ {
-					label: __( 'Use the same column count on all screen sizes.', 'ajv-proto' ),
-					value: 'default-stack'
+					label: __( 'Use the same spacer height on all screen sizes.', 'ajv-proto' ),
+					value: 'default-height'
 				}, {
-					label: __( 'Specify custom column counts for other screen sizes:', 'ajv-proto' ),
-					value: 'responsive-stack'
+					label: __( 'Specify custom spacer height for other screen sizes:', 'ajv-proto' ),
+					value: 'responsive-height'
 				} ],
 				onChange: function onChange( value ) {
 					props.setAttributes({
@@ -470,190 +597,67 @@ wp.domReady( function() {
 				selected: props.attributes.responsiveBehavior
 			}) ), el( PanelRow, {}, el( RangeControl, {
 				min: 1,
-				max: 6,
-				initialPosition: 1,
-				value: props.attributes.columnsLarge,
+				max: 500,
+				initialPosition: 100,
+				value: props.attributes.heightLarge,
 				beforeIcon: 'laptop',
 				label: __( 'Larger screens', 'ajv-proto' ),
 				onChange: function onChange( value ) {
 					1 < value ? props.setAttributes({
-						columnsLarge: value
+						heightLarge: value
 					}) : props.setAttributes({
-						columnsLarge: 1
+						heightLarge: 1
 					});
 				}
 			}) ), el( PanelRow, {}, el( RangeControl, {
 				min: 1,
-				max: 6,
-				initialPosition: 1,
-				value: props.attributes.columnsMedium,
+				max: 500,
+				initialPosition: 100,
+				value: props.attributes.heightMedium,
 				beforeIcon: 'tablet',
 				label: __( 'Medium screens', 'ajv-proto' ),
 				onChange: function onChange( value ) {
 					1 < value ? props.setAttributes({
-						columnsMedium: value
+						heightMedium: value
 					}) : props.setAttributes({
-						columnsMedium: 1
+						heightMedium: 1
 					});
 				}
 			}) ), el( PanelRow, {}, el( RangeControl, {
 				min: 1,
-				max: 6,
-				initialPosition: 1,
-				value: props.attributes.columnsSmall,
+				max: 500,
+				initialPosition: 100,
+				value: props.attributes.heightSmall,
 				beforeIcon: 'smartphone',
 				label: __( 'Small screens', 'ajv-proto' ),
 				onChange: function onChange( value ) {
 					1 < value ? props.setAttributes({
-						columnsSmall: value
+						heightSmall: value
 					}) : props.setAttributes({
-						columnsSmall: 1
+						heightSmall: 1
 					});
 				}
 			}) ) ) ) );
 		};
 	}, 'withResponsiveControls' );
 
-	var applyColumnClasses = function applyColumnClasses( extraProps, blockType, attributes ) {
+	var applySpacerStyle = function applySpacerStyle( extraProps, blockType, attributes ) {
 		if ( ! allowedBlocks.includes( blockType.name ) || 'default-stack' === attributes.responsiveBehavior ) {
 			return extraProps;
 		}
 
-		if ( 'responsive-stack' === attributes.responsiveBehavior ) {
-			extraProps.className = extraProps.className + ' col-large-'.concat( attributes.columnsLarge, ' col-medium-' ).concat( attributes.columnsMedium, ' col-small-' ).concat( attributes.columnsSmall );
+		if ( 'responsive-height' === attributes.responsiveBehavior ) {
+			Object.assign( extraProps.style, {
+				'--spacer-large': attributes.heightLarge + 'px',
+				'--spacer-medium': attributes.heightMedium + 'px',
+				'--spacer-small': attributes.heightSmall + 'px'
+			});
 		}
 
 		return extraProps;
 	};
 
-	addFilter( 'blocks.registerBlockType', 'recplex/add-attributes', addAttributes );
-	addFilter( 'editor.BlockEdit', 'recplex/with-responsive-controls', withResponsiveControls );
-	addFilter( 'blocks.getSaveContent.extraProps', 'recplex/apply-column-classes', applyColumnClasses );
-}( window.wp.blockEditor, window.wp.element, window.wp.components, window.wp.compose, window.wp.hooks ) );
-'use strict';
-
-( function( editor, element, components, compose, hooks ) {
-	var __ = wp.i18n.__;
-	var el = element.createElement;
-	var addFilter = hooks.addFilter;
-	var InspectorControls = editor.InspectorControls;
-	var Fragment = element.Fragment;
-	var PanelBody = components.PanelBody,
-		PanelRow = components.PanelRow,
-		RadioControl = components.RadioControl,
-		RangeControl = components.RangeControl;
-	var createHigherOrderComponent = compose.createHigherOrderComponent;
-	var allowedBlocks = [ 'core/columns' ];
-
-	var addAttributes = function addAttributes( settings ) {
-		if ( ! allowedBlocks.includes( settings.name ) ) {
-			return settings;
-		}
-
-		settings.attributes = Object.assign( settings.attributes, {
-			responsiveBehavior: {
-				type: 'string',
-				default: 'default-stack'
-			},
-			columnsLarge: {
-				type: 'number',
-				default: 1
-			},
-			columnsMedium: {
-				type: 'number',
-				default: 1
-			},
-			columnsSmall: {
-				type: 'number',
-				default: 1
-			}
-		});
-		return settings;
-	};
-
-	var withResponsiveControls = createHigherOrderComponent( function( BlockEdit ) {
-		return function( props ) {
-			if ( ! allowedBlocks.includes( props.name ) ) {
-				return el( Fragment, {}, el( BlockEdit, props ) );
-			}
-
-			return el( Fragment, {}, el( BlockEdit, props ), el( InspectorControls, {}, el( PanelBody, {
-				className: 'responsive-column-options',
-				title: __( 'Responsive settings', 'ajv-proto' ),
-				initialOpen: true
-			}, el( PanelRow, {}, el( RadioControl, {
-				options: [ {
-					label: __( 'Use the same column count on all screen sizes.', 'ajv-proto' ),
-					value: 'default-stack'
-				}, {
-					label: __( 'Specify custom column counts for other screen sizes:', 'ajv-proto' ),
-					value: 'responsive-stack'
-				} ],
-				onChange: function onChange( value ) {
-					props.setAttributes({
-						responsiveBehavior: value
-					});
-				},
-				selected: props.attributes.responsiveBehavior
-			}) ), el( PanelRow, {}, el( RangeControl, {
-				min: 1,
-				max: 6,
-				initialPosition: 1,
-				value: props.attributes.columnsLarge,
-				beforeIcon: 'laptop',
-				label: __( 'Larger screens', 'ajv-proto' ),
-				onChange: function onChange( value ) {
-					1 < value ? props.setAttributes({
-						columnsLarge: value
-					}) : props.setAttributes({
-						columnsLarge: 1
-					});
-				}
-			}) ), el( PanelRow, {}, el( RangeControl, {
-				min: 1,
-				max: 6,
-				initialPosition: 1,
-				value: props.attributes.columnsMedium,
-				beforeIcon: 'tablet',
-				label: __( 'Medium screens', 'ajv-proto' ),
-				onChange: function onChange( value ) {
-					1 < value ? props.setAttributes({
-						columnsMedium: value
-					}) : props.setAttributes({
-						columnsMedium: 1
-					});
-				}
-			}) ), el( PanelRow, {}, el( RangeControl, {
-				min: 1,
-				max: 6,
-				initialPosition: 1,
-				value: props.attributes.columnsSmall,
-				beforeIcon: 'smartphone',
-				label: __( 'Small screens', 'ajv-proto' ),
-				onChange: function onChange( value ) {
-					1 < value ? props.setAttributes({
-						columnsSmall: value
-					}) : props.setAttributes({
-						columnsSmall: 1
-					});
-				}
-			}) ) ) ) );
-		};
-	}, 'withResponsiveControls' );
-
-	var applyColumnClasses = function applyColumnClasses( extraProps, blockType, attributes ) {
-		if ( ! allowedBlocks.includes( blockType.name ) || 'default-stack' === attributes.responsiveBehavior ) {
-			return extraProps;
-		}
-
-		if ( 'responsive-stack' === attributes.responsiveBehavior ) {
-			extraProps.className = extraProps.className + ' col-large-'.concat( attributes.columnsLarge, ' col-medium-' ).concat( attributes.columnsMedium, ' col-small-' ).concat( attributes.columnsSmall );
-		}
-
-		return extraProps;
-	};
-
-	addFilter( 'blocks.registerBlockType', 'recplex/add-attributes', addAttributes );
-	addFilter( 'editor.BlockEdit', 'recplex/with-responsive-controls', withResponsiveControls );
-	addFilter( 'blocks.getSaveContent.extraProps', 'recplex/apply-column-classes', applyColumnClasses );
+	addFilter( 'blocks.registerBlockType', 'ajv-proto/add-attributes', addAttributes );
+	addFilter( 'editor.BlockEdit', 'ajv-proto/with-responsive-controls', withResponsiveControls );
+	addFilter( 'blocks.getSaveContent.extraProps', 'ajv-proto/apply-spacer-style', applySpacerStyle );
 }( window.wp.blockEditor, window.wp.element, window.wp.components, window.wp.compose, window.wp.hooks ) );
