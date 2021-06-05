@@ -256,25 +256,25 @@
 	// Add filters.
 	addFilter(
 		'blocks.registerBlockType',
-		'recplex/add-container-attributes',
+		'ajv-proto/add-container-attributes',
 		addContainerAttributes
 	);
 
 	addFilter(
 		'editor.BlockEdit',
-		'recplex/with-width-controls',
+		'ajv-proto/with-width-controls',
 		withWidthControls
 	);
 
 	addFilter(
 		'editor.BlockListBlock',
-		'recplex/with-width-styles',
+		'ajv-proto/with-width-styles',
 		withWidthStyles
 	);
 
 	addFilter(
 		'blocks.getSaveElement',
-		'recplex/apply-children-styles',
+		'ajv-proto/apply-children-styles',
 		applyChildrenStyles
 	);
 }(
