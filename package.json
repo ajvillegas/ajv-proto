@@ -15,11 +15,10 @@
     "beepbeep": "^1.2.2",
     "browser-sync": "^2.26.12",
     "decompress": ">=4.2.1",
-    "eslint": "^7.12.0",
+    "eslint": "^7.28.0",
     "eslint-config-wordpress": "^2.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^8.0.0",
-    "postcss": ">=8.3.0",
     "gulp-babel": "^8.0.0",
     "gulp-beautify": "^3.0.0",
     "gulp-cache": "^1.0.2",
@@ -45,6 +44,8 @@
     "gulp-terser": "^1.4.0",
     "gulp-uglifycss": "^1.0.6",
     "gulp-wp-pot": "^2.0.7",
+    "lodash.template": ">=4.5.0",
+    "postcss": ">=8.3.0",
     "yargs": "^17.0.1"
   },
   "scripts": {
