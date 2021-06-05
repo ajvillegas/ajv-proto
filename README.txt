@@ -76,7 +76,7 @@ AJV Proto includes support for Infinite Scroll in [Jetpack](https://wordpress.or
 * Updated the custom sample CTA block.
 * Updated the SCSS partials for better organization.
 * Updated theme template tags.
-* Updated the `[year]` shortcode to optionaly include the copyright sysmbol.
+* Updated the `[year]` shortcode to optionaly include the copyright symbol.
 
 = 1.1.0 =
 * Added a Gulp.js workflow.
