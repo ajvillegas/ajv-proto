@@ -88,7 +88,7 @@
 					el(
 						PanelBody,
 						{
-							className: 'responsive-column-options',
+							className: 'responsive-setting-options',
 							title: __( 'Responsive settings', 'ajv-proto' ),
 							initialOpen: true
 						},
@@ -193,19 +193,19 @@
 	// Add filters.
 	addFilter(
 		'blocks.registerBlockType',
-		'recplex/add-attributes',
+		'ajv-proto/add-attributes',
 		addAttributes
 	);
 
 	addFilter(
 		'editor.BlockEdit',
-		'recplex/with-responsive-controls',
+		'ajv-proto/with-responsive-controls',
 		withResponsiveControls
 	);
 
 	addFilter(
 		'blocks.getSaveContent.extraProps',
-		'recplex/apply-column-classes',
+		'ajv-proto/apply-column-classes',
 		applyColumnClasses
 	);
 }(
