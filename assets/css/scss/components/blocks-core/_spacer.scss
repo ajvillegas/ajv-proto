@@ -1,0 +1,27 @@
+/* ## Spacer Block
+--------------------------------------------- */
+
+//* Responsive Height *//
+
+// Small screens.
+// We use max-width media query instead of min-width
+// so we can override the default inline value.
+@media only screen and (max-width: 599px) {
+	.wp-block-spacer {
+		height: var(--spacer-small) !important;
+	}
+}
+
+// Medium size screens.
+@media (min-width: 600px) and (max-width: 781px) {
+	.wp-block-spacer {
+		height: var(--spacer-medium) !important;
+	}
+}
+
+// Larger screens.
+@media (min-width: 782px) and (max-width: 1199px) {
+	.wp-block-spacer {
+		height: var(--spacer-large) !important;
+	}
+}
