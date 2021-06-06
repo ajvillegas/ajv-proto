@@ -29,6 +29,7 @@ require_once AJV_PROTO_INC_DIR . '/widget-areas.php';
 require_once AJV_PROTO_INC_DIR . '/scripts-and-styles.php';
 require_once AJV_PROTO_INC_DIR . '/integrations.php';
 require_once AJV_PROTO_INC_DIR . '/customizer/customizer.php';
+require_once AJV_PROTO_INC_DIR . '/dynamic-blocks/register-blocks.php';
 
 // Load theme admin files when necessary (do not remove).
 if ( is_admin() ) {
