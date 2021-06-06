@@ -43,7 +43,7 @@ function _defineProperty( obj, key, value ) {
 		category: 'common',
 		supports: _defineProperty({
 			align: true
-		}, 'align', [ 'wide' ]),
+		}, 'align', [ 'wide', 'full' ]),
 		keywords: [ 'Custom Block', 'CTA', 'Call to Action' ],
 		attributes: {
 			backgroundColor: {
@@ -198,8 +198,8 @@ function _defineProperty( obj, key, value ) {
 		keywords: [ 'Custom Block', 'Grid', 'Columns' ],
 		attributes: {
 			childWidth: {
-				type: 'string',
-				default: '250'
+				type: 'number',
+				default: 250
 			}
 		},
 		example: undefined,
@@ -239,6 +239,99 @@ function _defineProperty( obj, key, value ) {
 					'--child-width': props.attributes.childWidth + 'px'
 				}
 			}, el( InnerBlocks.Content ) );
+		}
+	});
+}( window.wp.blocks, window.wp.blockEditor, window.wp.element, window.wp.components ) );
+'use strict';
+
+/* eslint-disable no-unused-vars */
+( function( blocks, editor, element, components ) {
+	var __ = wp.i18n.__;
+	var el = element.createElement;
+	var registerBlockType = blocks.registerBlockType;
+	var InspectorControls = editor.InspectorControls,
+		InnerBlocks = editor.InnerBlocks;
+	var Fragment = element.Fragment;
+	var PanelBody = components.PanelBody,
+		PanelRow = components.PanelRow,
+		RangeControl = components.RangeControl;
+	var serverSideRender = wp.serverSideRender;
+	var template = [ [ 'core/heading', {
+		content: 'Heading Title'
+	} ] ];
+
+	registerBlockType( 'ajv-proto/posts-grid', {
+		title: __( 'Posts Grid', 'ajv-proto' ),
+		description: __( 'Display a grid of your most recent posts.', 'ajv-proto' ),
+		icon: 'grid-view',
+		category: 'widgets',
+		keywords: [ 'Custom Block', 'Grid', 'Latest Posts' ],
+		attributes: {
+			childWidth: {
+				type: 'number',
+				default: 250
+			},
+			postsPerBlock: {
+				type: 'number',
+				default: 4
+			}
+		},
+		example: {
+			attributes: {
+				childWidth: 250,
+				postsPerBlock: 4
+			},
+			innerBlocks: [ {
+				name: 'core/heading',
+				attributes: {
+					content: __( 'Heading Title', 'ajv-proto' )
+				}
+			} ]
+		},
+		edit: function edit( props ) {
+			return [ el( Fragment, {
+				key: 'fragment'
+			}, el( InspectorControls, {}, el( PanelBody, {
+				title: __( 'Display Settings', 'ajv-proto' ),
+				initialOpen: true
+			}, el( PanelRow, {}, el( RangeControl, {
+				min: 1,
+				max: 100,
+				initialPosition: 4,
+				value: props.attributes.postsPerBlock,
+				label: __( 'Number of items', 'ajv-proto' ),
+				onChange: function onChange( value ) {
+					1 < value ? props.setAttributes({
+						postsPerBlock: value
+					}) : props.setAttributes({
+						postsPerBlock: 1
+					});
+				}
+			}) ), el( PanelRow, {}, el( RangeControl, {
+				min: 50,
+				max: 1000,
+				initialPosition: 250,
+				value: props.attributes.childWidth,
+				label: __( 'Column min-width in pixels', 'ajv-proto' ),
+				onChange: function onChange( value ) {
+					50 < value ? props.setAttributes({
+						childWidth: value
+					}) : props.setAttributes({
+						childWidth: 50
+					});
+				}
+			}) ) ) ) ), el( 'div', {
+				className: props.className
+			}, el( InnerBlocks, {
+				template: template,
+				templateLock: 'all'
+			}), el( serverSideRender, {
+				block: 'ajv-proto/posts-grid',
+				attributes: props.attributes
+			}) ) ];
+		},
+		save: function save( props ) {
+			return el( InnerBlocks.Content );
 		}
 	});
 }( window.wp.blocks, window.wp.blockEditor, window.wp.element, window.wp.components ) );
