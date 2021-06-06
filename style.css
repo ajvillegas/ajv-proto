@@ -687,6 +687,8 @@ blockquote cite, .wp-block-quote cite, .wp-block-pullquote cite, .wp-block-quote
 --------------------------------------------- */
 .full-width-content .wp-block-cover.alignfull, .full-width-padded .wp-block-cover.alignfull { width: 100vw; }
 
+.wp-block-cover .wp-block-cover__inner-container, .wp-block-cover .wp-block-cover__inner-container a { color: #fff; }
+
 /* ## Gallery Block
 --------------------------------------------- */
 .wp-block-gallery { padding-left: 0; }
