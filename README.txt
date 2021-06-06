@@ -69,6 +69,7 @@ AJV Proto includes support for Infinite Scroll in [Jetpack](https://wordpress.or
 
 = 1.2.0 =
 * Added custom CSS Grid block.
+* Added dynamic server side render block sample.
 * Added Cover and Group block inner container width setings.
 * Added custom responsive column settings to the Columns block.
 * Added custom responsive height settings to the Spacer block.
