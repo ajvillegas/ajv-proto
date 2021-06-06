@@ -31,8 +31,8 @@
 		keywords: [ 'Custom Block', 'Grid', 'Columns' ],
 		attributes: {
 			childWidth: {
-				type: 'string',
-				default: '250'
+				type: 'number',
+				default: 250
 			}
 		},
 		example: undefined,
