@@ -28,7 +28,7 @@
 		category: 'common',
 		supports: _defineProperty({
 			align: true
-		}, 'align', [ 'wide' ]),
+		}, 'align', [ 'wide', 'full' ]),
 		keywords: [ 'Custom Block', 'CTA', 'Call to Action' ],
 		attributes: {
 			backgroundColor: {
