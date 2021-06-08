@@ -69,12 +69,12 @@
 			parentLink = container.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
 
 		if ( 'ontouchstart' in window ) {
-			touchStartFn = function touchStartFn( e ) {
+			touchStartFn = function touchStartFn( event ) {
 				var menuItem = this.parentNode,
 					i;
 
 				if ( ! menuItem.classList.contains( 'focus' ) ) {
-					e.preventDefault();
+					event.preventDefault();
 
 					for ( i = 0; i < menuItem.parentNode.children.length; ++i ) {
 						if ( menuItem === menuItem.parentNode.children[i]) {
@@ -87,6 +87,10 @@
 					menuItem.classList.add( 'focus' );
 				} else {
 					menuItem.classList.remove( 'focus' );
+
+					if ( '#' === this.getAttribute( 'href' ) ) {
+						event.preventDefault();
+					}
 				}
 			};
 
@@ -97,43 +101,57 @@
 	}( container ) );
 
 	document.addEventListener( 'click', function( event ) {
+		var link;
+
 		if ( ! event.target.closest( '.menu-item' ) ) {
 			for ( i = 0, len = links.length; i < len; i++ ) {
 				links[i].parentNode.classList.remove( 'focus' );
+			}
+		}
+
+		if ( event.target.closest( '.menu-item a' ) ) {
+			if ( event.target.hasAttribute( 'href' ) ) {
+				link = event.target;
+			} else {
+				link = event.target.parentNode;
+			}
+
+			if ( '#' === link.getAttribute( 'href' ) ) {
+				event.preventDefault();
 			}
 		}
 	}, false );
 }() );
 'use strict';
 
-function scrollToTop() {
-	var element = document.querySelector( 'body' ).offsetTop;
+( function() {
+	function scrollToTop() {
+		var element = document.querySelector( 'body' ).offsetTop;
 
-	window.scroll({
-		top: element,
-		left: 0,
-		behavior: 'smooth'
-	});
-}
-
-function scrollClasses() {
-	var topButton = document.querySelector( '.to-top' );
-
-	if ( 100 < document.body.scrollTop || 100 < document.documentElement.scrollTop ) {
-		topButton.style.display = 'block';
-	} else {
-		topButton.style.display = 'none';
+		window.scroll({
+			top: element,
+			left: 0,
+			behavior: 'smooth'
+		});
 	}
-}
 
-window.addEventListener( 'load', function() {
-	scrollClasses();
-	document.querySelector( '.to-top' ).addEventListener( 'click', scrollToTop );
-});
+	function scrollClasses() {
+		var topButton = document.querySelector( '.to-top' );
 
-window.onscroll = function() {
+		if ( 100 < document.body.scrollTop || 100 < document.documentElement.scrollTop ) {
+			topButton.style.display = 'block';
+		} else {
+			topButton.style.display = 'none';
+		}
+	}
+
 	scrollClasses();
-};
+	document.querySelector( '.to-top' ).addEventListener( 'click', scrollToTop, false );
+
+	window.onscroll = function() {
+		scrollClasses();
+	};
+}() );
 'use strict';
 
 ( function() {
