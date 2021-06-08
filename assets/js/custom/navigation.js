@@ -85,21 +85,29 @@
 			parentLink = container.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
 
 		if ( 'ontouchstart' in window ) {
-			touchStartFn = function( e ) {
+			touchStartFn = function( event ) {
 				var menuItem = this.parentNode,
 					i;
 
 				if ( ! menuItem.classList.contains( 'focus' ) ) {
-					e.preventDefault();
+					event.preventDefault();
+
 					for ( i = 0; i < menuItem.parentNode.children.length; ++i ) {
 						if ( menuItem === menuItem.parentNode.children[i]) {
 							continue;
 						}
+
 						menuItem.parentNode.children[i].classList.remove( 'focus' );
 					}
+
 					menuItem.classList.add( 'focus' );
 				} else {
 					menuItem.classList.remove( 'focus' );
+
+					// Prevent default if URL is a hashtag.
+					if ( '#' === this.getAttribute( 'href' ) ) {
+						event.preventDefault();
+					}
 				}
 			};
 
@@ -110,12 +118,40 @@
 	}( container ) );
 
 	/**
-	 * Removes `focus` class when clicking outside of menu items.
+	 * Handle click events.
 	 */
 	document.addEventListener( 'click', function( event ) {
+		var link;
+
+		// Remove `focus` class when clicking outside of menu items.
 		if ( ! event.target.closest( '.menu-item' ) ) {
 			for ( i = 0, len = links.length; i < len; i++ ) {
 				links[i].parentNode.classList.remove( 'focus' );
+			}
+		}
+
+		// Prevent default if URL is a hashtag.
+		/* if ( event.target.matches( '.menu-item a' ) ) {
+			link = event.target;
+
+			if ( '#' === link.getAttribute( 'href' ) ) {
+				event.preventDefault();
+			}
+		} */
+
+		/**
+		 * Prevent default if URL is a hashtag.
+		 * Use when anchor element is wrapped in <span> tags.
+		 */
+		if ( event.target.closest( '.menu-item a' ) ) {
+			if ( event.target.hasAttribute( 'href' ) ) {
+				link = event.target;
+			} else {
+				link = event.target.parentNode;
+			}
+
+			if ( '#' === link.getAttribute( 'href' ) ) {
+				event.preventDefault();
 			}
 		}
 	}, false );
