@@ -4,7 +4,8 @@
  *
  * @package    AJV_Proto
  * @author     Automattic
- * @link	   https://github.com/Automattic/_s
+ * @author     Alexis J. Villegas
+ * @link       https://github.com/Automattic/_s
  * @license    GPL-2.0+
  */
 
