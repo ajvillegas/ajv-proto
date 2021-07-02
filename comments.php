@@ -25,7 +25,7 @@ if ( post_password_required() ) {
 }
 
 ?>
-<h2 class="screen-reader-text"><?php esc_html_e( 'Reader Comments', 'ajv-proto' ); ?></h2>
+<h2 class="screen-reader-text"><?php echo esc_html__( 'Reader Comments', 'ajv-proto' ); ?></h2>
 <div id="comments" class="entry-comments">
 
 	<?php
@@ -67,7 +67,7 @@ if ( post_password_required() ) {
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() ) :
 			?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'ajv-proto' ); ?></p>
+			<p class="no-comments"><?php echo esc_html__( 'Comments are closed.', 'ajv-proto' ); ?></p>
 			<?php
 		endif;
 

@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <section class="no-results not-found entry">
 	<header class="entry-header">
-		<h1 class="entry-title" itemprop="headline"><?php esc_html_e( 'Nothing Found', 'ajv-proto' ); ?></h1>
+		<h1 class="entry-title" itemprop="headline"><?php echo esc_html__( 'Nothing Found', 'ajv-proto' ); ?></h1>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content" itemprop="text">
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		elseif ( is_search() ) :
 
 			?>
-			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'ajv-proto' ); ?></p>
+			<p><?php echo esc_html__( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'ajv-proto' ); ?></p>
 			<?php
 
 			get_search_form();
@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		else :
 
 			?>
-			<p><?php esc_html_e( 'It seems we can\'t find what you\'re looking for. Perhaps searching can help.', 'ajv-proto' ); ?></p>
+			<p><?php echo esc_html__( 'It seems we can\'t find what you\'re looking for. Perhaps searching can help.', 'ajv-proto' ); ?></p>
 			<?php
 
 			get_search_form();

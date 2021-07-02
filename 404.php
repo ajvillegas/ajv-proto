@@ -20,7 +20,7 @@ get_header();
 	<main id="site-content" class="content">
 		<section class="error-404 not-found entry">
 			<header class="entry-header">
-				<h1 class="entry-title" itemprop="headline"><?php esc_html_e( 'Oops! That page can\'t be found.', 'ajv-proto' ); ?></h1>
+				<h1 class="entry-title" itemprop="headline"><?php echo esc_html__( 'Oops! That page can\'t be found.', 'ajv-proto' ); ?></h1>
 			</header><!-- .page-header -->
 
 			<div class="entry-content">

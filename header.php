@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php if ( is_active_sidebar( 'utility-bar' ) ) : ?>
 		<aside id="utility-bar" class="widget-area utility-bar">
-			<span class="screen-reader-text"><?php esc_html_e( 'Utility Bar', 'ajv-proto' ); ?></span>
+			<span class="screen-reader-text"><?php echo esc_html__( 'Utility Bar', 'ajv-proto' ); ?></span>
 			<div class="wrap">
 				<?php dynamic_sidebar( 'utility-bar' ); ?>
 			</div>
@@ -45,16 +45,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="site-container">
 		<ul class="skip-links">
 			<li>
-				<a class="screen-reader-text" href="#primary-nav"><?php esc_html_e( 'Skip to primary navigation', 'ajv-proto' ); ?></a>
+				<a class="screen-reader-text" href="#primary-nav"><?php echo esc_html__( 'Skip to primary navigation', 'ajv-proto' ); ?></a>
 			</li>
 			<li>
-				<a class="screen-reader-text" href="#site-content"><?php esc_html_e( 'Skip to content', 'ajv-proto' ); ?></a>
+				<a class="screen-reader-text" href="#site-content"><?php echo esc_html__( 'Skip to content', 'ajv-proto' ); ?></a>
 			</li>
 			<li>
-				<a class="screen-reader-text" href="#sidebar-primary"><?php esc_html_e( 'Skip to primary sidebar', 'ajv-proto' ); ?></a>
+				<a class="screen-reader-text" href="#sidebar-primary"><?php echo esc_html__( 'Skip to primary sidebar', 'ajv-proto' ); ?></a>
 			</li>
 			<li>
-				<a class="screen-reader-text" href="#footer-widgets"><?php esc_html_e( 'Skip to footer', 'ajv-proto' ); ?></a>
+				<a class="screen-reader-text" href="#footer-widgets"><?php echo esc_html__( 'Skip to footer', 'ajv-proto' ); ?></a>
 			</li>
 		</ul>
 
@@ -88,7 +88,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<?php if ( is_active_sidebar( 'header-widget' ) ) : ?>
 					<div class="widget-area header-widget-area">
-						<span class="screen-reader-text"><?php esc_html_e( 'Header Widget Area', 'ajv-proto' ); ?></span>
+						<span class="screen-reader-text"><?php echo esc_html__( 'Header Widget Area', 'ajv-proto' ); ?></span>
 						<?php dynamic_sidebar( 'header-widget' ); ?>
 					</div>
 				<?php endif; ?>

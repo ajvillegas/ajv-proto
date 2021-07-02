@@ -97,7 +97,7 @@ function ajv_proto_layout_meta_box( $post ) {
 		<tbody>
 			<tr valign="top">
 				<th scope="row">
-					<label for="_ajv_proto_post_layout"><?php esc_html_e( 'Select Layout', 'ajv-proto' ); ?></label>
+					<label for="_ajv_proto_post_layout"><?php echo esc_html__( 'Select Layout', 'ajv-proto' ); ?></label>
 				</th>
 				<td class="layout-selector">
 					<p>
@@ -137,7 +137,7 @@ function ajv_proto_layout_meta_box( $post ) {
 					</label>
 
 					<label for="sidebar-content" class="box">
-						<span class="screen-reader-text"><?php esc_html_e( 'Primary Sidebar, Content', 'ajv-proto' ); ?></span>
+						<span class="screen-reader-text"><?php echo esc_html__( 'Primary Sidebar, Content', 'ajv-proto' ); ?></span>
 						<img src="<?php echo esc_attr( AJV_PROTO_IMAGES ) . '/post-layouts/sidebar-content.gif'; ?>" alt="Sidebar, Content">
 						<input type="radio" name="_ajv_proto_post_layout" id="sidebar-content" value="sidebar-content" class="screen-reader-text"
 							<?php
@@ -151,7 +151,7 @@ function ajv_proto_layout_meta_box( $post ) {
 					</label>
 
 					<label for="full-width-padded" class="box">
-						<span class="screen-reader-text"><?php esc_html_e( 'Full Width Padded', 'ajv-proto' ); ?></span>
+						<span class="screen-reader-text"><?php echo esc_html__( 'Full Width Padded', 'ajv-proto' ); ?></span>
 						<img src="<?php echo esc_attr( AJV_PROTO_IMAGES ) . '/post-layouts/full-width-padded.gif'; ?>" alt="Full Width Padded">
 						<input type="radio" name="_ajv_proto_post_layout" id="full-width-padded" value="full-width-padded" class="screen-reader-text"
 							<?php
@@ -165,7 +165,7 @@ function ajv_proto_layout_meta_box( $post ) {
 					</label>
 
 					<label for="full-width-content" class="box">
-						<span class="screen-reader-text"><?php esc_html_e( 'Full Width Content', 'ajv-proto' ); ?></span>
+						<span class="screen-reader-text"><?php echo esc_html__( 'Full Width Content', 'ajv-proto' ); ?></span>
 						<img src="<?php echo esc_attr( AJV_PROTO_IMAGES ) . '/post-layouts/full-width-content.gif'; ?>" alt="Full Width Content">
 						<input type="radio" name="_ajv_proto_post_layout" id="full-width-content" value="full-width-content" class="screen-reader-text"
 							<?php

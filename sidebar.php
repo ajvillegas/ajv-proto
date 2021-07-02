@@ -24,7 +24,7 @@ if ( ! is_active_sidebar( 'primary-sidebar' )
 ?>
 <aside id="sidebar-primary" class="sidebar sidebar-primary" role="complementary" aria-label="Primary Sidebar" itemscope itemtype="https://schema.org/WPSideBar">
 	<h2 class="screen-reader-text">
-		<?php esc_html_e( 'Primary Sidebar', 'ajv-proto' ); ?>
+		<?php echo esc_html__( 'Primary Sidebar', 'ajv-proto' ); ?>
 	</h2>
 	<?php dynamic_sidebar( 'primary-sidebar' ); ?>
 </aside>
