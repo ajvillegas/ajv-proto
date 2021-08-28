@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php endif; ?>
 
 	<div class="site-container">
-		<ul class="skip-links">
+		<ul class="skip-links" aria-hidden="true">
 			<li>
 				<a class="screen-reader-text" href="#primary-nav"><?php echo esc_html__( 'Skip to primary navigation', 'ajv-proto' ); ?></a>
 			</li>
